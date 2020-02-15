@@ -6,18 +6,19 @@ import cn.litchi.model.entity.LzLitchiType;
 import cn.litchi.model.entity.LzOrcpicture;
 import cn.litchi.model.entity.LzText;
 import cn.litchi.model.entity.TbContent;
-import cn.litchi.model.utils.CheckToken;
 import cn.litchi.model.utils.MallResult;
 import cn.litchi.model.utils.MallResultStatus;
 import cn.litchi.rpc.SourceServiceRpc;
-import com.alibaba.druid.sql.PagerUtils;
+import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.websocket.server.PathParam;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -46,7 +47,7 @@ public class SourceController extends BaseController {
     @GetMapping("/litchi/carouselpic")
     public MallResult getLitchiCarouselPic() {
         List<TbContent> list = sourceServiceRpc.getCarouselPic();
-        if (list == null) {
+        if (CollectionUtils.isEmpty(list)) {
             return MallResult.build(MallResultStatus.Server_OPERATION_FAIL, "荔枝园轮播图获取失败");
         }
         List<Picture> data = new ArrayList<>();
@@ -70,13 +71,13 @@ public class SourceController extends BaseController {
     }
 
     @GetMapping("/litchi/wisdommanagement")
-    public MallResult getWisdommanagement(@RequestParam(value = "typeId", defaultValue = "1") Long typeId,Integer mon) {
+    public MallResult getWisdommanagement(@RequestParam(value = "typeId", defaultValue = "1") Long typeId, Integer mon) {
         LzLitchiType data = sourceServiceRpc.getLitchiType(typeId);
-        if(data == null){
+        if (data == null) {
             return MallResult.build(MallResultStatus.Server_OPERATION_FAIL, "智慧管理获取失败");
         }
         String management = null;
-        switch (mon.intValue()){
+        switch (mon.intValue()) {
             case 1:
                 management = data.getJan();
                 break;
@@ -113,26 +114,26 @@ public class SourceController extends BaseController {
             case 12:
                 management = data.getDece();
                 break;
-            default :
+            default:
 
         }
         return (management != null) ? MallResult.ok(management)
-                : MallResult.build(MallResultStatus.Server_OPERATION_FAIL,"参数错误");
+                : MallResult.build(MallResultStatus.Server_OPERATION_FAIL, "参数错误");
     }
 
     @GetMapping("/litchi/text")
-    public MallResult getLitchiCulture(Long typeId){
+    public MallResult getLitchiCulture(Long typeId) {
         List<LzText> data = sourceServiceRpc.getLitchiTextByTypeId(typeId);
-        if(data == null){
+        if (data == null) {
             return MallResult.build(MallResultStatus.Server_OPERATION_FAIL, "信息获取失败");
         }
         return MallResult.ok(data);
     }
 
     @GetMapping("/litchi/carouselpic/group")
-    public MallResult  getLitchiCarouselGroupPic(){
+    public MallResult getLitchiCarouselGroupPic() {
         List<LzText> data = sourceServiceRpc.getLitchiTextByTypeId(Long.valueOf(7));
-        if(data == null){
+        if (data == null) {
             return MallResult.build(MallResultStatus.Server_OPERATION_FAIL, "信息获取失败");
         }
         GroupCarouselPicEntity[][] dataArray = getArrayByList(data);
@@ -141,16 +142,16 @@ public class SourceController extends BaseController {
 
     private GroupCarouselPicEntity[][] getArrayByList(List<LzText> listDatas) {
         int dataSize = listDatas.size();
-        GroupCarouselPicEntity[][] datas = new GroupCarouselPicEntity[(int) Math.ceil(dataSize/2.0)][2];
+        GroupCarouselPicEntity[][] datas = new GroupCarouselPicEntity[(int) Math.ceil(dataSize / 2.0)][2];
         Iterator<LzText> iterator = listDatas.iterator();
         int row = 0;
         int col = 0;
         while (iterator.hasNext()) {
             LzText data = iterator.next();
-            datas[row][col] = new GroupCarouselPicEntity(data.getTitle(),data.getPic());
+            datas[row][col] = new GroupCarouselPicEntity(data.getTitle(), data.getPic());
             col = (col == 1) ? 0 : 1;
-            if(col == 0){
-                row ++;
+            if (col == 0) {
+                row++;
             }
         }
         return datas;

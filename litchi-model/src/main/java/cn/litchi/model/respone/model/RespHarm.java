@@ -1,4 +1,4 @@
-package cn.litchi.litchiapiserver.entity;
+package cn.litchi.model.respone.model;
 
 import lombok.Builder;
 import lombok.Data;
@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 @Data
 @Builder
-public class SimpleHarm implements Serializable{
+public class RespHarm implements Serializable{
 	private Long id;
 	private String name;
 	private String pic;

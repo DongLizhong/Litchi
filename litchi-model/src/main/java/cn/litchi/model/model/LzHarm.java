@@ -1,5 +1,6 @@
 package cn.litchi.model.model;
 
+import cn.litchi.model.respone.model.RespHarm;
 import lombok.Builder;
 import lombok.Data;
 
@@ -7,7 +8,7 @@ import java.io.Serializable;
 
 @Data
 @Builder
-public class LzHarm implements Serializable{
+public class LzHarm implements Serializable {
 
     public static final String ID_FIELD = "id";
     public static final String TYPE_FIELD = "type";
@@ -39,4 +40,12 @@ public class LzHarm implements Serializable{
     private Long createTime;
 
     private Long updateTime;
+
+    public RespHarm toResponeModel() {
+        return RespHarm.builder()
+                .id(this.id)
+                .name(this.name)
+                .pic(this.picture)
+                .build();
+    }
 }

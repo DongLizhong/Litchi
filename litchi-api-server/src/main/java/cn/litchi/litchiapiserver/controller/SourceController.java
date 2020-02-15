@@ -51,13 +51,14 @@ public class SourceController extends BaseController {
             return MallResult.build(MallResultStatus.Server_OPERATION_FAIL, "荔枝园轮播图获取失败");
         }
         List<Picture> data = new ArrayList<>();
-        for (TbContent content : list) {
-            Picture picture = new Picture();
-            picture.setPic(content.getPic());
-            picture.setTitle(content.getTitle());
-            picture.setUrl(content.getUrl());
+        list.forEach(it -> {
+            Picture picture = Picture.builder()
+                    .pic(it.getPic())
+                    .title(it.getTitle())
+                    .url(it.getUrl())
+                    .build();
             data.add(picture);
-        }
+        });
         return MallResult.ok(data);
     }
 

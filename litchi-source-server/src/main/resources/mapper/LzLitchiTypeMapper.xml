@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.litchi.litchisourceserver.mapper.LzLitchiTypeMapper" >
+  <resultMap id="BaseResultMap" type="cn.litchi.model.entity.LzLitchiType" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="jan" property="jan" jdbcType="VARCHAR" />
+    <result column="feb" property="feb" jdbcType="VARCHAR" />
+    <result column="mar" property="mar" jdbcType="VARCHAR" />
+    <result column="apr" property="apr" jdbcType="VARCHAR" />
+    <result column="may" property="may" jdbcType="VARCHAR" />
+    <result column="jun" property="jun" jdbcType="VARCHAR" />
+    <result column="jul" property="jul" jdbcType="VARCHAR" />
+    <result column="aug" property="aug" jdbcType="VARCHAR" />
+    <result column="sept" property="sept" jdbcType="VARCHAR" />
+    <result column="oct" property="oct" jdbcType="VARCHAR" />
+    <result column="nov" property="nov" jdbcType="VARCHAR" />
+    <result column="dece" property="dece" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, type, jan, feb, mar, apr, may, jun, jul, aug, sept, oct, nov, dece
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.litchi.model.entity.LzLitchiTypeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from lz_litchi_type
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from lz_litchi_type
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from lz_litchi_type
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.litchi.model.entity.LzLitchiTypeExample" >
+    delete from lz_litchi_type
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.litchi.model.entity.LzLitchiType" >
+    insert into lz_litchi_type (id, type, jan, 
+      feb, mar, apr, may, 
+      jun, jul, aug, sept, 
+      oct, nov, dece)
+    values (#{id,jdbcType=BIGINT}, #{type,jdbcType=VARCHAR}, #{jan,jdbcType=VARCHAR}, 
+      #{feb,jdbcType=VARCHAR}, #{mar,jdbcType=VARCHAR}, #{apr,jdbcType=VARCHAR}, #{may,jdbcType=VARCHAR}, 
+      #{jun,jdbcType=VARCHAR}, #{jul,jdbcType=VARCHAR}, #{aug,jdbcType=VARCHAR}, #{sept,jdbcType=VARCHAR}, 
+      #{oct,jdbcType=VARCHAR}, #{nov,jdbcType=VARCHAR}, #{dece,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.litchi.model.entity.LzLitchiType" >
+    insert into lz_litchi_type
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="jan != null" >
+        jan,
+      </if>
+      <if test="feb != null" >
+        feb,
+      </if>
+      <if test="mar != null" >
+        mar,
+      </if>
+      <if test="apr != null" >
+        apr,
+      </if>
+      <if test="may != null" >
+        may,
+      </if>
+      <if test="jun != null" >
+        jun,
+      </if>
+      <if test="jul != null" >
+        jul,
+      </if>
+      <if test="aug != null" >
+        aug,
+      </if>
+      <if test="sept != null" >
+        sept,
+      </if>
+      <if test="oct != null" >
+        oct,
+      </if>
+      <if test="nov != null" >
+        nov,
+      </if>
+      <if test="dece != null" >
+        dece,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="jan != null" >
+        #{jan,jdbcType=VARCHAR},
+      </if>
+      <if test="feb != null" >
+        #{feb,jdbcType=VARCHAR},
+      </if>
+      <if test="mar != null" >
+        #{mar,jdbcType=VARCHAR},
+      </if>
+      <if test="apr != null" >
+        #{apr,jdbcType=VARCHAR},
+      </if>
+      <if test="may != null" >
+        #{may,jdbcType=VARCHAR},
+      </if>
+      <if test="jun != null" >
+        #{jun,jdbcType=VARCHAR},
+      </if>
+      <if test="jul != null" >
+        #{jul,jdbcType=VARCHAR},
+      </if>
+      <if test="aug != null" >
+        #{aug,jdbcType=VARCHAR},
+      </if>
+      <if test="sept != null" >
+        #{sept,jdbcType=VARCHAR},
+      </if>
+      <if test="oct != null" >
+        #{oct,jdbcType=VARCHAR},
+      </if>
+      <if test="nov != null" >
+        #{nov,jdbcType=VARCHAR},
+      </if>
+      <if test="dece != null" >
+        #{dece,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.litchi.model.entity.LzLitchiTypeExample" resultType="java.lang.Integer" >
+    select count(*) from lz_litchi_type
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update lz_litchi_type
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jan != null" >
+        jan = #{record.jan,jdbcType=VARCHAR},
+      </if>
+      <if test="record.feb != null" >
+        feb = #{record.feb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mar != null" >
+        mar = #{record.mar,jdbcType=VARCHAR},
+      </if>
+      <if test="record.apr != null" >
+        apr = #{record.apr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.may != null" >
+        may = #{record.may,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jun != null" >
+        jun = #{record.jun,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jul != null" >
+        jul = #{record.jul,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aug != null" >
+        aug = #{record.aug,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sept != null" >
+        sept = #{record.sept,jdbcType=VARCHAR},
+      </if>
+      <if test="record.oct != null" >
+        oct = #{record.oct,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nov != null" >
+        nov = #{record.nov,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dece != null" >
+        dece = #{record.dece,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update lz_litchi_type
+    set id = #{record.id,jdbcType=BIGINT},
+      type = #{record.type,jdbcType=VARCHAR},
+      jan = #{record.jan,jdbcType=VARCHAR},
+      feb = #{record.feb,jdbcType=VARCHAR},
+      mar = #{record.mar,jdbcType=VARCHAR},
+      apr = #{record.apr,jdbcType=VARCHAR},
+      may = #{record.may,jdbcType=VARCHAR},
+      jun = #{record.jun,jdbcType=VARCHAR},
+      jul = #{record.jul,jdbcType=VARCHAR},
+      aug = #{record.aug,jdbcType=VARCHAR},
+      sept = #{record.sept,jdbcType=VARCHAR},
+      oct = #{record.oct,jdbcType=VARCHAR},
+      nov = #{record.nov,jdbcType=VARCHAR},
+      dece = #{record.dece,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.litchi.model.entity.LzLitchiType" >
+    update lz_litchi_type
+    <set >
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="jan != null" >
+        jan = #{jan,jdbcType=VARCHAR},
+      </if>
+      <if test="feb != null" >
+        feb = #{feb,jdbcType=VARCHAR},
+      </if>
+      <if test="mar != null" >
+        mar = #{mar,jdbcType=VARCHAR},
+      </if>
+      <if test="apr != null" >
+        apr = #{apr,jdbcType=VARCHAR},
+      </if>
+      <if test="may != null" >
+        may = #{may,jdbcType=VARCHAR},
+      </if>
+      <if test="jun != null" >
+        jun = #{jun,jdbcType=VARCHAR},
+      </if>
+      <if test="jul != null" >
+        jul = #{jul,jdbcType=VARCHAR},
+      </if>
+      <if test="aug != null" >
+        aug = #{aug,jdbcType=VARCHAR},
+      </if>
+      <if test="sept != null" >
+        sept = #{sept,jdbcType=VARCHAR},
+      </if>
+      <if test="oct != null" >
+        oct = #{oct,jdbcType=VARCHAR},
+      </if>
+      <if test="nov != null" >
+        nov = #{nov,jdbcType=VARCHAR},
+      </if>
+      <if test="dece != null" >
+        dece = #{dece,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.litchi.model.entity.LzLitchiType" >
+    update lz_litchi_type
+    set type = #{type,jdbcType=VARCHAR},
+      jan = #{jan,jdbcType=VARCHAR},
+      feb = #{feb,jdbcType=VARCHAR},
+      mar = #{mar,jdbcType=VARCHAR},
+      apr = #{apr,jdbcType=VARCHAR},
+      may = #{may,jdbcType=VARCHAR},
+      jun = #{jun,jdbcType=VARCHAR},
+      jul = #{jul,jdbcType=VARCHAR},
+      aug = #{aug,jdbcType=VARCHAR},
+      sept = #{sept,jdbcType=VARCHAR},
+      oct = #{oct,jdbcType=VARCHAR},
+      nov = #{nov,jdbcType=VARCHAR},
+      dece = #{dece,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

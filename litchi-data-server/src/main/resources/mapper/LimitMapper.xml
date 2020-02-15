@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.litchi.litchidataserver.mapper.LimitMapper" >
+  <resultMap id="BaseResultMap" type="cn.litchi.model.entity.Limit" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="stage" property="stage" jdbcType="VARCHAR" />
+    <result column="tu" property="tu" jdbcType="VARCHAR" />
+    <result column="td" property="td" jdbcType="VARCHAR" />
+    <result column="hu" property="hu" jdbcType="VARCHAR" />
+    <result column="hd" property="hd" jdbcType="VARCHAR" />
+    <result column="lu" property="lu" jdbcType="VARCHAR" />
+    <result column="ld" property="ld" jdbcType="VARCHAR" />
+    <result column="wu" property="wu" jdbcType="VARCHAR" />
+    <result column="wd" property="wd" jdbcType="VARCHAR" />
+    <result column="vd" property="vd" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, stage, tu, td, hu, hd, lu, ld, wu, wd, vd
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.litchi.model.entity.LimitExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from limit
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from limit
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from limit
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.litchi.model.entity.LimitExample" >
+    delete from limit
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.litchi.model.entity.Limit" >
+    insert into limit (id, stage, tu, 
+      td, hu, hd, lu, 
+      ld, wu, wd, vd
+      )
+    values (#{id,jdbcType=BIGINT}, #{stage,jdbcType=VARCHAR}, #{tu,jdbcType=VARCHAR}, 
+      #{td,jdbcType=VARCHAR}, #{hu,jdbcType=VARCHAR}, #{hd,jdbcType=VARCHAR}, #{lu,jdbcType=VARCHAR}, 
+      #{ld,jdbcType=VARCHAR}, #{wu,jdbcType=VARCHAR}, #{wd,jdbcType=VARCHAR}, #{vd,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.litchi.model.entity.Limit" >
+    insert into limit
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="stage != null" >
+        stage,
+      </if>
+      <if test="tu != null" >
+        tu,
+      </if>
+      <if test="td != null" >
+        td,
+      </if>
+      <if test="hu != null" >
+        hu,
+      </if>
+      <if test="hd != null" >
+        hd,
+      </if>
+      <if test="lu != null" >
+        lu,
+      </if>
+      <if test="ld != null" >
+        ld,
+      </if>
+      <if test="wu != null" >
+        wu,
+      </if>
+      <if test="wd != null" >
+        wd,
+      </if>
+      <if test="vd != null" >
+        vd,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="stage != null" >
+        #{stage,jdbcType=VARCHAR},
+      </if>
+      <if test="tu != null" >
+        #{tu,jdbcType=VARCHAR},
+      </if>
+      <if test="td != null" >
+        #{td,jdbcType=VARCHAR},
+      </if>
+      <if test="hu != null" >
+        #{hu,jdbcType=VARCHAR},
+      </if>
+      <if test="hd != null" >
+        #{hd,jdbcType=VARCHAR},
+      </if>
+      <if test="lu != null" >
+        #{lu,jdbcType=VARCHAR},
+      </if>
+      <if test="ld != null" >
+        #{ld,jdbcType=VARCHAR},
+      </if>
+      <if test="wu != null" >
+        #{wu,jdbcType=VARCHAR},
+      </if>
+      <if test="wd != null" >
+        #{wd,jdbcType=VARCHAR},
+      </if>
+      <if test="vd != null" >
+        #{vd,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.litchi.model.entity.LimitExample" resultType="java.lang.Integer" >
+    select count(*) from limit
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update limit
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.stage != null" >
+        stage = #{record.stage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tu != null" >
+        tu = #{record.tu,jdbcType=VARCHAR},
+      </if>
+      <if test="record.td != null" >
+        td = #{record.td,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hu != null" >
+        hu = #{record.hu,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hd != null" >
+        hd = #{record.hd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lu != null" >
+        lu = #{record.lu,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ld != null" >
+        ld = #{record.ld,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wu != null" >
+        wu = #{record.wu,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wd != null" >
+        wd = #{record.wd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vd != null" >
+        vd = #{record.vd,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update limit
+    set id = #{record.id,jdbcType=BIGINT},
+      stage = #{record.stage,jdbcType=VARCHAR},
+      tu = #{record.tu,jdbcType=VARCHAR},
+      td = #{record.td,jdbcType=VARCHAR},
+      hu = #{record.hu,jdbcType=VARCHAR},
+      hd = #{record.hd,jdbcType=VARCHAR},
+      lu = #{record.lu,jdbcType=VARCHAR},
+      ld = #{record.ld,jdbcType=VARCHAR},
+      wu = #{record.wu,jdbcType=VARCHAR},
+      wd = #{record.wd,jdbcType=VARCHAR},
+      vd = #{record.vd,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.litchi.model.entity.Limit" >
+    update limit
+    <set >
+      <if test="stage != null" >
+        stage = #{stage,jdbcType=VARCHAR},
+      </if>
+      <if test="tu != null" >
+        tu = #{tu,jdbcType=VARCHAR},
+      </if>
+      <if test="td != null" >
+        td = #{td,jdbcType=VARCHAR},
+      </if>
+      <if test="hu != null" >
+        hu = #{hu,jdbcType=VARCHAR},
+      </if>
+      <if test="hd != null" >
+        hd = #{hd,jdbcType=VARCHAR},
+      </if>
+      <if test="lu != null" >
+        lu = #{lu,jdbcType=VARCHAR},
+      </if>
+      <if test="ld != null" >
+        ld = #{ld,jdbcType=VARCHAR},
+      </if>
+      <if test="wu != null" >
+        wu = #{wu,jdbcType=VARCHAR},
+      </if>
+      <if test="wd != null" >
+        wd = #{wd,jdbcType=VARCHAR},
+      </if>
+      <if test="vd != null" >
+        vd = #{vd,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.litchi.model.entity.Limit" >
+    update limit
+    set stage = #{stage,jdbcType=VARCHAR},
+      tu = #{tu,jdbcType=VARCHAR},
+      td = #{td,jdbcType=VARCHAR},
+      hu = #{hu,jdbcType=VARCHAR},
+      hd = #{hd,jdbcType=VARCHAR},
+      lu = #{lu,jdbcType=VARCHAR},
+      ld = #{ld,jdbcType=VARCHAR},
+      wu = #{wu,jdbcType=VARCHAR},
+      wd = #{wd,jdbcType=VARCHAR},
+      vd = #{vd,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

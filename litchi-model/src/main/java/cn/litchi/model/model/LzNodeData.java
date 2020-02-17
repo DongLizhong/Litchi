@@ -1,12 +1,18 @@
 package cn.litchi.model.model;
 
+import cn.litchi.model.respone.model.RespHarm;
+import cn.litchi.model.respone.model.RespNodeData;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.Date;
 
 @lombok.Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 /**
  * 节点数据
  */

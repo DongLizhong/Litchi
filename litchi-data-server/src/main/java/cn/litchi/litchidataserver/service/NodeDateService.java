@@ -1,8 +1,9 @@
-package cn.litchi.litchidataserver.newservice;
+package cn.litchi.litchidataserver.service;
 
 import cn.litchi.model.mapper.LzNodeDataDao;
 import cn.litchi.model.model.LzNodeData;
 import cn.litchi.model.utils.DateUtils;
+import cn.litchi.rpc.NodeDataServiceRpc;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,11 +15,12 @@ import static cn.litchi.model.utils.CollectionsUtilsExtend.checkListNotNull;
 import static cn.litchi.model.utils.DateUtils.checkNodeDataParamDay;
 
 @RestController
-public class NodeDateService {
+public class NodeDateService implements NodeDataServiceRpc {
 
     @Autowired
     private LzNodeDataDao nodeDataDao;
 
+    @Override
     public List<LzNodeData> selectDatasByNodeId(Long nodeId) {
         QueryWrapper<LzNodeData> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq(LzNodeData.NODE_ID_FIELD, nodeId);
@@ -26,7 +28,7 @@ public class NodeDateService {
         return checkListNotNull(datas);
     }
 
-
+    @Override
     public List<LzNodeData> selectLastestNDayDatasByNodeId(Long nodeId, int nday) {
         long queryTime = DateUtils.getEpochMilliAtStartofDayByMinusDays(checkNodeDataParamDay(nday));
         QueryWrapper<LzNodeData> queryWrapper = new QueryWrapper<>();
@@ -35,7 +37,7 @@ public class NodeDateService {
         return checkListNotNull(datas);
     }
 
-
+    @Override
     public List<LzNodeData> selectIntervalDatasByDateAndNodeId(LocalDate beginDate, LocalDate endDate, Long nodeId) {
         long startOfDay = DateUtils.getEpochMilliAtStartofDay(beginDate);
         long endOfDay = DateUtils.getEpochMilliAtEndofDay(endDate);

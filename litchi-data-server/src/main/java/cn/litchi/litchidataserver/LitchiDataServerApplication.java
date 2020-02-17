@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 @EnableDiscoveryClient
 @RestController
-//@MapperScan("cn.litchi.model.mapper")
+@MapperScan("cn.litchi.model.mapper")
 public class LitchiDataServerApplication {
 
     @RequestMapping("/health")

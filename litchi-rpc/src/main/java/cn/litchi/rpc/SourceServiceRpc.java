@@ -1,9 +1,9 @@
 package cn.litchi.rpc;
 
-import cn.litchi.model.entity.LzLitchiType;
-import cn.litchi.model.entity.LzOrcpicture;
-import cn.litchi.model.entity.LzText;
-import cn.litchi.model.entity.TbContent;
+import cn.litchi.model.model.LzLitchiType;
+import cn.litchi.model.model.LzOrcpicture;
+import cn.litchi.model.model.LzText;
+import cn.litchi.model.model.TbContent;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,8 +1,9 @@
-package cn.litchi.litchidataserver.newservice;
+package cn.litchi.litchidataserver.service;
 
 import cn.litchi.model.mapper.LzHarmDao;
 import cn.litchi.model.model.LzHarm;
 import cn.litchi.model.utils.DateUtils;
+import cn.litchi.rpc.HarmServiceRpc;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +15,12 @@ import java.util.List;
 import static cn.litchi.model.utils.CollectionsUtilsExtend.checkListNotNull;
 
 @RestController
-public class HarmService {
+public class HarmService implements HarmServiceRpc {
 
     @Autowired
     private LzHarmDao harmDao;
 
+    @Override
     public List<LzHarm> getHarmList(String type) {
         if (StringUtils.isBlank(type)) return Collections.emptyList();
         QueryWrapper<LzHarm> queryWrapper = new QueryWrapper<>();
@@ -27,10 +29,12 @@ public class HarmService {
         return checkListNotNull(harmList);
     }
 
+    @Override
     public LzHarm getHarmById(Long id) {
         return harmDao.selectById(id);
     }
 
+    @Override
     public Boolean addHarm(LzHarm harm) {
         harm.setCreateTime(DateUtils.getNowTimeAsEpochMilli());
         harm.setUpdateTime(DateUtils.getNowTimeAsEpochMilli());

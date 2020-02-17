@@ -1,7 +1,7 @@
 package cn.litchi.rpc;
 
 
-import cn.litchi.model.entity.Node;
+import cn.litchi.model.model.LzNode;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,9 +16,9 @@ import java.util.List;
 @RequestMapping("/node")
 public interface NodeServiceRpc {
 	@GetMapping("/list")
-	List<Node> selectNodeList();
+	List<LzNode> getNodeList();
 	@PostMapping(value = "/add",consumes = MediaType.APPLICATION_JSON_VALUE)
-	Boolean addNode(@RequestBody Node node);
+	Boolean addNode(@RequestBody LzNode node);
 	@GetMapping(value = "/delete")
 	Boolean deleteNode(@RequestParam("nodeId") Long nodeId);
 }

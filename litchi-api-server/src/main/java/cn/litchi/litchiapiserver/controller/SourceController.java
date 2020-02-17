@@ -2,10 +2,10 @@ package cn.litchi.litchiapiserver.controller;
 
 import cn.litchi.litchiapiserver.entity.GroupCarouselPicEntity;
 import cn.litchi.litchiapiserver.entity.Picture;
-import cn.litchi.model.entity.LzLitchiType;
-import cn.litchi.model.entity.LzOrcpicture;
-import cn.litchi.model.entity.LzText;
-import cn.litchi.model.entity.TbContent;
+import cn.litchi.model.model.LzLitchiType;
+import cn.litchi.model.model.LzOrcpicture;
+import cn.litchi.model.model.LzText;
+import cn.litchi.model.model.TbContent;
 import cn.litchi.model.utils.MallResult;
 import cn.litchi.model.utils.MallResultStatus;
 import cn.litchi.rpc.SourceServiceRpc;
@@ -53,7 +53,7 @@ public class SourceController extends BaseController {
         List<Picture> data = new ArrayList<>();
         list.forEach(it -> {
             Picture picture = Picture.builder()
-                    .pic(it.getPic())
+                    .pic(it.getPicture())
                     .title(it.getTitle())
                     .url(it.getUrl())
                     .build();
@@ -149,7 +149,7 @@ public class SourceController extends BaseController {
         int col = 0;
         while (iterator.hasNext()) {
             LzText data = iterator.next();
-            datas[row][col] = new GroupCarouselPicEntity(data.getTitle(), data.getPic());
+            datas[row][col] = new GroupCarouselPicEntity(data.getTitle(), data.getPicture());
             col = (col == 1) ? 0 : 1;
             if (col == 0) {
                 row++;

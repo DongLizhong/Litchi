@@ -1,5 +1,8 @@
 package cn.litchi.model.model;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Builder;
 import lombok.Data;
 
@@ -11,7 +14,9 @@ import java.util.Date;
 /**
  * 经销商
  */
+@TableName(value = "tb_franchiser")
 public class TbFranchiser implements Serializable{
+    @TableId(value = "id",type = IdType.AUTO)
     private Long id;
 
     private String username;

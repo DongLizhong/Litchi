@@ -6,26 +6,39 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Builder;
 import lombok.Data;
 
-import java.io.Serializable;
 import java.util.Date;
 
 @Data
 @Builder
+@TableName(value = "lz_node_data_picture")
 /**
- * 管理员
+ * 节点数据-图片类型
  */
-@TableName("lz_administrator")
-public class LzAdministrator implements Serializable {
+public class LzNodeDataPicture {
     @TableId(value = "id",type = IdType.AUTO)
     private Long id;
 
-    private String username;
+    private Long nodeId;
 
-    private String password;
+    private Long messageId;
 
-    private String phone;
+    private Long harmId;
 
-    private String email;
+    private Long limitId;
+
+    private Long time;
+
+    private String volt;
+
+    private String picture;
+
+    private Integer num;
+
+    private Integer youngNum;
+
+    private Integer immatureNum;
+
+    private Integer matureNum;
 
     private Long createTime;
 

@@ -2,6 +2,9 @@ package cn.litchi.model.model;
 
 import cn.litchi.model.respone.model.RespHarm;
 import cn.litchi.model.respone.model.RespNodeData;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
@@ -13,6 +16,7 @@ import java.util.Date;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@TableName(value = "lz_node_data")
 /**
  * 节点数据
  */
@@ -33,6 +37,7 @@ public class LzNodeData implements Serializable{
     public static final String RAIN_FALL_FIELD = "rainfall";
     public static final String VOLT_FIELD = "volt";
 
+    @TableId(value = "id",type = IdType.AUTO)
     private Long id;
 
     private Long limitId;

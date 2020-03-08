@@ -1,6 +1,9 @@
 package cn.litchi.model.model;
 
 import cn.litchi.model.respone.model.RespHarm;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Builder;
 import lombok.Data;
 
@@ -8,6 +11,7 @@ import java.io.Serializable;
 
 @Data
 @Builder
+@TableName(value = "lz_harm")
 public class LzHarm implements Serializable {
 
     public static final String ID_FIELD = "id";
@@ -21,6 +25,7 @@ public class LzHarm implements Serializable {
     public static final String CREATE_TIME_FIELD = "create_time";
     public static final String UPDATE_TIME_FIELD = "update_time";
 
+    @TableId(value = "id",type = IdType.AUTO)
     private Long id;
 
     private String type;

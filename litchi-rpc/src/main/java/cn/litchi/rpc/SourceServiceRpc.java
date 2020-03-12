@@ -1,9 +1,9 @@
 package cn.litchi.rpc;
 
-import cn.litchi.model.model.LzLitchiType;
-import cn.litchi.model.model.LzOrcpicture;
-import cn.litchi.model.model.LzText;
-import cn.litchi.model.model.TbContent;
+import cn.litchi.model.model.DBLzLitchiType;
+import cn.litchi.model.model.DBLzOrchardPicture;
+import cn.litchi.model.model.DBLzText;
+import cn.litchi.model.model.DBTbContent;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,17 +21,17 @@ import java.util.Map;
 public interface SourceServiceRpc {
 
 	@GetMapping("/carousepic")
-	List<TbContent> getCarouselPic();
+	List<DBTbContent> getCarouselPic();
 
 	@PostMapping(value = "/upload",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	Map<String,String> uploadFile(@RequestPart("file") MultipartFile uploadFile);
 
 	@GetMapping("/orcpic")
-	List<LzOrcpicture> getOrcPic(@RequestParam("orcId") Long orcId);
+	List<DBLzOrchardPicture> getOrcPic(@RequestParam("orcId") Long orcId);
 
 	@GetMapping("/litchitype")
-	LzLitchiType getLitchiType(@RequestParam("typeId") Long typeId);
+    DBLzLitchiType getLitchiType(@RequestParam("typeId") Long typeId);
 
 	@GetMapping("/litchitext")
-	List<LzText> getLitchiTextByTypeId(@RequestParam("typeId") Long typeId);
+	List<DBLzText> getLitchiTextByTypeId(@RequestParam("typeId") Long typeId);
 }

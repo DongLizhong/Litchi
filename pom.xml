@@ -15,6 +15,7 @@
         <module>litchi-admin-server</module>
         <module>litchi-product-server</module>
         <module>litchi-order-server</module>
+        <module>litchi-monitor-server</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

@@ -4,10 +4,10 @@ import cn.litchi.model.mapper.LzLitchiTypeDao;
 import cn.litchi.model.mapper.LzOrcpictureDao;
 import cn.litchi.model.mapper.LzTextDao;
 import cn.litchi.model.mapper.TbContentDao;
-import cn.litchi.model.model.LzLitchiType;
-import cn.litchi.model.model.LzOrcpicture;
-import cn.litchi.model.model.LzText;
-import cn.litchi.model.model.TbContent;
+import cn.litchi.model.model.DBLzLitchiType;
+import cn.litchi.model.model.DBLzOrchardPicture;
+import cn.litchi.model.model.DBLzText;
+import cn.litchi.model.model.DBTbContent;
 import cn.litchi.model.utils.FastDFSClient;
 import cn.litchi.rpc.SourceServiceRpc;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -45,8 +45,8 @@ public class SourceService implements SourceServiceRpc {
     private LzTextDao lzTextMapper;
 
     @Override
-    public List<TbContent> getCarouselPic() {
-        List<TbContent> list = getContentListByCategoryId(carouselPicId);
+    public List<DBTbContent> getCarouselPic() {
+        List<DBTbContent> list = getContentListByCategoryId(carouselPicId);
         return list;
 
     }
@@ -76,31 +76,31 @@ public class SourceService implements SourceServiceRpc {
     }
 
     @Override
-    public List<LzOrcpicture> getOrcPic(Long orcId) {
-        QueryWrapper<LzOrcpicture> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq(LzOrcpicture.ORCHARD_ID_FIELD, orcId);
-        List<LzOrcpicture> data = orcpictureMapper.selectList(queryWrapper);
+    public List<DBLzOrchardPicture> getOrcPic(Long orcId) {
+        QueryWrapper<DBLzOrchardPicture> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq(DBLzOrchardPicture.ORCHARD_ID_FIELD, orcId);
+        List<DBLzOrchardPicture> data = orcpictureMapper.selectList(queryWrapper);
         return checkListNotNull(data);
     }
 
     @Override
-    public LzLitchiType getLitchiType(Long typeId) {
+    public DBLzLitchiType getLitchiType(Long typeId) {
         return lzLitchiTypeMapper.selectById(typeId);
     }
 
     @Override
-    public List<LzText> getLitchiTextByTypeId(Long typeId) {
-        QueryWrapper<LzText> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq(LzText.TEXT_TYPE_ID_FIELD, typeId);
-        List<LzText> data = lzTextMapper.selectList(queryWrapper);
+    public List<DBLzText> getLitchiTextByTypeId(Long typeId) {
+        QueryWrapper<DBLzText> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq(DBLzText.TEXT_TYPE_ID_FIELD, typeId);
+        List<DBLzText> data = lzTextMapper.selectList(queryWrapper);
         return checkListNotNull(data);
     }
 
-    private List<TbContent> getContentListByCategoryId(Long categoryId) {
+    private List<DBTbContent> getContentListByCategoryId(Long categoryId) {
 
-        QueryWrapper<TbContent> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq(TbContent.CATEGORY_ID_FIELD, categoryId);
-        List<TbContent> datas = contentMapper.selectList(queryWrapper);
+        QueryWrapper<DBTbContent> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq(DBTbContent.CATEGORY_ID_FIELD, categoryId);
+        List<DBTbContent> datas = contentMapper.selectList(queryWrapper);
         return checkListNotNull(datas);
     }
 }

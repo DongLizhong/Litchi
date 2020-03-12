@@ -1,7 +1,7 @@
 package cn.litchi.litchidataserver.service;
 
 import cn.litchi.model.mapper.LzHarmDao;
-import cn.litchi.model.model.LzHarm;
+import cn.litchi.model.model.DBLzHarm;
 import cn.litchi.model.utils.DateUtils;
 import cn.litchi.rpc.HarmServiceRpc;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -21,21 +21,21 @@ public class HarmService implements HarmServiceRpc {
     private LzHarmDao harmDao;
 
     @Override
-    public List<LzHarm> getHarmList(String type) {
+    public List<DBLzHarm> getHarmList(String type) {
         if (StringUtils.isBlank(type)) return Collections.emptyList();
-        QueryWrapper<LzHarm> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq(LzHarm.TYPE_FIELD, type);
-        List<LzHarm> harmList = harmDao.selectList(queryWrapper);
+        QueryWrapper<DBLzHarm> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq(DBLzHarm.TYPE_FIELD, type);
+        List<DBLzHarm> harmList = harmDao.selectList(queryWrapper);
         return checkListNotNull(harmList);
     }
 
     @Override
-    public LzHarm getHarmById(Long id) {
+    public DBLzHarm getHarmById(Long id) {
         return harmDao.selectById(id);
     }
 
     @Override
-    public Boolean addHarm(LzHarm harm) {
+    public Boolean addHarm(DBLzHarm harm) {
         harm.setCreateTime(DateUtils.getNowTimeAsEpochMilli());
         harm.setUpdateTime(DateUtils.getNowTimeAsEpochMilli());
         return harmDao.insert(harm) == 1;

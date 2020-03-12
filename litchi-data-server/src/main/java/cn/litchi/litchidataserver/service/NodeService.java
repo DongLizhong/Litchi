@@ -1,7 +1,7 @@
 package cn.litchi.litchidataserver.service;
 
 import cn.litchi.model.mapper.LzNodeDao;
-import cn.litchi.model.model.LzNode;
+import cn.litchi.model.model.DBLzNode;
 import cn.litchi.model.utils.DateUtils;
 import cn.litchi.rpc.NodeServiceRpc;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -20,13 +20,13 @@ public class NodeService implements NodeServiceRpc {
     private LzNodeDao lzNodeDao;
 
     @Override
-    public List<LzNode> getNodeList() {
-        QueryWrapper<LzNode> queryWrapper = new QueryWrapper<>();
-        List<LzNode> nodes = lzNodeDao.selectList(queryWrapper);
+    public List<DBLzNode> getNodeList() {
+        QueryWrapper<DBLzNode> queryWrapper = new QueryWrapper<>();
+        List<DBLzNode> nodes = lzNodeDao.selectList(queryWrapper);
         return checkListNotNull(nodes);
     }
     @Override
-    public Boolean addNode(@RequestBody LzNode node) {
+    public Boolean addNode(@RequestBody DBLzNode node) {
         node.setCreateTime(DateUtils.getNowTimeAsEpochMilli());
         node.setUpdateTime(DateUtils.getNowTimeAsEpochMilli());
         return lzNodeDao.insert(node) == 1;

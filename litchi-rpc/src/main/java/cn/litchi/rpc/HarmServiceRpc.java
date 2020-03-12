@@ -1,6 +1,6 @@
 package cn.litchi.rpc;
 
-import cn.litchi.model.model.LzHarm;
+import cn.litchi.model.model.DBLzHarm;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,9 +15,9 @@ import java.util.List;
 @RequestMapping("/harm")
 public interface HarmServiceRpc {
 	@GetMapping("/list")
-	List<LzHarm> getHarmList(@RequestParam("type") String type);
+	List<DBLzHarm> getHarmList(@RequestParam("type") String type);
 	@GetMapping("")
-	LzHarm getHarmById(@RequestParam("id") Long id);
+	DBLzHarm getHarmById(@RequestParam("id") Long id);
 	@PostMapping(value = "",consumes = MediaType.APPLICATION_JSON_VALUE)
-	Boolean addHarm(@RequestBody LzHarm harm);
+	Boolean addHarm(@RequestBody DBLzHarm harm);
 }

@@ -1,7 +1,7 @@
 package cn.litchi.rpc;
 
 
-import cn.litchi.model.model.LzNodeData;
+import cn.litchi.model.model.DBLzNodeData;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,15 +14,15 @@ import java.util.List;
 @RequestMapping("/node/data")
 public interface NodeDataServiceRpc {
 	@GetMapping("")
-	List<LzNodeData> selectDatasByNodeId(@RequestParam("nodeId") Long nodeId);
+	List<DBLzNodeData> selectDatasByNodeId(@RequestParam("nodeId") Long nodeId);
 	/*
 	 * 获取最近N天的目标节点数据
 	 */
 	@GetMapping("/lastday")
-	List<LzNodeData> selectLastestNDayDatasByNodeId(@RequestParam("nodeId") Long nodeId,
-													@RequestParam("nday") int nday);
+	List<DBLzNodeData> selectLastestNDayDatasByNodeId(@RequestParam("nodeId") Long nodeId,
+                                                      @RequestParam("nday") int nday);
 	@GetMapping("/interval")
-	List<LzNodeData> selectIntervalDatasByDateAndNodeId(@RequestParam("beginDate") LocalDate beginDate,
-                                                  @RequestParam("endDate") LocalDate endDate,
-                                                  @RequestParam("nodeId") Long nodeId);
+	List<DBLzNodeData> selectIntervalDatasByDateAndNodeId(@RequestParam("beginDate") LocalDate beginDate,
+                                                          @RequestParam("endDate") LocalDate endDate,
+                                                          @RequestParam("nodeId") Long nodeId);
 }

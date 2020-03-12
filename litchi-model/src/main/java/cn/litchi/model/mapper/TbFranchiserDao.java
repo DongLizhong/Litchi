@@ -1,7 +1,7 @@
 package cn.litchi.model.mapper;
 
-import cn.litchi.model.model.TbFranchiser;
+import cn.litchi.model.model.DBTbFranchiser;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
-public interface TbFranchiserDao extends BaseMapper<TbFranchiser> {
+public interface TbFranchiserDao extends BaseMapper<DBTbFranchiser> {
 }

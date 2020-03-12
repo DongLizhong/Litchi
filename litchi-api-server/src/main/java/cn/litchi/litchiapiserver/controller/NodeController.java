@@ -1,6 +1,6 @@
 package cn.litchi.litchiapiserver.controller;
 
-import cn.litchi.model.model.LzNode;
+import cn.litchi.model.model.DBLzNode;
 import cn.litchi.model.utils.MallResult;
 import cn.litchi.rpc.NodeServiceRpc;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ public class NodeController extends BaseController{
 
 	@GetMapping("/list")
 	public MallResult getNodeList(){
-		List<LzNode> nodes =  nodeService.getNodeList();
+		List<DBLzNode> nodes =  nodeService.getNodeList();
 		List<Long> idList = new ArrayList<Long>();
 		if(nodes.isEmpty()){
 			return MallResult.ok();
@@ -34,7 +34,7 @@ public class NodeController extends BaseController{
 	}
 	
 	@PostMapping("")
-	public MallResult addNode(@RequestBody LzNode node){
+	public MallResult addNode(@RequestBody DBLzNode node){
 		return  nodeService.addNode(node) ? MallResult.ok() : MallResult.build(401,"添加失败");
 	}
 	

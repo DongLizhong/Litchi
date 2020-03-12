@@ -1,7 +1,7 @@
 package cn.litchi.model.mapper;
 
-import cn.litchi.model.model.LzHarm;
+import cn.litchi.model.model.DBLzHarm;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
-public interface LzHarmDao extends BaseMapper<LzHarm> {
+public interface LzHarmDao extends BaseMapper<DBLzHarm> {
 }

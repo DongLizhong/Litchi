@@ -2,10 +2,10 @@ package cn.litchi.litchiapiserver.controller;
 
 import cn.litchi.litchiapiserver.entity.GroupCarouselPicEntity;
 import cn.litchi.litchiapiserver.entity.Picture;
-import cn.litchi.model.model.LzLitchiType;
-import cn.litchi.model.model.LzOrcpicture;
-import cn.litchi.model.model.LzText;
-import cn.litchi.model.model.TbContent;
+import cn.litchi.model.model.DBLzLitchiType;
+import cn.litchi.model.model.DBLzOrchardPicture;
+import cn.litchi.model.model.DBLzText;
+import cn.litchi.model.model.DBTbContent;
 import cn.litchi.model.utils.MallResult;
 import cn.litchi.model.utils.MallResultStatus;
 import cn.litchi.rpc.SourceServiceRpc;
@@ -46,7 +46,7 @@ public class SourceController extends BaseController {
 
     @GetMapping("/litchi/carouselpic")
     public MallResult getLitchiCarouselPic() {
-        List<TbContent> list = sourceServiceRpc.getCarouselPic();
+        List<DBTbContent> list = sourceServiceRpc.getCarouselPic();
         if (CollectionUtils.isEmpty(list)) {
             return MallResult.build(MallResultStatus.Server_OPERATION_FAIL, "荔枝园轮播图获取失败");
         }
@@ -64,7 +64,7 @@ public class SourceController extends BaseController {
 
     @GetMapping("/litchi/orcpic")
     public MallResult getOrcPicByOrcId(@RequestParam(value = "orcId", defaultValue = "1") Long orcId) {
-        List<LzOrcpicture> data = sourceServiceRpc.getOrcPic(orcId);
+        List<DBLzOrchardPicture> data = sourceServiceRpc.getOrcPic(orcId);
         if (data == null) {
             return MallResult.build(MallResultStatus.Server_OPERATION_FAIL, "荔枝园图片获取失败");
         }
@@ -73,7 +73,7 @@ public class SourceController extends BaseController {
 
     @GetMapping("/litchi/wisdommanagement")
     public MallResult getWisdommanagement(@RequestParam(value = "typeId", defaultValue = "1") Long typeId, Integer mon) {
-        LzLitchiType data = sourceServiceRpc.getLitchiType(typeId);
+        DBLzLitchiType data = sourceServiceRpc.getLitchiType(typeId);
         if (data == null) {
             return MallResult.build(MallResultStatus.Server_OPERATION_FAIL, "智慧管理获取失败");
         }
@@ -124,7 +124,7 @@ public class SourceController extends BaseController {
 
     @GetMapping("/litchi/text")
     public MallResult getLitchiCulture(Long typeId) {
-        List<LzText> data = sourceServiceRpc.getLitchiTextByTypeId(typeId);
+        List<DBLzText> data = sourceServiceRpc.getLitchiTextByTypeId(typeId);
         if (data == null) {
             return MallResult.build(MallResultStatus.Server_OPERATION_FAIL, "信息获取失败");
         }
@@ -133,7 +133,7 @@ public class SourceController extends BaseController {
 
     @GetMapping("/litchi/carouselpic/group")
     public MallResult getLitchiCarouselGroupPic() {
-        List<LzText> data = sourceServiceRpc.getLitchiTextByTypeId(Long.valueOf(7));
+        List<DBLzText> data = sourceServiceRpc.getLitchiTextByTypeId(Long.valueOf(7));
         if (data == null) {
             return MallResult.build(MallResultStatus.Server_OPERATION_FAIL, "信息获取失败");
         }
@@ -141,14 +141,14 @@ public class SourceController extends BaseController {
         return MallResult.ok(dataArray);
     }
 
-    private GroupCarouselPicEntity[][] getArrayByList(List<LzText> listDatas) {
+    private GroupCarouselPicEntity[][] getArrayByList(List<DBLzText> listDatas) {
         int dataSize = listDatas.size();
         GroupCarouselPicEntity[][] datas = new GroupCarouselPicEntity[(int) Math.ceil(dataSize / 2.0)][2];
-        Iterator<LzText> iterator = listDatas.iterator();
+        Iterator<DBLzText> iterator = listDatas.iterator();
         int row = 0;
         int col = 0;
         while (iterator.hasNext()) {
-            LzText data = iterator.next();
+            DBLzText data = iterator.next();
             datas[row][col] = new GroupCarouselPicEntity(data.getTitle(), data.getPicture());
             col = (col == 1) ? 0 : 1;
             if (col == 0) {

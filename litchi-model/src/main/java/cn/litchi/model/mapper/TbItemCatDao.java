@@ -1,7 +1,7 @@
 package cn.litchi.model.mapper;
 
-import cn.litchi.model.model.TbItemCat;
+import cn.litchi.model.model.DBTbItemCat;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
-public interface TbItemCatDao extends BaseMapper<TbItemCat> {
+public interface TbItemCatDao extends BaseMapper<DBTbItemCat> {
 }

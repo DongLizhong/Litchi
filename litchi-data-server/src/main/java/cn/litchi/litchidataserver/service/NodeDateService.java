@@ -1,7 +1,7 @@
 package cn.litchi.litchidataserver.service;
 
 import cn.litchi.model.mapper.LzNodeDataDao;
-import cn.litchi.model.model.LzNodeData;
+import cn.litchi.model.model.DBLzNodeData;
 import cn.litchi.model.utils.DateUtils;
 import cn.litchi.rpc.NodeDataServiceRpc;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -21,31 +21,31 @@ public class NodeDateService implements NodeDataServiceRpc {
     private LzNodeDataDao nodeDataDao;
 
     @Override
-    public List<LzNodeData> selectDatasByNodeId(Long nodeId) {
-        QueryWrapper<LzNodeData> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq(LzNodeData.NODE_ID_FIELD, nodeId);
-        List<LzNodeData> datas = nodeDataDao.selectList(queryWrapper);
+    public List<DBLzNodeData> selectDatasByNodeId(Long nodeId) {
+        QueryWrapper<DBLzNodeData> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq(DBLzNodeData.NODE_ID_FIELD, nodeId);
+        List<DBLzNodeData> datas = nodeDataDao.selectList(queryWrapper);
         return checkListNotNull(datas);
     }
 
     @Override
-    public List<LzNodeData> selectLastestNDayDatasByNodeId(Long nodeId, int nday) {
+    public List<DBLzNodeData> selectLastestNDayDatasByNodeId(Long nodeId, int nday) {
         long queryTime = DateUtils.getEpochMilliAtStartofDayByMinusDays(checkNodeDataParamDay(nday));
-        QueryWrapper<LzNodeData> queryWrapper = new QueryWrapper<>();
-        queryWrapper.ge(LzNodeData.TIME_FIELD, queryTime).eq(LzNodeData.NODE_ID_FIELD, nodeId);
-        List<LzNodeData> datas = nodeDataDao.selectList(queryWrapper);
+        QueryWrapper<DBLzNodeData> queryWrapper = new QueryWrapper<>();
+        queryWrapper.ge(DBLzNodeData.TIME_FIELD, queryTime).eq(DBLzNodeData.NODE_ID_FIELD, nodeId);
+        List<DBLzNodeData> datas = nodeDataDao.selectList(queryWrapper);
         return checkListNotNull(datas);
     }
 
     @Override
-    public List<LzNodeData> selectIntervalDatasByDateAndNodeId(LocalDate beginDate, LocalDate endDate, Long nodeId) {
+    public List<DBLzNodeData> selectIntervalDatasByDateAndNodeId(LocalDate beginDate, LocalDate endDate, Long nodeId) {
         long startOfDay = DateUtils.getEpochMilliAtStartofDay(beginDate);
         long endOfDay = DateUtils.getEpochMilliAtEndofDay(endDate);
-        QueryWrapper<LzNodeData> queryWrapper = new QueryWrapper<>();
-        queryWrapper.ge(LzNodeData.TIME_FIELD, startOfDay)
-                .le(LzNodeData.TIME_FIELD, endOfDay)
-                .eq(LzNodeData.NODE_ID_FIELD, nodeId);
-        List<LzNodeData> datas = nodeDataDao.selectList(queryWrapper);
+        QueryWrapper<DBLzNodeData> queryWrapper = new QueryWrapper<>();
+        queryWrapper.ge(DBLzNodeData.TIME_FIELD, startOfDay)
+                .le(DBLzNodeData.TIME_FIELD, endOfDay)
+                .eq(DBLzNodeData.NODE_ID_FIELD, nodeId);
+        List<DBLzNodeData> datas = nodeDataDao.selectList(queryWrapper);
         return checkListNotNull(datas);
     }
 }

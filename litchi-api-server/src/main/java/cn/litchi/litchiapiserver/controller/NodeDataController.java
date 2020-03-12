@@ -1,7 +1,7 @@
 package cn.litchi.litchiapiserver.controller;
 
 import cn.litchi.litchiapiserver.entity.NodeIdAndDateList;
-import cn.litchi.model.model.LzNodeData;
+import cn.litchi.model.model.DBLzNodeData;
 import cn.litchi.model.respone.model.RespNodeData;
 import cn.litchi.model.utils.MallResult;
 import cn.litchi.rpc.NodeDataServiceRpc;
@@ -14,12 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -67,7 +65,7 @@ public class NodeDataController extends BaseController {
                 endDate = iterator.next();
                 System.out.println(endDate);
             }
-            List<LzNodeData> list = nodeDataService.selectIntervalDatasByDateAndNodeId(beginDate, endDate,
+            List<DBLzNodeData> list = nodeDataService.selectIntervalDatasByDateAndNodeId(beginDate, endDate,
                     nodeIdAndDateList.getNodeId());
             if (CollectionUtils.isEmpty(list)) {
                 RespNodeData myNodeData = new RespNodeData(null, null, lineNum);
@@ -75,7 +73,7 @@ public class NodeDataController extends BaseController {
                 continue;
             }
             for (int index = 0; index < list.size(); index++) {
-                LzNodeData data = list.get(index);
+                DBLzNodeData data = list.get(index);
                 RespNodeData myNodeData = new RespNodeData(data.getTime(), data.getTemp(), lineNum);
                 dataList.add(myNodeData);
             }
@@ -85,7 +83,7 @@ public class NodeDataController extends BaseController {
 
     @GetMapping(value = "/temp/threeday")
     public MallResult getLastThreeDayNodeDataTempByNodeId(Long nodeId) {
-        List<LzNodeData> dataList = nodeDataService.selectLastestNDayDatasByNodeId(nodeId, -3);
+        List<DBLzNodeData> dataList = nodeDataService.selectLastestNDayDatasByNodeId(nodeId, -3);
         if (dataList == null || dataList.isEmpty()) {
             return MallResult.ok(new String[][]{});
         }
@@ -95,7 +93,7 @@ public class NodeDataController extends BaseController {
 
     @GetMapping(value = "/temp/aweek")
     public MallResult getLastWeekNodeDataTempByNodeId(Long nodeId) {
-        List<LzNodeData> dataList = nodeDataService.selectLastestNDayDatasByNodeId(nodeId, -7);
+        List<DBLzNodeData> dataList = nodeDataService.selectLastestNDayDatasByNodeId(nodeId, -7);
         if (dataList == null || dataList.isEmpty()) {
             return MallResult.ok(new String[][]{});
         }
@@ -105,7 +103,7 @@ public class NodeDataController extends BaseController {
 
     @GetMapping(value = "/temp/amouth")
     public MallResult getLastMouthNodeDataTempByNodeId(Long nodeId) {
-        List<LzNodeData> dataList = nodeDataService.selectLastestNDayDatasByNodeId(nodeId, -30);
+        List<DBLzNodeData> dataList = nodeDataService.selectLastestNDayDatasByNodeId(nodeId, -30);
         if (dataList == null || dataList.isEmpty()) {
             return MallResult.ok(new String[][]{});
         }
@@ -115,7 +113,7 @@ public class NodeDataController extends BaseController {
 
     @GetMapping(value = "/temp/all")
     public MallResult getNodeDataTempByNodeId(Long nodeId) {
-        List<LzNodeData> dataList = nodeDataService.selectDatasByNodeId(nodeId);
+        List<DBLzNodeData> dataList = nodeDataService.selectDatasByNodeId(nodeId);
         if (dataList == null || dataList.isEmpty()) {
             return MallResult.ok(new String[][]{});
         }
@@ -143,7 +141,7 @@ public class NodeDataController extends BaseController {
                 endDate = iterator.next();
                 System.out.println(endDate);
             }
-            List<LzNodeData> list = nodeDataService.selectIntervalDatasByDateAndNodeId(beginDate, endDate,
+            List<DBLzNodeData> list = nodeDataService.selectIntervalDatasByDateAndNodeId(beginDate, endDate,
                     nodeIdAndDateList.getNodeId());
             if (list == null || list.isEmpty()) {
                 RespNodeData myNodeData = new RespNodeData(null, null, lineNum);
@@ -151,7 +149,7 @@ public class NodeDataController extends BaseController {
                 continue;
             }
             for (int index = 0; index < list.size(); index++) {
-                LzNodeData data = list.get(index);
+                DBLzNodeData data = list.get(index);
                 RespNodeData myNodeData = new RespNodeData(data.getTime(), data.getHumi(), lineNum);
                 dataList.add(myNodeData);
             }
@@ -161,7 +159,7 @@ public class NodeDataController extends BaseController {
 
     @GetMapping(value = "/humi/threeday")
     public MallResult getLastThreeDayNodeDataHumiByNodeId(Long nodeId) {
-        List<LzNodeData> dataList = nodeDataService.selectLastestNDayDatasByNodeId(nodeId, -3);
+        List<DBLzNodeData> dataList = nodeDataService.selectLastestNDayDatasByNodeId(nodeId, -3);
         if (dataList == null || dataList.isEmpty()) {
             return MallResult.ok(new String[][]{});
         }
@@ -171,7 +169,7 @@ public class NodeDataController extends BaseController {
 
     @GetMapping(value = "/humi/aweek")
     public MallResult getLastWeekNodeDataHumiByNodeId(Long nodeId) {
-        List<LzNodeData> dataList = nodeDataService.selectLastestNDayDatasByNodeId(nodeId, -7);
+        List<DBLzNodeData> dataList = nodeDataService.selectLastestNDayDatasByNodeId(nodeId, -7);
         if (dataList == null || dataList.isEmpty()) {
             return MallResult.ok(new String[][]{});
         }
@@ -181,7 +179,7 @@ public class NodeDataController extends BaseController {
 
     @GetMapping(value = "/humi/amouth")
     public MallResult getLastMouthNodeDataHumiByNodeId(Long nodeId) {
-        List<LzNodeData> dataList = nodeDataService.selectLastestNDayDatasByNodeId(nodeId, -30);
+        List<DBLzNodeData> dataList = nodeDataService.selectLastestNDayDatasByNodeId(nodeId, -30);
         if (dataList == null || dataList.isEmpty()) {
             return MallResult.ok(new String[][]{});
         }
@@ -191,7 +189,7 @@ public class NodeDataController extends BaseController {
 
     @GetMapping(value = "/humi/all")
     public MallResult getNodeDataHumiByNodeId(Long nodeId) {
-        List<LzNodeData> dataList = nodeDataService.selectDatasByNodeId(nodeId);
+        List<DBLzNodeData> dataList = nodeDataService.selectDatasByNodeId(nodeId);
         if (dataList == null || dataList.isEmpty()) {
             return MallResult.ok(new String[][]{});
         }
@@ -219,7 +217,7 @@ public class NodeDataController extends BaseController {
                 endDate = iterator.next();
                 System.out.println(endDate);
             }
-            List<LzNodeData> list = nodeDataService.selectIntervalDatasByDateAndNodeId(beginDate, endDate,
+            List<DBLzNodeData> list = nodeDataService.selectIntervalDatasByDateAndNodeId(beginDate, endDate,
                     nodeIdAndDateList.getNodeId());
             if (list == null || list.isEmpty()) {
                 RespNodeData myNodeData = new RespNodeData(null, null, lineNum);
@@ -227,7 +225,7 @@ public class NodeDataController extends BaseController {
                 continue;
             }
             for (int index = 0; index < list.size(); index++) {
-                LzNodeData data = list.get(index);
+                DBLzNodeData data = list.get(index);
                 RespNodeData myNodeData = new RespNodeData(data.getTime(), data.getCo2(), lineNum);
                 dataList.add(myNodeData);
             }
@@ -237,7 +235,7 @@ public class NodeDataController extends BaseController {
 
     @GetMapping(value = "/co2/threeday")
     public MallResult getLastThreeDayNodeDataCo2ByNodeId(Long nodeId) {
-        List<LzNodeData> dataList = nodeDataService.selectLastestNDayDatasByNodeId(nodeId, -3);
+        List<DBLzNodeData> dataList = nodeDataService.selectLastestNDayDatasByNodeId(nodeId, -3);
         if (dataList == null || dataList.isEmpty()) {
             return MallResult.ok(new String[][]{});
         }
@@ -247,7 +245,7 @@ public class NodeDataController extends BaseController {
 
     @GetMapping(value = "/co2/aweek")
     public MallResult getLastWeekNodeDataCo2ByNodeId(Long nodeId) {
-        List<LzNodeData> dataList = nodeDataService.selectLastestNDayDatasByNodeId(nodeId, -7);
+        List<DBLzNodeData> dataList = nodeDataService.selectLastestNDayDatasByNodeId(nodeId, -7);
         if (dataList == null || dataList.isEmpty()) {
             return MallResult.ok(new String[][]{});
         }
@@ -257,7 +255,7 @@ public class NodeDataController extends BaseController {
 
     @GetMapping(value = "/co2/amouth")
     public MallResult getLastMouthNodeDataCo2ByNodeId(Long nodeId) {
-        List<LzNodeData> dataList = nodeDataService.selectLastestNDayDatasByNodeId(nodeId, -30);
+        List<DBLzNodeData> dataList = nodeDataService.selectLastestNDayDatasByNodeId(nodeId, -30);
         if (dataList == null || dataList.isEmpty()) {
             return MallResult.ok(new String[][]{});
         }
@@ -267,7 +265,7 @@ public class NodeDataController extends BaseController {
 
     @GetMapping(value = "/co2/all")
     public MallResult getNodeDataCo2ByNodeId(Long nodeId) {
-        List<LzNodeData> dataList = nodeDataService.selectDatasByNodeId(nodeId);
+        List<DBLzNodeData> dataList = nodeDataService.selectDatasByNodeId(nodeId);
         if (dataList == null || dataList.isEmpty()) {
             return MallResult.ok(new String[][]{});
         }
@@ -296,7 +294,7 @@ public class NodeDataController extends BaseController {
                 endDate = iterator.next();
                 System.out.println(endDate);
             }
-            List<LzNodeData> list = nodeDataService.selectIntervalDatasByDateAndNodeId(beginDate, endDate,
+            List<DBLzNodeData> list = nodeDataService.selectIntervalDatasByDateAndNodeId(beginDate, endDate,
                     nodeIdAndDateList.getNodeId());
             if (list == null || list.isEmpty()) {
                 RespNodeData myNodeData = new RespNodeData(null, null, lineNum);
@@ -304,7 +302,7 @@ public class NodeDataController extends BaseController {
                 continue;
             }
             for (int index = 0; index < list.size(); index++) {
-                LzNodeData data = list.get(index);
+                DBLzNodeData data = list.get(index);
                 RespNodeData myNodeData = new RespNodeData(data.getTime(), data.getLx(), lineNum);
                 dataList.add(myNodeData);
             }
@@ -314,7 +312,7 @@ public class NodeDataController extends BaseController {
 
     @GetMapping(value = "/lx/threeday")
     public MallResult getLastThreeDayNodeDataLxByNodeId(Long nodeId) {
-        List<LzNodeData> dataList = nodeDataService.selectLastestNDayDatasByNodeId(nodeId, -3);
+        List<DBLzNodeData> dataList = nodeDataService.selectLastestNDayDatasByNodeId(nodeId, -3);
         if (dataList == null || dataList.isEmpty()) {
             return MallResult.ok(new String[][]{});
         }
@@ -324,7 +322,7 @@ public class NodeDataController extends BaseController {
 
     @GetMapping(value = "/lx/aweek")
     public MallResult getLastWeekNodeDataLxByNodeId(Long nodeId) {
-        List<LzNodeData> dataList = nodeDataService.selectLastestNDayDatasByNodeId(nodeId, -7);
+        List<DBLzNodeData> dataList = nodeDataService.selectLastestNDayDatasByNodeId(nodeId, -7);
         if (dataList == null || dataList.isEmpty()) {
             return MallResult.ok(new String[][]{});
         }
@@ -334,7 +332,7 @@ public class NodeDataController extends BaseController {
 
     @GetMapping(value = "/lx/amouth")
     public MallResult getLastMouthNodeDataLxByNodeId(Long nodeId) {
-        List<LzNodeData> dataList = nodeDataService.selectLastestNDayDatasByNodeId(nodeId, -30);
+        List<DBLzNodeData> dataList = nodeDataService.selectLastestNDayDatasByNodeId(nodeId, -30);
         if (dataList == null || dataList.isEmpty()) {
             return MallResult.ok(new String[][]{});
         }
@@ -344,7 +342,7 @@ public class NodeDataController extends BaseController {
 
     @GetMapping(value = "/lx/all")
     public MallResult getNodeDataLxByNodeId(Long nodeId) {
-        List<LzNodeData> dataList = nodeDataService.selectDatasByNodeId(nodeId);
+        List<DBLzNodeData> dataList = nodeDataService.selectDatasByNodeId(nodeId);
         if (dataList == null || dataList.isEmpty()) {
             return MallResult.ok(new String[][]{});
         }
@@ -372,7 +370,7 @@ public class NodeDataController extends BaseController {
                 endDate = iterator.next();
                 System.out.println(endDate);
             }
-            List<LzNodeData> list = nodeDataService.selectIntervalDatasByDateAndNodeId(beginDate, endDate,
+            List<DBLzNodeData> list = nodeDataService.selectIntervalDatasByDateAndNodeId(beginDate, endDate,
                     nodeIdAndDateList.getNodeId());
             if (CollectionUtils.isEmpty(list)) {
                 RespNodeData myNodeData = new RespNodeData(null, null, lineNum);
@@ -380,7 +378,7 @@ public class NodeDataController extends BaseController {
                 continue;
             }
             for (int index = 0; index < list.size(); index++) {
-                LzNodeData data = list.get(index);
+                DBLzNodeData data = list.get(index);
                 RespNodeData myNodeData = new RespNodeData(data.getTime(), data.getWater(), lineNum);
                 dataList.add(myNodeData);
             }
@@ -390,7 +388,7 @@ public class NodeDataController extends BaseController {
 
     @GetMapping(value = "/water/threeday")
     public MallResult getLastThreeDayNodeDataWaterByNodeId(Long nodeId) {
-        List<LzNodeData> dataList = nodeDataService.selectLastestNDayDatasByNodeId(nodeId, -3);
+        List<DBLzNodeData> dataList = nodeDataService.selectLastestNDayDatasByNodeId(nodeId, -3);
         if (CollectionUtils.isEmpty(dataList)) {
             return MallResult.ok(new String[][]{});
         }
@@ -400,7 +398,7 @@ public class NodeDataController extends BaseController {
 
     @GetMapping(value = "/water/aweek")
     public MallResult getLastWeekNodeDataWaterByNodeId(Long nodeId) {
-        List<LzNodeData> dataList = nodeDataService.selectLastestNDayDatasByNodeId(nodeId, -7);
+        List<DBLzNodeData> dataList = nodeDataService.selectLastestNDayDatasByNodeId(nodeId, -7);
         if (CollectionUtils.isEmpty(dataList)) {
             return MallResult.ok(new String[][]{});
         }
@@ -410,7 +408,7 @@ public class NodeDataController extends BaseController {
 
     @GetMapping(value = "/water/amouth")
     public MallResult getLastMouthNodeDataWaterByNodeId(Long nodeId) {
-        List<LzNodeData> dataList = nodeDataService.selectLastestNDayDatasByNodeId(nodeId, -30);
+        List<DBLzNodeData> dataList = nodeDataService.selectLastestNDayDatasByNodeId(nodeId, -30);
         if (CollectionUtils.isEmpty(dataList)) {
             return MallResult.ok(new String[][]{});
         }
@@ -420,7 +418,7 @@ public class NodeDataController extends BaseController {
 
     @GetMapping(value = "/water/all")
     public MallResult getNodeDataWaterByNodeId(Long nodeId) {
-        List<LzNodeData> dataList = nodeDataService.selectDatasByNodeId(nodeId);
+        List<DBLzNodeData> dataList = nodeDataService.selectDatasByNodeId(nodeId);
         if (CollectionUtils.isEmpty(dataList)) {
             return MallResult.ok(new String[][]{});
         }
@@ -429,14 +427,14 @@ public class NodeDataController extends BaseController {
     }
 
 
-    private String[][] getTempDataArrayByResult(List<LzNodeData> listDatas) {
+    private String[][] getTempDataArrayByResult(List<DBLzNodeData> listDatas) {
         int dataSize = listDatas.size();
         String[][] datas = new String[dataSize][2];
-        Iterator<LzNodeData> iterator = listDatas.iterator();
+        Iterator<DBLzNodeData> iterator = listDatas.iterator();
         int index = 0;
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
         while (iterator.hasNext()) {
-            LzNodeData data = iterator.next();
+            DBLzNodeData data = iterator.next();
             datas[index][0] = dateFormat.format(data.getTime());
             datas[index][1] = String.valueOf(data.getTemp());
             index++;
@@ -444,14 +442,14 @@ public class NodeDataController extends BaseController {
         return datas;
     }
 
-    private String[][] getHumiDataArrayByResult(List<LzNodeData> listDatas) {
+    private String[][] getHumiDataArrayByResult(List<DBLzNodeData> listDatas) {
         int dataSize = listDatas.size();
         String[][] datas = new String[dataSize][2];
-        Iterator<LzNodeData> iterator = listDatas.iterator();
+        Iterator<DBLzNodeData> iterator = listDatas.iterator();
         int index = 0;
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
         while (iterator.hasNext()) {
-            LzNodeData data = iterator.next();
+            DBLzNodeData data = iterator.next();
             datas[index][0] = dateFormat.format(data.getTime());
             datas[index][1] = String.valueOf(data.getHumi());
             index++;
@@ -459,14 +457,14 @@ public class NodeDataController extends BaseController {
         return datas;
     }
 
-    private String[][] getCo2DataArrayByResult(List<LzNodeData> listDatas) {
+    private String[][] getCo2DataArrayByResult(List<DBLzNodeData> listDatas) {
         int dataSize = listDatas.size();
         String[][] datas = new String[dataSize][2];
-        Iterator<LzNodeData> iterator = listDatas.iterator();
+        Iterator<DBLzNodeData> iterator = listDatas.iterator();
         int index = 0;
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
         while (iterator.hasNext()) {
-            LzNodeData data = iterator.next();
+            DBLzNodeData data = iterator.next();
             datas[index][0] = dateFormat.format(data.getTime());
             datas[index][1] = String.valueOf(data.getCo2());
             index++;
@@ -474,14 +472,14 @@ public class NodeDataController extends BaseController {
         return datas;
     }
 
-    private String[][] getLxDataArrayByResult(List<LzNodeData> listDatas) {
+    private String[][] getLxDataArrayByResult(List<DBLzNodeData> listDatas) {
         int dataSize = listDatas.size();
         String[][] datas = new String[dataSize][2];
-        Iterator<LzNodeData> iterator = listDatas.iterator();
+        Iterator<DBLzNodeData> iterator = listDatas.iterator();
         int index = 0;
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
         while (iterator.hasNext()) {
-            LzNodeData data = iterator.next();
+            DBLzNodeData data = iterator.next();
             datas[index][0] = dateFormat.format(data.getTime());
             datas[index][1] = String.valueOf(data.getLx());
             index++;
@@ -489,14 +487,14 @@ public class NodeDataController extends BaseController {
         return datas;
     }
 
-    private String[][] getWaterDataArrayByResult(List<LzNodeData> listDatas) {
+    private String[][] getWaterDataArrayByResult(List<DBLzNodeData> listDatas) {
         int dataSize = listDatas.size();
         String[][] datas = new String[dataSize][2];
-        Iterator<LzNodeData> iterator = listDatas.iterator();
+        Iterator<DBLzNodeData> iterator = listDatas.iterator();
         int index = 0;
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
         while (iterator.hasNext()) {
-            LzNodeData data = (LzNodeData) iterator.next();
+            DBLzNodeData data = (DBLzNodeData) iterator.next();
             datas[index][0] = dateFormat.format(data.getTime());
             datas[index][1] = String.valueOf(data.getWater());
             index++;

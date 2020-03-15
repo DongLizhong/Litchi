@@ -2,11 +2,12 @@ package cn.litchi.model.respone.model;
 
 import lombok.Data;
 
+import java.time.Instant;
 import java.util.Date;
 
 @Data
 public class LzNodeData {
-    private Date time;
+    private Instant time;
     private String data;
     private int line;
 
@@ -18,8 +19,8 @@ public class LzNodeData {
      * @param data
      * @param line
      */
-    public LzNodeData(Long time, Double data, int line) {
-        this.time = new Date(time);
+    public LzNodeData(Instant time, Double data, int line) {
+        this.time = time;
         this.data = String.valueOf(data);
         this.line = line;
     }

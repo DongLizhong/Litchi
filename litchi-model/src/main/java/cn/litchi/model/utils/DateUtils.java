@@ -10,6 +10,10 @@ public class DateUtils {
         return LocalDateTime.now().toInstant(ZoneOffset.of("+8")).toEpochMilli();
     }
 
+    public static long getNowTimeAsSecond() {
+        return LocalDateTime.now().toInstant(ZoneOffset.of("+8")).getEpochSecond();
+    }
+
     public static long getEpochMilliAtStartofDay() {
         return LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli();
     }

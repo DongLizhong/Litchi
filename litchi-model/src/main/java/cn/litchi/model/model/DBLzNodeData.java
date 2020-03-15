@@ -6,14 +6,17 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.io.Serializable;
+import java.time.Instant;
 
 @lombok.Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @TableName(value = "lz_node_data")
+@ToString
 /**
  * 节点数据
  */
@@ -41,7 +44,7 @@ public class DBLzNodeData implements Serializable{
 
     private Long nodeId;
 
-    private Long time;
+    private Instant time;
 
     private Double temp;
 

@@ -1,11 +1,11 @@
 server:
   tomcat:
     uri-encoding: UTF-8
-  port: 8080
+  port: 8083
 
 spring:
   application:
-    name: litchi-data-server
+    name: litchi-monitor-server
   cloud:
     consul:
       host: 120.78.227.159
@@ -45,7 +45,7 @@ spring:
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: cn.litchi.model.model
+  type-aliases-package: cn.litchi.model.entity
 
 redis:
   host: 127.0.0.1
@@ -60,5 +60,5 @@ redis:
 logging:
   level:
     root: INFO
-  file: litchi-data-server.log
+  file: litchi-monitor-server.log
 

@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-public class RespNodeData {
+public class LzNodeData {
     private Date time;
     private String data;
     private int line;
@@ -18,7 +18,7 @@ public class RespNodeData {
      * @param data
      * @param line
      */
-    public RespNodeData(Long time, Long data, int line) {
+    public LzNodeData(Long time, Double data, int line) {
         this.time = new Date(time);
         this.data = String.valueOf(data);
         this.line = line;

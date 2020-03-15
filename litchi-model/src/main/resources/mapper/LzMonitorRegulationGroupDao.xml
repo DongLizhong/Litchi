@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.litchi.model.mapper.LzMonitorRegulationGroupDao">
+    <resultMap id="groupResultMap" type="cn.litchi.model.model.DBLzMonitorRegulationGroup">
+        <id column="id" property="id" />
+        <result column="orchard_id" property="orchardId" />
+        <result column="enable" property="enable" />
+        <result column="message" property="message" />
+        <result column="begin_date" property="beginDate" />
+        <result column="end_date" property="endDate" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <collection property="items" column="id" select="cn.litchi.model.mapper.LzMonitorRegulationItemDao.getItemsByGroupId"/>
+    </resultMap>
+</mapper>

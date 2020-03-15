@@ -1,6 +1,6 @@
 package cn.litchi.model.model;
 
-import cn.litchi.model.respone.model.RespHarm;
+import cn.litchi.model.respone.model.LzHarm;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -46,8 +46,8 @@ public class DBLzHarm implements Serializable {
 
     private Long updateTime;
 
-    public RespHarm toResponeModel() {
-        return RespHarm.builder()
+    public LzHarm toResponeModel() {
+        return LzHarm.builder()
                 .id(this.id)
                 .name(this.name)
                 .pic(this.picture)

@@ -24,6 +24,8 @@ public class DBLzNode implements Serializable{
 
     private Long orchardId;
 
+    private String token;
+
     private Long createTime;
 
     private Long updateTime;

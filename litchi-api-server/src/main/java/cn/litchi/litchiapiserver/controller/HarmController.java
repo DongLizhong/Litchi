@@ -1,7 +1,7 @@
 package cn.litchi.litchiapiserver.controller;
 
 import cn.litchi.model.model.DBLzHarm;
-import cn.litchi.model.respone.model.RespHarm;
+import cn.litchi.model.respone.model.LzHarm;
 import cn.litchi.model.utils.MallResult;
 import cn.litchi.model.utils.MallResultStatus;
 import cn.litchi.rpc.HarmServiceRpc;
@@ -22,7 +22,7 @@ public class HarmController extends BaseController {
     // type == "1" 虫害 “2” 病害
     public MallResult getHarmList(String type) {
         List<DBLzHarm> list = harmService.getHarmList(type);
-        List<RespHarm> simpleHarmList = new ArrayList<RespHarm>();
+        List<LzHarm> simpleHarmList = new ArrayList<LzHarm>();
         if (list == null || list.size() <= 0) {
             return MallResult.build(401, "无数据");
         } else {

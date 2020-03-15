@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 @Data
 @Builder
-public class RespHarm implements Serializable{
+public class LzHarm implements Serializable{
 	private Long id;
 	private String name;
 	private String pic;

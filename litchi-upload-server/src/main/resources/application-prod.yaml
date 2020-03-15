@@ -1,11 +1,12 @@
+
 server:
   tomcat:
     uri-encoding: UTF-8
-  port: 8080
+  port: 8084
 
 spring:
   application:
-    name: litchi-data-server
+    name: litchi-upload-server
   cloud:
     consul:
       host: 120.78.227.159
@@ -17,6 +18,7 @@ spring:
         healthCheckInterval: 15s
         serviceName: ${spring.application.name}
         prefer-ip-address: true
+        register: false
   datasource:
     name: springboot
     type: com.alibaba.druid.pool.DruidDataSource
@@ -41,7 +43,7 @@ spring:
       max-file-size: 100MB
       max-request-size: 1000MB
   resources:
-    static-locations: file:/app/data/litchi/data-server/resources,classpath:/static,classpath:/public,classpath:/resources
+    static-locations: file:/app/data/litchi/api-server/resources,classpath:/static,classpath:/public,classpath:/resources
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml
@@ -60,5 +62,5 @@ redis:
 logging:
   level:
     root: INFO
-  file: litchi-data-server.log
+  file: litchi-upload-server.log
 

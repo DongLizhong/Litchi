@@ -2,7 +2,7 @@ package cn.litchi.litchiapiserver.controller;
 
 import cn.litchi.litchiapiserver.entity.NodeIdAndDateList;
 import cn.litchi.model.model.DBLzNodeData;
-import cn.litchi.model.respone.model.RespNodeData;
+import cn.litchi.model.respone.model.LzNodeData;
 import cn.litchi.model.utils.MallResult;
 import cn.litchi.rpc.NodeDataServiceRpc;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
@@ -51,7 +51,7 @@ public class NodeDataController extends BaseController {
 
     @PostMapping(value = "/temp/interval")
     public MallResult getIntervalNodeDateTempByNodeIdtest(@RequestBody NodeIdAndDateList nodeIdAndDateList) {
-        List<RespNodeData> dataList = new ArrayList<RespNodeData>();
+        List<LzNodeData> dataList = new ArrayList<LzNodeData>();
         List<LocalDate> dateList = nodeIdAndDateListToListDate(nodeIdAndDateList);
         Iterator<LocalDate> iterator = dateList.iterator();
         LocalDate beginDate = null;
@@ -68,13 +68,13 @@ public class NodeDataController extends BaseController {
             List<DBLzNodeData> list = nodeDataService.selectIntervalDatasByDateAndNodeId(beginDate, endDate,
                     nodeIdAndDateList.getNodeId());
             if (CollectionUtils.isEmpty(list)) {
-                RespNodeData myNodeData = new RespNodeData(null, null, lineNum);
+                LzNodeData myNodeData = new LzNodeData(null, null, lineNum);
                 dataList.add(myNodeData);
                 continue;
             }
             for (int index = 0; index < list.size(); index++) {
                 DBLzNodeData data = list.get(index);
-                RespNodeData myNodeData = new RespNodeData(data.getTime(), data.getTemp(), lineNum);
+                LzNodeData myNodeData = new LzNodeData(data.getTime(), data.getTemp(), lineNum);
                 dataList.add(myNodeData);
             }
         }
@@ -127,7 +127,7 @@ public class NodeDataController extends BaseController {
 
     @PostMapping(value = "/humi/interval")
     public MallResult getIntervalNodeDateHumiByNodeIdtest(@RequestBody NodeIdAndDateList nodeIdAndDateList) {
-        List<RespNodeData> dataList = new ArrayList<RespNodeData>();
+        List<LzNodeData> dataList = new ArrayList<LzNodeData>();
         List<LocalDate> dateList = nodeIdAndDateListToListDate(nodeIdAndDateList);
         Iterator<LocalDate> iterator = dateList.iterator();
         LocalDate beginDate = null;
@@ -144,13 +144,13 @@ public class NodeDataController extends BaseController {
             List<DBLzNodeData> list = nodeDataService.selectIntervalDatasByDateAndNodeId(beginDate, endDate,
                     nodeIdAndDateList.getNodeId());
             if (list == null || list.isEmpty()) {
-                RespNodeData myNodeData = new RespNodeData(null, null, lineNum);
+                LzNodeData myNodeData = new LzNodeData(null, null, lineNum);
                 dataList.add(myNodeData);
                 continue;
             }
             for (int index = 0; index < list.size(); index++) {
                 DBLzNodeData data = list.get(index);
-                RespNodeData myNodeData = new RespNodeData(data.getTime(), data.getHumi(), lineNum);
+                LzNodeData myNodeData = new LzNodeData(data.getTime(), data.getHumi(), lineNum);
                 dataList.add(myNodeData);
             }
         }
@@ -203,7 +203,7 @@ public class NodeDataController extends BaseController {
      */
     @PostMapping(value = "/co2/interval")
     public MallResult getIntervalNodeDateCo2ByNodeIdtest(@RequestBody NodeIdAndDateList nodeIdAndDateList) {
-        List<RespNodeData> dataList = new ArrayList<RespNodeData>();
+        List<LzNodeData> dataList = new ArrayList<LzNodeData>();
         List<LocalDate> dateList = nodeIdAndDateListToListDate(nodeIdAndDateList);
         Iterator<LocalDate> iterator = dateList.iterator();
         LocalDate beginDate = null;
@@ -220,13 +220,13 @@ public class NodeDataController extends BaseController {
             List<DBLzNodeData> list = nodeDataService.selectIntervalDatasByDateAndNodeId(beginDate, endDate,
                     nodeIdAndDateList.getNodeId());
             if (list == null || list.isEmpty()) {
-                RespNodeData myNodeData = new RespNodeData(null, null, lineNum);
+                LzNodeData myNodeData = new LzNodeData(null, null, lineNum);
                 dataList.add(myNodeData);
                 continue;
             }
             for (int index = 0; index < list.size(); index++) {
                 DBLzNodeData data = list.get(index);
-                RespNodeData myNodeData = new RespNodeData(data.getTime(), data.getCo2(), lineNum);
+                LzNodeData myNodeData = new LzNodeData(data.getTime(), data.getCo2(), lineNum);
                 dataList.add(myNodeData);
             }
         }
@@ -280,7 +280,7 @@ public class NodeDataController extends BaseController {
 
     @PostMapping(value = "/lx/interval")
     public MallResult getIntervalNodeDateLxByNodeIdtest(@RequestBody NodeIdAndDateList nodeIdAndDateList) {
-        List<RespNodeData> dataList = new ArrayList<RespNodeData>();
+        List<LzNodeData> dataList = new ArrayList<LzNodeData>();
         List<LocalDate> dateList = nodeIdAndDateListToListDate(nodeIdAndDateList);
         Iterator<LocalDate> iterator = dateList.iterator();
         LocalDate beginDate = null;
@@ -297,13 +297,13 @@ public class NodeDataController extends BaseController {
             List<DBLzNodeData> list = nodeDataService.selectIntervalDatasByDateAndNodeId(beginDate, endDate,
                     nodeIdAndDateList.getNodeId());
             if (list == null || list.isEmpty()) {
-                RespNodeData myNodeData = new RespNodeData(null, null, lineNum);
+                LzNodeData myNodeData = new LzNodeData(null, null, lineNum);
                 dataList.add(myNodeData);
                 continue;
             }
             for (int index = 0; index < list.size(); index++) {
                 DBLzNodeData data = list.get(index);
-                RespNodeData myNodeData = new RespNodeData(data.getTime(), data.getLx(), lineNum);
+                LzNodeData myNodeData = new LzNodeData(data.getTime(), data.getLx(), lineNum);
                 dataList.add(myNodeData);
             }
         }
@@ -356,7 +356,7 @@ public class NodeDataController extends BaseController {
 
     @PostMapping(value = "/water/interval")
     public MallResult getIntervalNodeDateWaterByNodeIdtest(@RequestBody NodeIdAndDateList nodeIdAndDateList) {
-        List<RespNodeData> dataList = new ArrayList<RespNodeData>();
+        List<LzNodeData> dataList = new ArrayList<LzNodeData>();
         List<LocalDate> dateList = nodeIdAndDateListToListDate(nodeIdAndDateList);
         Iterator<LocalDate> iterator = dateList.iterator();
         LocalDate beginDate = null;
@@ -373,13 +373,13 @@ public class NodeDataController extends BaseController {
             List<DBLzNodeData> list = nodeDataService.selectIntervalDatasByDateAndNodeId(beginDate, endDate,
                     nodeIdAndDateList.getNodeId());
             if (CollectionUtils.isEmpty(list)) {
-                RespNodeData myNodeData = new RespNodeData(null, null, lineNum);
+                LzNodeData myNodeData = new LzNodeData(null, null, lineNum);
                 dataList.add(myNodeData);
                 continue;
             }
             for (int index = 0; index < list.size(); index++) {
                 DBLzNodeData data = list.get(index);
-                RespNodeData myNodeData = new RespNodeData(data.getTime(), data.getWater(), lineNum);
+                LzNodeData myNodeData = new LzNodeData(data.getTime(), data.getWater(), lineNum);
                 dataList.add(myNodeData);
             }
         }

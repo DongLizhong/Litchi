@@ -1,7 +1,5 @@
 package cn.litchi.model.model;
 
-import cn.litchi.model.respone.model.RespHarm;
-import cn.litchi.model.respone.model.RespNodeData;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -10,7 +8,6 @@ import lombok.Builder;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.util.Date;
 
 @lombok.Data
 @Builder
@@ -46,23 +43,23 @@ public class DBLzNodeData implements Serializable{
 
     private Long time;
 
-    private Long temp;
+    private Double temp;
 
-    private Long humi;
+    private Double humi;
 
-    private Long lx;
+    private Double lx;
 
-    private Long tlx;
+    private Double tlx;
 
-    private Long water;
+    private Double water;
 
-    private Long co2;
+    private Double co2;
 
     private Byte windDirection;
 
-    private Long windStrength;
+    private Double windStrength;
 
-    private Long rainfall;
+    private Double rainfall;
 
-    private Long volt;
+    private Double volt;
 }

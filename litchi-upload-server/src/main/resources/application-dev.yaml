@@ -1,14 +1,15 @@
+
 server:
   tomcat:
     uri-encoding: UTF-8
-  port: 8080
+  port: 8084
 
 spring:
   application:
-    name: litchi-data-server
+    name: litchi-upload-server
   cloud:
     consul:
-      host: 120.78.227.159
+      host: localhost
       port: 8500
       #consul配置
       discovery:
@@ -16,16 +17,16 @@ spring:
         instance-id: ${spring.application.name}:${server.port}
         healthCheckInterval: 15s
         serviceName: ${spring.application.name}
-        prefer-ip-address: true
+        register: false
   datasource:
     name: springboot
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       filter: stat
       driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://39.96.10.247:3306/e3mall?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=UTC
+      url: jdbc:mysql://127.0.0.1:3306/e3mall?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=UTC
       username: root
-      password: cjladmin
+      password: admin
       initial-size: 1
       min-idle: 1
       max-active: 20
@@ -41,7 +42,7 @@ spring:
       max-file-size: 100MB
       max-request-size: 1000MB
   resources:
-    static-locations: file:/app/data/litchi/data-server/resources,classpath:/static,classpath:/public,classpath:/resources
+    static-locations: file:F:\xchatresources\,classpath:/static,classpath:/public,classpath:/resources
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml
@@ -56,9 +57,13 @@ redis:
     max-wait: 100000
   timeout: 0
 
+#ribbon的超时时间
+ribbon:
+  ReadTimeout: 30000
+  ConnectTimeout: 30000
 
 logging:
   level:
     root: INFO
-  file: litchi-data-server.log
+  file: litchi-upload-server.log
 

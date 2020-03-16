@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.ToString;
 
 import java.io.Serializable;
+import java.time.Instant;
 
 @Data
 @Builder
@@ -26,7 +27,7 @@ public class DBLzNode implements Serializable{
 
     private String token;
 
-    private Long createTime;
+    private Instant createTime;
 
-    private Long updateTime;
+    private Instant updateTime;
 }

@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.time.Instant;
 
 @Data
 @Builder
@@ -22,7 +23,7 @@ public class DBLzLitchi implements Serializable {
 
     private String name;
 
-    private Long createTime;
+    private Instant createTime;
 
-    private Long updateTime;
+    private Instant updateTime;
 }

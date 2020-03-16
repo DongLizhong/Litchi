@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Builder;
 import lombok.Data;
 
+import java.time.Instant;
 import java.util.Date;
 
 @Data
@@ -25,7 +26,7 @@ public class DBTbContentCategory {
 
     private Boolean isParent;
 
-    private Long createTime;
+    private Instant createTime;
 
-    private Long updateTime;
+    private Instant updateTime;
 }

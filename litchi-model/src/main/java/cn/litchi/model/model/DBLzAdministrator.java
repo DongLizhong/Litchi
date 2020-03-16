@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.Date;
 
 @Data
@@ -27,7 +28,7 @@ public class DBLzAdministrator implements Serializable {
 
     private String email;
 
-    private Long createTime;
+    private Instant createTime;
 
-    private Long updateTime;
+    private Instant updateTime;
 }

@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.Date;
 
 @Data
@@ -33,7 +34,7 @@ public class DBTbOrderShipping implements Serializable{
 
     private String receiverZip;
 
-    private Long createTime;
+    private Instant createTime;
 
-    private Long updateTime;
+    private Instant updateTime;
 }

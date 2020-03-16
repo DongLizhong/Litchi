@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.time.Instant;
 
 @Data
 @Builder
@@ -23,7 +24,7 @@ public class DBLzOrchard implements Serializable{
 
     private String address;
 
-    private Long createTime;
+    private Instant createTime;
 
-    private Long updateTime;
+    private Instant updateTime;
 }

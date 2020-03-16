@@ -9,6 +9,7 @@ import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.Instant;
 import java.util.Collections;
 import java.util.List;
 
@@ -36,8 +37,8 @@ public class HarmService implements HarmServiceRpc {
 
     @Override
     public Boolean addHarm(DBLzHarm harm) {
-        harm.setCreateTime(DateUtils.getNowTimeAsEpochMilli());
-        harm.setUpdateTime(DateUtils.getNowTimeAsEpochMilli());
+        harm.setCreateTime(Instant.now());
+        harm.setUpdateTime(Instant.now());
         return harmDao.insert(harm) == 1;
     }
 }

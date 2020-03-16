@@ -7,6 +7,8 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Builder;
 import lombok.Data;
 
+import java.time.Instant;
+
 @Data
 @Builder
 @TableName(value = "lz_monitor_regulation_item")
@@ -21,6 +23,6 @@ public class DBLzMonitorRegulationItem {
     private Double threshold;
     private Long keepMinutes;
     private Boolean enable;
-    private Long createTime;
-    private Long updateTime;
+    private Instant createTime;
+    private Instant updateTime;
 }

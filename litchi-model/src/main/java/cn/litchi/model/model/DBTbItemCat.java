@@ -8,6 +8,7 @@ import lombok.Data;
 
 import javax.xml.ws.BindingType;
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.Date;
 
 @Data
@@ -27,7 +28,7 @@ public class DBTbItemCat implements Serializable{
 
     private Boolean isParent;
 
-    private Long createTime;
+    private Instant createTime;
 
-    private Long updateTime;
+    private Instant updateTime;
 }

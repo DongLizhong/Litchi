@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -24,8 +25,8 @@ public class DBLzMonitorRegulationGroup implements Serializable {
     private String message;
     private LocalDate beginDate;
     private LocalDate endDate;
-    private Long createTime;
-    private Long updateTime;
+    private Instant createTime;
+    private Instant updateTime;
     @TableField(exist = false)
     private List<DBLzMonitorRegulationItem> items;
 }

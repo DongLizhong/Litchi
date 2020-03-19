@@ -28,13 +28,14 @@ public class MonitorScheduled {
     private LzSystemConfigDao sysDao;
 
 
+    // TODO 监控周期应该从数据库中动态获取
     @Scheduled(fixedRate = 3600000)
     public void monitor() {
         // 查找出当下有效的规则组
         int now = LocalDate.now().getDayOfYear();
         QueryWrapper<DBLzMonitorRegulationGroup> wrapper = new QueryWrapper<>();
-        wrapper.lambda().ge(DBLzMonitorRegulationGroup::getBeginDate, now)
-                .le(DBLzMonitorRegulationGroup::getEndDate, now)
+        wrapper.lambda().le(DBLzMonitorRegulationGroup::getBeginDay, now)
+                .ge(DBLzMonitorRegulationGroup::getEndDay, now)
                 .eq(DBLzMonitorRegulationGroup::getEnable, true);
         List<DBLzMonitorRegulationGroup> groups = groupDao.selectList(wrapper);
 

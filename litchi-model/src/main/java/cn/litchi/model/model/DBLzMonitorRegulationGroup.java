@@ -25,8 +25,8 @@ public class DBLzMonitorRegulationGroup implements Serializable, Comparable<DBLz
     private Long orchardId;
     private Boolean enable;
     private String message;
-    private Integer beginDate;
-    private Integer endDate;
+    private Integer beginDay;
+    private Integer endDay;
     private Instant createTime;
     private Instant updateTime;
     @TableField(exist = false)

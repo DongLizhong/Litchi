@@ -84,7 +84,7 @@ public class NodeDataController extends BaseController {
     @GetMapping(value = "/temp/threeday")
     public MallResult getLastThreeDayNodeDataTempByNodeId(Long nodeId) {
         List<DBLzNodeData> dataList = nodeDataService.selectLastestNDayDatasByNodeId(nodeId, -3);
-        if (dataList == null || dataList.isEmpty()) {
+        if (CollectionUtils.isEmpty(dataList)) {
             return MallResult.ok(new String[][]{});
         }
         String[][] datas = getTempDataArrayByResult(dataList);
@@ -94,7 +94,7 @@ public class NodeDataController extends BaseController {
     @GetMapping(value = "/temp/aweek")
     public MallResult getLastWeekNodeDataTempByNodeId(Long nodeId) {
         List<DBLzNodeData> dataList = nodeDataService.selectLastestNDayDatasByNodeId(nodeId, -7);
-        if (dataList == null || dataList.isEmpty()) {
+        if (CollectionUtils.isEmpty(dataList)) {
             return MallResult.ok(new String[][]{});
         }
         String[][] datas = getTempDataArrayByResult(dataList);
@@ -104,7 +104,7 @@ public class NodeDataController extends BaseController {
     @GetMapping(value = "/temp/amouth")
     public MallResult getLastMouthNodeDataTempByNodeId(Long nodeId) {
         List<DBLzNodeData> dataList = nodeDataService.selectLastestNDayDatasByNodeId(nodeId, -30);
-        if (dataList == null || dataList.isEmpty()) {
+        if (CollectionUtils.isEmpty(dataList)) {
             return MallResult.ok(new String[][]{});
         }
         String[][] datas = getTempDataArrayByResult(dataList);
@@ -114,7 +114,7 @@ public class NodeDataController extends BaseController {
     @GetMapping(value = "/temp/all")
     public MallResult getNodeDataTempByNodeId(Long nodeId) {
         List<DBLzNodeData> dataList = nodeDataService.selectDatasByNodeId(nodeId);
-        if (dataList == null || dataList.isEmpty()) {
+        if (CollectionUtils.isEmpty(dataList)) {
             return MallResult.ok(new String[][]{});
         }
         String[][] datas = getTempDataArrayByResult(dataList);
@@ -160,7 +160,7 @@ public class NodeDataController extends BaseController {
     @GetMapping(value = "/humi/threeday")
     public MallResult getLastThreeDayNodeDataHumiByNodeId(Long nodeId) {
         List<DBLzNodeData> dataList = nodeDataService.selectLastestNDayDatasByNodeId(nodeId, -3);
-        if (dataList == null || dataList.isEmpty()) {
+        if (CollectionUtils.isEmpty(dataList)) {
             return MallResult.ok(new String[][]{});
         }
         String[][] datas = getHumiDataArrayByResult(dataList);
@@ -170,7 +170,7 @@ public class NodeDataController extends BaseController {
     @GetMapping(value = "/humi/aweek")
     public MallResult getLastWeekNodeDataHumiByNodeId(Long nodeId) {
         List<DBLzNodeData> dataList = nodeDataService.selectLastestNDayDatasByNodeId(nodeId, -7);
-        if (dataList == null || dataList.isEmpty()) {
+        if (CollectionUtils.isEmpty(dataList)) {
             return MallResult.ok(new String[][]{});
         }
         String[][] datas = getHumiDataArrayByResult(dataList);
@@ -180,7 +180,7 @@ public class NodeDataController extends BaseController {
     @GetMapping(value = "/humi/amouth")
     public MallResult getLastMouthNodeDataHumiByNodeId(Long nodeId) {
         List<DBLzNodeData> dataList = nodeDataService.selectLastestNDayDatasByNodeId(nodeId, -30);
-        if (dataList == null || dataList.isEmpty()) {
+        if (CollectionUtils.isEmpty(dataList)) {
             return MallResult.ok(new String[][]{});
         }
         String[][] datas = getHumiDataArrayByResult(dataList);
@@ -190,7 +190,7 @@ public class NodeDataController extends BaseController {
     @GetMapping(value = "/humi/all")
     public MallResult getNodeDataHumiByNodeId(Long nodeId) {
         List<DBLzNodeData> dataList = nodeDataService.selectDatasByNodeId(nodeId);
-        if (dataList == null || dataList.isEmpty()) {
+        if (CollectionUtils.isEmpty(dataList)) {
             return MallResult.ok(new String[][]{});
         }
         String[][] datas = getHumiDataArrayByResult(dataList);
@@ -236,7 +236,7 @@ public class NodeDataController extends BaseController {
     @GetMapping(value = "/co2/threeday")
     public MallResult getLastThreeDayNodeDataCo2ByNodeId(Long nodeId) {
         List<DBLzNodeData> dataList = nodeDataService.selectLastestNDayDatasByNodeId(nodeId, -3);
-        if (dataList == null || dataList.isEmpty()) {
+        if (CollectionUtils.isEmpty(dataList)) {
             return MallResult.ok(new String[][]{});
         }
         String[][] datas = getCo2DataArrayByResult(dataList);
@@ -246,7 +246,7 @@ public class NodeDataController extends BaseController {
     @GetMapping(value = "/co2/aweek")
     public MallResult getLastWeekNodeDataCo2ByNodeId(Long nodeId) {
         List<DBLzNodeData> dataList = nodeDataService.selectLastestNDayDatasByNodeId(nodeId, -7);
-        if (dataList == null || dataList.isEmpty()) {
+        if (CollectionUtils.isEmpty(dataList)) {
             return MallResult.ok(new String[][]{});
         }
         String[][] datas = getCo2DataArrayByResult(dataList);
@@ -256,7 +256,7 @@ public class NodeDataController extends BaseController {
     @GetMapping(value = "/co2/amouth")
     public MallResult getLastMouthNodeDataCo2ByNodeId(Long nodeId) {
         List<DBLzNodeData> dataList = nodeDataService.selectLastestNDayDatasByNodeId(nodeId, -30);
-        if (dataList == null || dataList.isEmpty()) {
+        if (CollectionUtils.isEmpty(dataList)) {
             return MallResult.ok(new String[][]{});
         }
         String[][] datas = getCo2DataArrayByResult(dataList);
@@ -266,7 +266,7 @@ public class NodeDataController extends BaseController {
     @GetMapping(value = "/co2/all")
     public MallResult getNodeDataCo2ByNodeId(Long nodeId) {
         List<DBLzNodeData> dataList = nodeDataService.selectDatasByNodeId(nodeId);
-        if (dataList == null || dataList.isEmpty()) {
+        if (CollectionUtils.isEmpty(dataList)) {
             return MallResult.ok(new String[][]{});
         }
         String[][] datas = getCo2DataArrayByResult(dataList);
@@ -313,7 +313,7 @@ public class NodeDataController extends BaseController {
     @GetMapping(value = "/lx/threeday")
     public MallResult getLastThreeDayNodeDataLxByNodeId(Long nodeId) {
         List<DBLzNodeData> dataList = nodeDataService.selectLastestNDayDatasByNodeId(nodeId, -3);
-        if (dataList == null || dataList.isEmpty()) {
+        if (CollectionUtils.isEmpty(dataList)) {
             return MallResult.ok(new String[][]{});
         }
         String[][] datas = getLxDataArrayByResult(dataList);
@@ -323,7 +323,7 @@ public class NodeDataController extends BaseController {
     @GetMapping(value = "/lx/aweek")
     public MallResult getLastWeekNodeDataLxByNodeId(Long nodeId) {
         List<DBLzNodeData> dataList = nodeDataService.selectLastestNDayDatasByNodeId(nodeId, -7);
-        if (dataList == null || dataList.isEmpty()) {
+        if (CollectionUtils.isEmpty(dataList)) {
             return MallResult.ok(new String[][]{});
         }
         String[][] datas = getLxDataArrayByResult(dataList);
@@ -333,7 +333,7 @@ public class NodeDataController extends BaseController {
     @GetMapping(value = "/lx/amouth")
     public MallResult getLastMouthNodeDataLxByNodeId(Long nodeId) {
         List<DBLzNodeData> dataList = nodeDataService.selectLastestNDayDatasByNodeId(nodeId, -30);
-        if (dataList == null || dataList.isEmpty()) {
+        if (CollectionUtils.isEmpty(dataList)) {
             return MallResult.ok(new String[][]{});
         }
         String[][] datas = getLxDataArrayByResult(dataList);
@@ -343,7 +343,7 @@ public class NodeDataController extends BaseController {
     @GetMapping(value = "/lx/all")
     public MallResult getNodeDataLxByNodeId(Long nodeId) {
         List<DBLzNodeData> dataList = nodeDataService.selectDatasByNodeId(nodeId);
-        if (dataList == null || dataList.isEmpty()) {
+        if (CollectionUtils.isEmpty(dataList)) {
             return MallResult.ok(new String[][]{});
         }
         String[][] datas = getLxDataArrayByResult(dataList);

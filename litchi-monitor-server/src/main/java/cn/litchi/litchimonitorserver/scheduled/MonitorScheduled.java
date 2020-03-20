@@ -13,8 +13,10 @@ import org.springframework.stereotype.Component;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Component
@@ -40,19 +42,29 @@ public class MonitorScheduled {
         List<DBLzMonitorRegulationGroup> groups = groupDao.selectList(wrapper);
 
         // 找出规则组中要求监控的最长时间，用于按时间获取 nodeData
+        Set<Long> nodeSet = new HashSet<>();
+        groups.forEach(it -> nodeSet.addAll(it.getNodeList()));
         Long keepMinutes = Collections.max(Collections.max(groups).getItems()).getKeepMinutes();
         QueryWrapper<DBLzNodeData> dataQueryWrapper = new QueryWrapper<>();
-        dataQueryWrapper.lambda().ge(DBLzNodeData::getTime, Instant.now().minusSeconds(keepMinutes));
-        // TODO 还需要对 nodeId 进行限定，只查出想要的 nodeId 对应的数据 group表需要增加一个应用的nodeId列表
+        dataQueryWrapper.lambda()
+                .ge(DBLzNodeData::getTime, Instant.now().minusSeconds(keepMinutes))
+                .in(DBLzNodeData::getNodeId, nodeSet);
         List<DBLzNodeData> data = dataDao.selectList(dataQueryWrapper);
-        Map<Long, List<DBLzNodeData>> dataMap = data.stream().collect(
-                Collectors.groupingBy(
-                        DBLzNodeData::getNodeId, Collectors.toList()
-                ));
-        dataMap.forEach(this::handler);
+        Map<Long, List<DBLzNodeData>> dataMap = data.stream()
+                .collect(Collectors.groupingBy(DBLzNodeData::getNodeId));
+
+        dataMap.forEach((nodeId, datas) -> {
+                    List<DBLzMonitorRegulationGroup> currentGroups
+                            = groups.stream()
+                            .filter(group -> group.getNodeList().contains(nodeId))
+                            .collect(Collectors.toList());
+                    this.handler(nodeId, datas, currentGroups);
+                }
+        );
+
     }
 
-    private void handler(Long nodeId, List<DBLzNodeData> data) {
+    private void handler(Long nodeId, List<DBLzNodeData> data, List<DBLzMonitorRegulationGroup> groups) {
         // TODO 监控数据处理
     }
 }

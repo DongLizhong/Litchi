@@ -31,6 +31,7 @@ public class DBLzMonitorRegulationGroup implements Serializable, Comparable<DBLz
     private Instant updateTime;
     @TableField(exist = false)
     private List<DBLzMonitorRegulationItem> items;
+    private List<Long> nodeList;
 
     @Override
     public int compareTo(DBLzMonitorRegulationGroup o) {

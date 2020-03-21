@@ -15,7 +15,7 @@ import static cn.litchi.model.utils.CollectionsUtilsExtend.checkListNotNull;
 import static cn.litchi.model.utils.DateUtils.checkNodeDataParamDay;
 
 @RestController
-public class NodeDateService implements NodeDataServiceRpc {
+public class NodeDataService implements NodeDataServiceRpc {
 
     @Autowired
     private LzNodeDataDao nodeDataDao;

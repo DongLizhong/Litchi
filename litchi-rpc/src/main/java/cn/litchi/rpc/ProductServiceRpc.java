@@ -15,7 +15,8 @@ import java.util.List;
 @RequestMapping("/product")
 public interface ProductServiceRpc {
     @GetMapping("/list")
-    List<DBTbItem> getItemList();
+    List<DBTbItem> getItemList(@RequestParam("offset") Integer offset,
+                               @RequestParam("limit") Integer limit);
 
     @PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_VALUE)
     Boolean addItem(@RequestBody DBTbItem item, @RequestParam("desc") String desc);
@@ -26,6 +27,6 @@ public interface ProductServiceRpc {
     @GetMapping(value = "/get")
     DBTbItem getItem(@RequestParam("itemId") Long itemId);
 
-    @PostMapping(value = "/update",consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/update", consumes = MediaType.APPLICATION_JSON_VALUE)
     Boolean updateItem(@RequestBody DBTbItem item);
 }

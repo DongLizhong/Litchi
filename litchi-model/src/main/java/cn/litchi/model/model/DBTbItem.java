@@ -1,6 +1,7 @@
 package cn.litchi.model.model;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Builder;
@@ -13,8 +14,8 @@ import java.util.Date;
 @Data
 @Builder
 @TableName(value = "tb_item")
-public class DBTbItem implements Serializable{
-    @TableId(value = "id",type = IdType.AUTO)
+public class DBTbItem implements Serializable {
+    @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
     private String title;
@@ -42,4 +43,7 @@ public class DBTbItem implements Serializable{
     private String area;
 
     private Byte promote;
+
+    @TableField(exist = false)
+    private DBTbItemDesc desc;
 }

@@ -1,6 +1,7 @@
 package cn.litchi.model.model;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Builder;
@@ -9,12 +10,13 @@ import lombok.Data;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Builder
 @TableName(value = "tb_order")
-public class DBTbOrder implements Serializable{
-    @TableId(value = "order_id",type = IdType.AUTO)
+public class DBTbOrder implements Serializable {
+    @TableId(value = "order_id", type = IdType.AUTO)
     private String orderId;
 
     private String payment;
@@ -50,4 +52,10 @@ public class DBTbOrder implements Serializable{
     private Integer buyerRate;
 
     private Long vendorId;
+
+    @TableField(exist = false)
+    private List<DBTbOrderItem> items;
+
+    @TableField(exist = false)
+    private DBTbOrderShipping shipping;
 }

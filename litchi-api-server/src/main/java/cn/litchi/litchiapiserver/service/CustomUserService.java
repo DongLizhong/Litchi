@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+
 public class CustomUserService implements UserDetailsService {
 
     @Autowired
@@ -15,7 +16,7 @@ public class CustomUserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         DBSysUser user = userDao.findByUserName(s);
-        if (user == null){
+        if (user == null) {
             throw new UsernameNotFoundException("用户名不存在");
         }
         return user;

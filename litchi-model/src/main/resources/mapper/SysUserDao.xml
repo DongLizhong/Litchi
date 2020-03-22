@@ -12,15 +12,16 @@
         <result column="create_time" property="createTime"/>
         <result column="update_time" property="updateTime"/>
         <collection property="roles" ofType="cn.litchi.model.model.DBSysRole">
+            <id column="role_id" property="id"/>
             <result column="name" property="name"/>
         </collection>
     </resultMap>
 
     <select id="findByUserName" resultMap="sysUserBean">
-        SELECT u.*,r.name
+        SELECT u.*,r.*
         FROM sys_user u
         LEFT JOIN sys_user_role sru on u.id = sru.sys_user_id
-        LEFT JOIN sys_role r on r.id = sru.sys_role_id
+        LEFT JOIN sys_role r on r.role_id = sru.sys_role_id
         WHERE username = #{name}
     </select>
 </mapper>

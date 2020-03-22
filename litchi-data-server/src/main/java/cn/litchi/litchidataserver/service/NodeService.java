@@ -2,7 +2,6 @@ package cn.litchi.litchidataserver.service;
 
 import cn.litchi.model.mapper.LzNodeDao;
 import cn.litchi.model.model.DBLzNode;
-import cn.litchi.model.utils.TokenUtils;
 import cn.litchi.rpc.NodeServiceRpc;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +30,7 @@ public class NodeService implements NodeServiceRpc {
     public Boolean addNode(@RequestBody DBLzNode node) {
         node.setCreateTime(Instant.now());
         node.setUpdateTime(Instant.now());
-        node.setToken(TokenUtils.getToken(node.getId(), node.getOrchardId() + node.getNodeTypeId()));
+//        node.setToken(TokenUtils.getToken(node.getId(), node.getOrchardId() + node.getNodeTypeId()));
         return lzNodeDao.insert(node) == 1;
     }
 

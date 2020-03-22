@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 @TableName(value = "sys_role")
 public class DBSysRole {
-    @TableId(value = "id", type = IdType.AUTO)
+    @TableId(value = "role_id", type = IdType.AUTO)
     private Long id;
     private String name;
 }

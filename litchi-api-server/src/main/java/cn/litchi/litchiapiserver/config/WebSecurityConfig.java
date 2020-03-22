@@ -1,17 +1,29 @@
 package cn.litchi.litchiapiserver.config;
 
+import cn.litchi.litchiapiserver.filter.JwtFilter;
+import cn.litchi.litchiapiserver.filter.JwtLoginFilter;
 import cn.litchi.litchiapiserver.service.CustomUserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+
+    @Bean
+    PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
     @Bean
     UserDetailsService customUserService() {
@@ -26,15 +38,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .anyRequest().authenticated() //任何请求,登录后可以访问
+                .antMatchers("/api/harm/user").hasRole("user")
+                .antMatchers("/api/harm/admin").hasRole("admin")
+                .antMatchers(HttpMethod.POST, "/login").permitAll()
+                .anyRequest().authenticated()
                 .and()
-                .formLogin()
-                .loginPage("/login")
-                .failureUrl("/login?error")
-                .permitAll() //登录页面用户任意访问
-                .and()
-                .logout().permitAll(); //注销行为任意访问
-
-
+                .addFilterBefore(new JwtLoginFilter("/login", authenticationManager()),
+                        UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(new JwtFilter(), UsernamePasswordAuthenticationFilter.class)
+                .csrf().disable();
     }
 }

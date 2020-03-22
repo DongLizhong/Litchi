@@ -18,6 +18,16 @@ public class HarmController extends BaseController {
     @Autowired
     private HarmServiceRpc harmService;
 
+    @GetMapping("/user")
+    public String user(){
+        return "user";
+    }
+
+    @GetMapping("/admin")
+    public String admin(){
+        return "admin";
+    }
+
     @GetMapping("/list")
     // type == "1" 虫害 “2” 病害
     public MallResult getHarmList(String type) {

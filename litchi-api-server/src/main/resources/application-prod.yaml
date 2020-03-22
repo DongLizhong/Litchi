@@ -45,7 +45,7 @@ spring:
   resources:
     static-locations: file:/app/data/litchi/api-server/resources,classpath:/static,classpath:/public,classpath:/resources
 
-mybatis:
+mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: cn.litchi.model.model
 
@@ -58,9 +58,24 @@ redis:
     max-wait: 100000
   timeout: 0
 
-
 logging:
   level:
     root: INFO
   file: litchi-api-server.log
+
+jwt:
+  # 请求头部数据属性名: 值 token
+  header: Authorization
+  # 用户自定义的口令
+  secret: mySecret
+  # 令牌失效实际时间: 7天
+  expiration: 604800
+  # 承载字符串
+  tokenHead: Bearer
+  route:
+    authentication:
+      # 签发令牌的路径
+      path: /auth
+      # 令牌刷新的路径
+      refresh: /refresh
 

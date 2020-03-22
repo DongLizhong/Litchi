@@ -43,7 +43,7 @@ spring:
   resources:
     static-locations: file:/app/data/litchi/data-server/resources,classpath:/static,classpath:/public,classpath:/resources
 
-mybatis:
+mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: cn.litchi.model.model
 

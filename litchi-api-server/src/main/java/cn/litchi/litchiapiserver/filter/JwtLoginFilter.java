@@ -2,6 +2,7 @@ package cn.litchi.litchiapiserver.filter;
 
 import cn.litchi.model.model.DBSysUser;
 import cn.litchi.model.utils.MallResult;
+import cn.litchi.model.utils.MallResultStatus;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -52,15 +53,16 @@ public class JwtLoginFilter extends AbstractAuthenticationProcessingFilter {
                 .compact();
         resp.setContentType("application/json;charset=utf-8");
         PrintWriter out = resp.getWriter();
-        out.write(new ObjectMapper().writeValueAsString(MallResult.build(200, "登录成功", jwt)));
+        out.write(new ObjectMapper().writeValueAsString(MallResult.build(MallResultStatus.OK, "登录成功", jwt)));
         out.flush();
         out.close();
     }
 
+    @Override
     protected void unsuccessfulAuthentication(HttpServletRequest req, HttpServletResponse resp, AuthenticationException failed) throws IOException, ServletException {
         resp.setContentType("application/json;charset=utf-8");
         PrintWriter out = resp.getWriter();
-        out.write("登录失败!");
+        out.write(new ObjectMapper().writeValueAsString(MallResult.build(MallResultStatus.LOGIN_FAIL, "登录失败")));
         out.flush();
         out.close();
     }

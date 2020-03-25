@@ -83,7 +83,7 @@ public class MonitorScheduled {
             Map<String, Double> log = new HashMap();
             boolean alarm = handler(it, data, log);
             if (alarm) {
-                // TODO 添加记录
+                // TODO 添加记录,发布消息
             }
         });
     }

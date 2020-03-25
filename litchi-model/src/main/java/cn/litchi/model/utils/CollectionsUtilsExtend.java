@@ -1,5 +1,6 @@
 package cn.litchi.model.utils;
 
+import com.alibaba.druid.sql.dialect.oracle.ast.expr.OracleSizeExpr;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 
 import java.util.Collections;

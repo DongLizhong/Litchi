@@ -35,20 +35,20 @@ public class SourceController extends BaseController {
     public MallResult uploadFile(@PathParam("file") MultipartFile file) {
         Map<String, String> map = sourceServiceRpc.uploadFile(file);
         if (map == null || map.isEmpty()) {
-            return MallResult.build(MallResultStatus.Server_OPERATION_FAIL, "文件上传失败");
+            return MallResult.build(MallResultStatus.SERVER_OPERATION_FAIL, "文件上传失败");
         }
         Iterator iterator = map.keySet().iterator();
         if (iterator.hasNext()) {
             return MallResult.ok(map.get(iterator.next()));
         }
-        return MallResult.build(MallResultStatus.Server_OPERATION_FAIL, "文件上传失败");
+        return MallResult.build(MallResultStatus.SERVER_OPERATION_FAIL, "文件上传失败");
     }
 
     @GetMapping("/litchi/carouselpic")
     public MallResult getLitchiCarouselPic() {
         List<DBTbContent> list = sourceServiceRpc.getCarouselPic();
         if (CollectionUtils.isEmpty(list)) {
-            return MallResult.build(MallResultStatus.Server_OPERATION_FAIL, "荔枝园轮播图获取失败");
+            return MallResult.build(MallResultStatus.SERVER_OPERATION_FAIL, "荔枝园轮播图获取失败");
         }
         List<Picture> data = new ArrayList<>();
         list.forEach(it -> {
@@ -66,7 +66,7 @@ public class SourceController extends BaseController {
     public MallResult getOrcPicByOrcId(@RequestParam(value = "orcId", defaultValue = "1") Long orcId) {
         List<DBLzOrchardPicture> data = sourceServiceRpc.getOrcPic(orcId);
         if (data == null) {
-            return MallResult.build(MallResultStatus.Server_OPERATION_FAIL, "荔枝园图片获取失败");
+            return MallResult.build(MallResultStatus.SERVER_OPERATION_FAIL, "荔枝园图片获取失败");
         }
         return MallResult.ok(data);
     }
@@ -75,7 +75,7 @@ public class SourceController extends BaseController {
     public MallResult getWisdommanagement(@RequestParam(value = "typeId", defaultValue = "1") Long typeId, Integer mon) {
         DBLzLitchiType data = sourceServiceRpc.getLitchiType(typeId);
         if (data == null) {
-            return MallResult.build(MallResultStatus.Server_OPERATION_FAIL, "智慧管理获取失败");
+            return MallResult.build(MallResultStatus.SERVER_OPERATION_FAIL, "智慧管理获取失败");
         }
         String management = null;
         switch (mon.intValue()) {
@@ -119,14 +119,14 @@ public class SourceController extends BaseController {
 
         }
         return (management != null) ? MallResult.ok(management)
-                : MallResult.build(MallResultStatus.Server_OPERATION_FAIL, "参数错误");
+                : MallResult.build(MallResultStatus.SERVER_OPERATION_FAIL, "参数错误");
     }
 
     @GetMapping("/litchi/text")
     public MallResult getLitchiCulture(Long typeId) {
         List<DBLzText> data = sourceServiceRpc.getLitchiTextByTypeId(typeId);
         if (data == null) {
-            return MallResult.build(MallResultStatus.Server_OPERATION_FAIL, "信息获取失败");
+            return MallResult.build(MallResultStatus.SERVER_OPERATION_FAIL, "信息获取失败");
         }
         return MallResult.ok(data);
     }
@@ -135,7 +135,7 @@ public class SourceController extends BaseController {
     public MallResult getLitchiCarouselGroupPic() {
         List<DBLzText> data = sourceServiceRpc.getLitchiTextByTypeId(Long.valueOf(7));
         if (data == null) {
-            return MallResult.build(MallResultStatus.Server_OPERATION_FAIL, "信息获取失败");
+            return MallResult.build(MallResultStatus.SERVER_OPERATION_FAIL, "信息获取失败");
         }
         GroupCarouselPicEntity[][] dataArray = getArrayByList(data);
         return MallResult.ok(dataArray);

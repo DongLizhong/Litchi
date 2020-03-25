@@ -11,7 +11,7 @@
  Target Server Version : 50637
  File Encoding         : 65001
 
- Date: 19/03/2020 23:35:49
+ Date: 22/03/2020 21:21:32
 */
 
 SET NAMES utf8mb4;
@@ -33,6 +33,30 @@ CREATE TABLE `lz_administrator`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
+-- Records of lz_administrator
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for lz_alarm_log
+-- ----------------------------
+DROP TABLE IF EXISTS `lz_alarm_log`;
+CREATE TABLE `lz_alarm_log`  (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `node_id` bigint(20) NULL DEFAULT NULL COMMENT '节点id',
+  `group_id` bigint(20) NULL DEFAULT NULL COMMENT '规则组id',
+  `threshold` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '规则组阈值',
+  `monitor_data` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '监控处理所得数据',
+  `message` varchar(1023) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '建议',
+  `create_time` timestamp(0) NULL DEFAULT NULL,
+  `update_time` timestamp(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of lz_alarm_log
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for lz_harm
 -- ----------------------------
 DROP TABLE IF EXISTS `lz_harm`;
@@ -49,6 +73,10 @@ CREATE TABLE `lz_harm`  (
   `update_time` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of lz_harm
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for lz_limit
@@ -72,6 +100,10 @@ CREATE TABLE `lz_limit`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
+-- Records of lz_limit
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for lz_litchi
 -- ----------------------------
 DROP TABLE IF EXISTS `lz_litchi`;
@@ -83,6 +115,10 @@ CREATE TABLE `lz_litchi`  (
   `update_time` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of lz_litchi
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for lz_litchi_type
@@ -109,6 +145,10 @@ CREATE TABLE `lz_litchi_type`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
+-- Records of lz_litchi_type
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for lz_monitor_regulation_group
 -- ----------------------------
 DROP TABLE IF EXISTS `lz_monitor_regulation_group`;
@@ -116,13 +156,17 @@ CREATE TABLE `lz_monitor_regulation_group`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `orchard_id` bigint(20) NULL DEFAULT NULL COMMENT '果园id',
   `enable` tinyint(1) NULL DEFAULT NULL COMMENT '规则状态',
-  `message` varchar(1024) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `message` varchar(1024) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '建议',
   `begin_day` int(11) NULL DEFAULT NULL COMMENT '规则生效时间范围起点，一年中的第几天',
   `end_day` int(11) NULL DEFAULT NULL COMMENT '规则生效时间范围结束，一年中的第几天',
   `create_time` timestamp(0) NULL DEFAULT NULL,
   `update_time` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of lz_monitor_regulation_group
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for lz_monitor_regulation_item
@@ -132,14 +176,20 @@ CREATE TABLE `lz_monitor_regulation_item`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `group_id` bigint(20) NULL DEFAULT NULL COMMENT '所属规则组id',
   `index` int(10) NULL DEFAULT NULL COMMENT '序号',
+  `threshold_type` int(5) NULL DEFAULT NULL COMMENT '阈值类型：1，平均值 ；2，最小值；3，最大值',
   `data_type` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '影响因素，水分，温度等',
+  `operator` varchar(5) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '操作符[\">\",\"<\",\"=\"]，表示 大于，小于，等于 阈值的情况。',
   `threshold` double NULL DEFAULT NULL COMMENT '阈值',
-  `keep_minutes` bigint(20) NULL DEFAULT NULL COMMENT '触发告警所需现象的维持时间(指在24小时内，出现了多少分钟)，单位是分钟。',
+  `keep_minutes` bigint(20) NULL DEFAULT NULL COMMENT '触发告警所需现象的维持时间，单位是分钟。',
   `enable` tinyint(1) NULL DEFAULT NULL COMMENT '是否应用',
   `create_time` timestamp(0) NULL DEFAULT NULL,
   `update_time` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of lz_monitor_regulation_item
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for lz_node
@@ -154,6 +204,10 @@ CREATE TABLE `lz_node`  (
   `update_time` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of lz_node
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for lz_node_data
@@ -176,7 +230,59 @@ CREATE TABLE `lz_node_data`  (
   `volt` double(255, 0) NULL DEFAULT NULL COMMENT '电池电压',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `time`(`time`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 239 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 274 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of lz_node_data
+-- ----------------------------
+INSERT INTO `lz_node_data` VALUES (226, 1, 2, '2020-03-15 22:36:02', 2, 9, 1, 1, 9, 10, 2, 1, 6, 5);
+INSERT INTO `lz_node_data` VALUES (227, 1, 0, '2020-03-15 22:36:05', 6, 8, 5, 8, 9, 1, 0, 2, 10, 0);
+INSERT INTO `lz_node_data` VALUES (228, 1, 1, '2020-03-15 22:36:06', 3, 9, 5, 5, 2, 0, 2, 8, 1, 6);
+INSERT INTO `lz_node_data` VALUES (229, 1, 1, '2020-03-15 22:36:08', 10, 3, 2, 8, 7, 4, 2, 3, 3, 5);
+INSERT INTO `lz_node_data` VALUES (230, 1, 0, '2020-03-15 22:36:11', 4, 10, 6, 8, 8, 2, 3, 6, 1, 10);
+INSERT INTO `lz_node_data` VALUES (231, 1, 0, '2020-03-15 22:36:12', 2, 4, 4, 5, 4, 6, 3, 1, 3, 4);
+INSERT INTO `lz_node_data` VALUES (232, 1, 1, '2020-03-15 22:36:15', 9, 8, 5, 7, 1, 3, 2, 5, 8, 5);
+INSERT INTO `lz_node_data` VALUES (233, 1, 2, '2020-03-15 22:36:18', 6, 0, 4, 2, 7, 8, 1, 10, 8, 4);
+INSERT INTO `lz_node_data` VALUES (234, 1, 0, '2020-03-15 22:36:18', 2, 8, 6, 2, 2, 2, 2, 3, 5, 8);
+INSERT INTO `lz_node_data` VALUES (235, 1, 0, '2020-03-15 22:36:21', 4, 4, 1, 5, 4, 3, 0, 4, 9, 3);
+INSERT INTO `lz_node_data` VALUES (236, 1, 1, '2020-03-15 22:36:24', 9, 7, 5, 1, 9, 9, 1, 2, 4, 3);
+INSERT INTO `lz_node_data` VALUES (237, 1, 2, '2020-03-15 22:36:24', 7, 7, 3, 1, 6, 3, 1, 8, 3, 9);
+INSERT INTO `lz_node_data` VALUES (238, 1, 1, '2020-03-15 22:36:27', 8, 0, 7, 3, 2, 4, 0, 4, 9, 7);
+INSERT INTO `lz_node_data` VALUES (239, 1, 0, '2020-03-22 11:59:59', 0, 4, 7, 5, 8, 2, 2, 1, 6, 4);
+INSERT INTO `lz_node_data` VALUES (240, 1, 2, '2020-03-22 12:00:02', 2, 6, 4, 4, 6, 7, 1, 1, 6, 7);
+INSERT INTO `lz_node_data` VALUES (241, 1, 1, '2020-03-22 12:00:03', 1, 5, 0, 3, 1, 10, 3, 5, 6, 0);
+INSERT INTO `lz_node_data` VALUES (242, 1, 2, '2020-03-22 12:00:05', 5, 6, 9, 7, 10, 9, 3, 8, 0, 4);
+INSERT INTO `lz_node_data` VALUES (243, 1, 0, '2020-03-22 12:00:08', 4, 7, 9, 7, 6, 6, 1, 8, 2, 3);
+INSERT INTO `lz_node_data` VALUES (244, 1, 2, '2020-03-22 12:00:09', 1, 7, 1, 10, 2, 1, 2, 8, 8, 3);
+INSERT INTO `lz_node_data` VALUES (245, 1, 2, '2020-03-22 12:00:11', 3, 1, 4, 6, 0, 4, 1, 5, 8, 9);
+INSERT INTO `lz_node_data` VALUES (246, 1, 1, '2020-03-22 12:00:14', 9, 7, 4, 2, 5, 9, 1, 5, 10, 6);
+INSERT INTO `lz_node_data` VALUES (247, 1, 0, '2020-03-22 12:00:15', 2, 5, 3, 8, 7, 0, 1, 3, 4, 7);
+INSERT INTO `lz_node_data` VALUES (248, 1, 0, '2020-03-22 12:00:17', 5, 5, 9, 1, 2, 1, 0, 9, 8, 3);
+INSERT INTO `lz_node_data` VALUES (249, 1, 0, '2020-03-22 12:00:20', 9, 0, 4, 9, 0, 7, 2, 2, 6, 8);
+INSERT INTO `lz_node_data` VALUES (250, 1, 2, '2020-03-22 12:00:21', 3, 7, 7, 6, 2, 2, 1, 6, 6, 6);
+INSERT INTO `lz_node_data` VALUES (251, 1, 0, '2020-03-22 12:00:23', 0, 2, 7, 5, 10, 2, 1, 10, 6, 3);
+INSERT INTO `lz_node_data` VALUES (252, 1, 2, '2020-03-22 12:00:27', 9, 4, 5, 9, 1, 7, 1, 7, 2, 9);
+INSERT INTO `lz_node_data` VALUES (253, 1, 2, '2020-03-22 12:00:27', 5, 2, 7, 2, 1, 6, 3, 8, 7, 2);
+INSERT INTO `lz_node_data` VALUES (254, 1, 1, '2020-03-22 12:00:30', 9, 7, 2, 8, 6, 8, 0, 5, 9, 6);
+INSERT INTO `lz_node_data` VALUES (255, 1, 2, '2020-03-22 12:00:31', 3, 4, 4, 2, 7, 5, 2, 9, 1, 5);
+INSERT INTO `lz_node_data` VALUES (256, 1, 1, '2020-03-22 12:00:33', 3, 9, 8, 8, 6, 1, 1, 3, 9, 7);
+INSERT INTO `lz_node_data` VALUES (257, 1, 1, '2020-03-22 12:00:36', 3, 2, 0, 6, 9, 6, 0, 0, 0, 6);
+INSERT INTO `lz_node_data` VALUES (258, 1, 2, '2020-03-22 12:00:37', 6, 8, 1, 1, 8, 6, 0, 7, 7, 6);
+INSERT INTO `lz_node_data` VALUES (259, 1, 0, '2020-03-22 12:00:39', 1, 6, 8, 5, 4, 5, 1, 2, 0, 0);
+INSERT INTO `lz_node_data` VALUES (260, 1, 2, '2020-03-22 12:00:42', 6, 5, 4, 9, 8, 8, 1, 9, 4, 6);
+INSERT INTO `lz_node_data` VALUES (261, 1, 2, '2020-03-22 12:00:43', 1, 6, 10, 1, 2, 6, 1, 1, 5, 2);
+INSERT INTO `lz_node_data` VALUES (262, 1, 0, '2020-03-22 12:00:45', 5, 9, 7, 5, 7, 5, 1, 1, 9, 8);
+INSERT INTO `lz_node_data` VALUES (263, 1, 0, '2020-03-22 12:00:48', 6, 8, 7, 10, 7, 2, 1, 2, 2, 2);
+INSERT INTO `lz_node_data` VALUES (264, 1, 2, '2020-03-22 12:00:49', 8, 5, 0, 1, 0, 5, 2, 0, 5, 9);
+INSERT INTO `lz_node_data` VALUES (265, 1, 2, '2020-03-22 12:00:51', 2, 3, 8, 5, 6, 2, 0, 3, 2, 7);
+INSERT INTO `lz_node_data` VALUES (266, 1, 0, '2020-03-22 12:00:54', 2, 6, 7, 3, 9, 0, 3, 5, 7, 2);
+INSERT INTO `lz_node_data` VALUES (267, 1, 0, '2020-03-22 12:00:55', 10, 9, 1, 5, 2, 10, 1, 1, 4, 2);
+INSERT INTO `lz_node_data` VALUES (268, 1, 1, '2020-03-22 12:00:57', 6, 1, 2, 3, 6, 7, 0, 6, 8, 9);
+INSERT INTO `lz_node_data` VALUES (269, 1, 0, '2020-03-22 12:01:00', 6, 1, 9, 4, 9, 1, 3, 6, 7, 4);
+INSERT INTO `lz_node_data` VALUES (270, 1, 2, '2020-03-22 12:01:01', 9, 0, 2, 1, 9, 2, 3, 9, 9, 9);
+INSERT INTO `lz_node_data` VALUES (271, 1, 1, '2020-03-22 12:01:04', 3, 2, 1, 6, 6, 8, 3, 8, 9, 9);
+INSERT INTO `lz_node_data` VALUES (272, 1, 2, '2020-03-22 12:01:05', 7, 4, 2, 8, 1, 6, 2, 1, 1, 9);
+INSERT INTO `lz_node_data` VALUES (273, 1, 0, '2020-03-22 12:01:07', 8, 4, 6, 2, 6, 0, 1, 10, 6, 3);
 
 -- ----------------------------
 -- Table structure for lz_node_data_picture
@@ -199,6 +305,10 @@ CREATE TABLE `lz_node_data_picture`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
+-- Records of lz_node_data_picture
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for lz_node_type
 -- ----------------------------
 DROP TABLE IF EXISTS `lz_node_type`;
@@ -209,6 +319,10 @@ CREATE TABLE `lz_node_type`  (
   `update_time` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of lz_node_type
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for lz_orchard
@@ -226,6 +340,10 @@ CREATE TABLE `lz_orchard`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
+-- Records of lz_orchard
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for lz_orchard_picture
 -- ----------------------------
 DROP TABLE IF EXISTS `lz_orchard_picture`;
@@ -239,6 +357,10 @@ CREATE TABLE `lz_orchard_picture`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
+-- Records of lz_orchard_picture
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for lz_system_config
 -- ----------------------------
 DROP TABLE IF EXISTS `lz_system_config`;
@@ -248,6 +370,10 @@ CREATE TABLE `lz_system_config`  (
   `value` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of lz_system_config
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for lz_text
@@ -265,6 +391,10 @@ CREATE TABLE `lz_text`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
+-- Records of lz_text
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for lz_text_type
 -- ----------------------------
 DROP TABLE IF EXISTS `lz_text_type`;
@@ -278,14 +408,23 @@ CREATE TABLE `lz_text_type`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
+-- Records of lz_text_type
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for sys_role
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_role`;
 CREATE TABLE `sys_role`  (
-  `id` bigint(20) NOT NULL,
+  `role_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+  PRIMARY KEY (`role_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of sys_role
+-- ----------------------------
+INSERT INTO `sys_role` VALUES (1, 'ROLE_user');
 
 -- ----------------------------
 -- Table structure for sys_user
@@ -294,18 +433,23 @@ DROP TABLE IF EXISTS `sys_user`;
 CREATE TABLE `sys_user`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '用户名',
-  `password` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '密码，加密存储',
+  `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '密码，加密存储',
   `phone` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '注册手机号',
   `email` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '注册邮箱',
-  `create_time` timestamp(0) NULL DEFAULT NULL,
-  `update_time` timestamp(0) NULL DEFAULT NULL,
   `idcard` varchar(18) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '身份证号码',
   `status` tinyint(4) NOT NULL DEFAULT 1 COMMENT '用户状态： 1,正常 0,暂停使用',
+  `create_time` timestamp(0) NULL DEFAULT NULL,
+  `update_time` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `username`(`username`) USING BTREE,
   UNIQUE INDEX `phone`(`phone`) USING BTREE,
   UNIQUE INDEX `email`(`email`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户表' ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户表' ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of sys_user
+-- ----------------------------
+INSERT INTO `sys_user` VALUES (1, 'root', '$2a$10$DTFj0r5LvwUgHm90pV4CbOshh60E0q.ueyJVJxgVi0djvfDovANxi', NULL, NULL, NULL, 1, '2020-03-22 17:25:03', '2020-03-22 17:25:09');
 
 -- ----------------------------
 -- Table structure for sys_user_role
@@ -316,6 +460,12 @@ CREATE TABLE `sys_user_role`  (
   `sys_role_id` bigint(20) NOT NULL,
   PRIMARY KEY (`sys_user_id`, `sys_role_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of sys_user_role
+-- ----------------------------
+INSERT INTO `sys_user_role` VALUES (1, 1);
+INSERT INTO `sys_user_role` VALUES (1, 2);
 
 -- ----------------------------
 -- Table structure for tb_administrator
@@ -333,6 +483,10 @@ CREATE TABLE `tb_administrator`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
+-- Records of tb_administrator
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for tb_area
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_area`;
@@ -342,6 +496,10 @@ CREATE TABLE `tb_area`  (
   `area` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '地区',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of tb_area
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for tb_content
@@ -365,6 +523,10 @@ CREATE TABLE `tb_content`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
+-- Records of tb_content
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for tb_content_category
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_content_category`;
@@ -383,6 +545,10 @@ CREATE TABLE `tb_content_category`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '内容分类' ROW_FORMAT = Compact;
 
 -- ----------------------------
+-- Records of tb_content_category
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for tb_franchiser
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_franchiser`;
@@ -398,6 +564,10 @@ CREATE TABLE `tb_franchiser`  (
   `status` tinyint(4) NULL DEFAULT NULL COMMENT '用户状态：1、正常 0、暂停使用',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of tb_franchiser
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for tb_item
@@ -425,6 +595,10 @@ CREATE TABLE `tb_item`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '商品表' ROW_FORMAT = Compact;
 
 -- ----------------------------
+-- Records of tb_item
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for tb_item_cat
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_item_cat`;
@@ -443,6 +617,10 @@ CREATE TABLE `tb_item_cat`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '商品类目' ROW_FORMAT = Compact;
 
 -- ----------------------------
+-- Records of tb_item_cat
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for tb_item_desc
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_item_desc`;
@@ -453,6 +631,10 @@ CREATE TABLE `tb_item_desc`  (
   `update_time` timestamp(0) NULL DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`item_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '商品描述表' ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of tb_item_desc
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for tb_item_param
@@ -469,6 +651,10 @@ CREATE TABLE `tb_item_param`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '商品规则参数' ROW_FORMAT = Compact;
 
 -- ----------------------------
+-- Records of tb_item_param
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for tb_item_param_item
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_item_param_item`;
@@ -481,6 +667,10 @@ CREATE TABLE `tb_item_param_item`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `item_id`(`item_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '商品规格和商品的关系表' ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of tb_item_param_item
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for tb_order
@@ -513,6 +703,10 @@ CREATE TABLE `tb_order`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Compact;
 
 -- ----------------------------
+-- Records of tb_order
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for tb_order_item
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_order_item`;
@@ -529,6 +723,10 @@ CREATE TABLE `tb_order_item`  (
   INDEX `item_id`(`item_id`) USING BTREE,
   INDEX `order_id`(`order_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of tb_order_item
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for tb_order_shipping
@@ -550,6 +748,10 @@ CREATE TABLE `tb_order_shipping`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
+-- Records of tb_order_shipping
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for tb_vender
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_vender`;
@@ -565,5 +767,9 @@ CREATE TABLE `tb_vender`  (
   `status` tinyint(4) NOT NULL COMMENT '用户状态：1，正常 0，暂停使用',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of tb_vender
+-- ----------------------------
 
 SET FOREIGN_KEY_CHECKS = 1;

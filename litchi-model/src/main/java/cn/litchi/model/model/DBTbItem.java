@@ -15,6 +15,13 @@ import java.util.Date;
 @Builder
 @TableName(value = "tb_item")
 public class DBTbItem implements Serializable {
+
+    public static final byte ENABLE = 1;
+
+    public static final byte DISABLE = 2;
+
+    public static final byte DELETE = 3;
+
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 

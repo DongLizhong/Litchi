@@ -6,6 +6,7 @@ import cn.litchi.model.utils.MallResult;
 import cn.litchi.model.utils.MallResultStatus;
 import cn.litchi.rpc.HarmServiceRpc;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -19,8 +20,8 @@ public class HarmController extends BaseController {
     private HarmServiceRpc harmService;
 
     @GetMapping("/user")
-    public String user(){
-        return "user";
+    public String user(Authentication authResult){
+        return authResult.getName()+"user";
     }
 
     @GetMapping("/admin")
@@ -44,13 +45,13 @@ public class HarmController extends BaseController {
     @GetMapping("")
     public MallResult getHarmById(Long id) {
         DBLzHarm harm = harmService.getHarmById(id);
-        return (harm == null) ? MallResult.build(MallResultStatus.Server_OPERATION_FAIL, "查询失败")
+        return (harm == null) ? MallResult.build(MallResultStatus.SERVER_OPERATION_FAIL, "查询失败")
                 : MallResult.ok(harm);
     }
 
     @PostMapping("/add")
     public MallResult addHarm(@RequestBody DBLzHarm harm) {
         Boolean result = harmService.addHarm(harm);
-        return result ? MallResult.ok() : MallResult.build(MallResultStatus.Server_OPERATION_FAIL, "添加失败");
+        return result ? MallResult.ok() : MallResult.build(MallResultStatus.SERVER_OPERATION_FAIL, "添加失败");
     }
 }

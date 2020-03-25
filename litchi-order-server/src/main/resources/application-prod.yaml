@@ -1,11 +1,11 @@
 server:
   tomcat:
     uri-encoding: UTF-8
-  port: 8083
+  port: 8086
 
 spring:
   application:
-    name: litchi-monitor-server
+    name: litchi-order-server
   cloud:
     consul:
       host: 120.78.227.159
@@ -41,7 +41,7 @@ spring:
       max-file-size: 100MB
       max-request-size: 1000MB
   resources:
-    static-locations: file:/app/data/litchi/data-server/resources,classpath:/static,classpath:/public,classpath:/resources
+    static-locations: file:/app/data/litchi/order-server/resources,classpath:/static,classpath:/public,classpath:/resources
 
   redis:
     database: 0
@@ -49,12 +49,18 @@ spring:
     password:
     port: 6379
     timeout: 3s
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        max-wait: 1
+        min-idle: 0
     redisson:
       pool-size: 64
 
-mybatis:
+mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: cn.litchi.model.entity
+  type-aliases-package: cn.litchi.model.model
 
 redisson:
   cache:
@@ -63,5 +69,7 @@ redisson:
 logging:
   level:
     root: INFO
-  file: litchi-monitor-server.log
+  file: litchi-order-server.log
+
+cartKey: LITCHI_MALL_CART
 

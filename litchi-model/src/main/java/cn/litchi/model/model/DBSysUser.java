@@ -15,7 +15,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,6 +28,8 @@ import java.util.stream.Collectors;
 public class DBSysUser implements UserDetails, Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
+
+    private Long orchardId;
 
     private String username;
 

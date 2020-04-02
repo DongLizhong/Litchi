@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.time.Instant;
 import java.util.List;
+import java.util.UUID;
 
 import static cn.litchi.model.utils.CollectionsUtilsExtend.checkListNotNull;
 
@@ -22,16 +23,18 @@ public class NodeService implements NodeServiceRpc {
     @Override
     public List<DBLzNode> getNodeList() {
         QueryWrapper<DBLzNode> queryWrapper = new QueryWrapper<>();
+        queryWrapper.lambda().orderByDesc(DBLzNode::getUpdateTime);
         List<DBLzNode> nodes = lzNodeDao.selectList(queryWrapper);
         return checkListNotNull(nodes);
     }
 
     @Override
-    public Boolean addNode(@RequestBody DBLzNode node) {
+    public DBLzNode addNode(@RequestBody DBLzNode node) {
         node.setCreateTime(Instant.now());
         node.setUpdateTime(Instant.now());
-//        node.setToken(TokenUtils.getToken(node.getId(), node.getOrchardId() + node.getNodeTypeId()));
-        return lzNodeDao.insert(node) == 1;
+        node.setToken(UUID.randomUUID().toString());
+        lzNodeDao.insert(node);
+        return node;
     }
 
     @Override

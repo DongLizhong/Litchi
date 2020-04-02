@@ -40,10 +40,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/api/harm/user").hasRole("user")
                 .antMatchers("/api/harm/admin").hasRole("admin")
-                .antMatchers(HttpMethod.POST, "/login").permitAll()
+                .antMatchers("/api/node/.*").hasRole("admin")
+                .antMatchers(HttpMethod.POST, "/api/user/user/register").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/user/login").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/user/logout").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .addFilterBefore(new JwtLoginFilter("/login", authenticationManager()),
+                .addFilterBefore(new JwtLoginFilter("/api/user/login", authenticationManager()),
                         UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(new JwtFilter(), UsernamePasswordAuthenticationFilter.class)
                 .csrf().disable();

@@ -146,11 +146,6 @@
             <artifactId>lombok</artifactId>
             <version>1.16.14</version>
         </dependency>
-        <!-- security -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
         <!-- redis -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

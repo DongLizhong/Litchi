@@ -18,7 +18,7 @@ public interface NodeServiceRpc {
 	@GetMapping("/list")
 	List<DBLzNode> getNodeList();
 	@PostMapping(value = "/add",consumes = MediaType.APPLICATION_JSON_VALUE)
-	Boolean addNode(@RequestBody DBLzNode node);
+	DBLzNode addNode(@RequestBody DBLzNode node);
 	@GetMapping(value = "/delete")
 	Boolean deleteNode(@RequestParam("nodeId") Long nodeId);
 }

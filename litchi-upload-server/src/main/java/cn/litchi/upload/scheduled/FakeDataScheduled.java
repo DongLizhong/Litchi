@@ -9,6 +9,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.time.Instant;
+import java.util.Date;
 import java.util.Random;
 
 
@@ -18,7 +19,7 @@ public class FakeDataScheduled {
     @Autowired
     private LzNodeDataDao dataDao;
 
-    @Scheduled(fixedRate = 2000)
+    @Scheduled(fixedRate = 60000)
     public void testTasks() {
         Random random = new Random();
         DBLzNodeData data = DBLzNodeData.builder()

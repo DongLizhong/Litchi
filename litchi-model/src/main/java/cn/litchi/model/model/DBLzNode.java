@@ -1,5 +1,6 @@
 package cn.litchi.model.model;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -35,7 +36,9 @@ public class DBLzNode implements Serializable{
 
     private Boolean enable;
 
+//    @JSONField(format="yyyy-MM-dd HH:mm:ss")
     private Instant createTime;
 
+//    @JSONField(format="yyyy-MM-dd HH:mm:ss")
     private Instant updateTime;
 }

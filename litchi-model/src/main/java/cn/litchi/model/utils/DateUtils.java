@@ -1,5 +1,6 @@
 package cn.litchi.model.utils;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -33,6 +34,10 @@ public class DateUtils {
 
     public static long getEpochMilliAtStartofDayByMinusDays(int day) {
         return LocalDate.now().minusDays(day).atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli();
+    }
+
+    public static int dayOfYear(Instant instant) {
+        return instant.atZone(ZoneOffset.ofHours(8)).toLocalDate().getDayOfYear();
     }
 
     public static int checkNodeDataParamDay(int day) {

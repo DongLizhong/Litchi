@@ -4,13 +4,20 @@ import cn.litchi.model.mapper.LzMonitorRegulationGroupDao;
 import cn.litchi.model.mapper.LzMonitorRegulationItemDao;
 import cn.litchi.model.model.DBLzMonitorRegulationGroup;
 import cn.litchi.model.model.DBLzMonitorRegulationItem;
+import cn.litchi.model.utils.DateUtils;
 import cn.litchi.rpc.MonitorServiceRpc;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.CollectionUtils;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.Instant;
+import java.util.Collections;
 import java.util.List;
+
+import static cn.litchi.model.utils.DateUtils.dayOfYear;
 
 @RestController
 public class MonitorService implements MonitorServiceRpc {
@@ -22,13 +29,23 @@ public class MonitorService implements MonitorServiceRpc {
     @Override
 
     public List<DBLzMonitorRegulationGroup> getMonitorGroupList(int offset, int limit) {
-        return groupDao.selectPage(new Page<>(offset, limit), null).getRecords();
+        List<DBLzMonitorRegulationGroup> groups
+                = groupDao.selectPage(new Page<>(offset, limit), null).getRecords();
+        if (CollectionUtils.isEmpty(groups)) {
+            return Collections.emptyList();
+        } else {
+            return groups;
+        }
     }
 
     @Override
-    public DBLzMonitorRegulationGroup addMonitorGroup(DBLzMonitorRegulationGroup group) {
+    public DBLzMonitorRegulationGroup addMonitorGroup(@RequestBody DBLzMonitorRegulationGroup group) {
+        group.setCreateTime(Instant.now());
+        group.setUpdateTime(Instant.now());
+        group.setBeginDay(dayOfYear(group.getBeginDate()));
+        group.setEndDay(dayOfYear(group.getEndDate()));
         groupDao.insert(group);
-        group.getItems().forEach(it -> itemDao.insert(it));
+//        group.getItems().forEach(it -> itemDao.insert(it));
         return group;
     }
 

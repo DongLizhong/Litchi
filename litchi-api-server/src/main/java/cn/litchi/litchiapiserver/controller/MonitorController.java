@@ -3,6 +3,7 @@ package cn.litchi.litchiapiserver.controller;
 import cn.litchi.model.model.DBLzMonitorRegulationGroup;
 import cn.litchi.model.model.DBLzMonitorRegulationItem;
 import cn.litchi.model.model.DBSysUser;
+import cn.litchi.model.request.MonitorItemReq;
 import cn.litchi.model.utils.MallResult;
 import cn.litchi.rpc.MonitorServiceRpc;
 import cn.litchi.rpc.UserServiceRpc;
@@ -71,5 +72,11 @@ public class MonitorController {
     @DeleteMapping("/group")
     public MallResult deletedMonitorGroup(@RequestParam("id") Long groupId) {
         return monitorRpc.deleteMonitorGroup(groupId) ? MallResult.ok() : MallResult.build(401, "删除失败");
+    }
+
+    @PostMapping("/item/query")
+    public MallResult queryMonitorGroup(@RequestBody MonitorItemReq req) {
+        List<DBLzMonitorRegulationItem> list = monitorRpc.queryItem(req);
+        return MallResult.ok(list);
     }
 }

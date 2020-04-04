@@ -99,4 +99,16 @@ public class DBLzMonitorRegulationItem implements Serializable, Comparable<DBLzM
         Instant now = Instant.now().minusSeconds(keepMinutes);
         return now.isBefore(data.getTime());
     }
+
+    public static int getThresholdTypeByName(String name) {
+        if (name.contains("平均")) {
+            return THRESHOLD_TYPE_AVERAGE_VALUE;
+        } else if (name.contains("最小")) {
+            return THRESHOLD_TYPE_MIN_VALUE;
+        } else if (name.contains("最大")) {
+            return THRESHOLD_TYPE_MAX_VALUE;
+        } else {
+            return 0;
+        }
+    }
 }

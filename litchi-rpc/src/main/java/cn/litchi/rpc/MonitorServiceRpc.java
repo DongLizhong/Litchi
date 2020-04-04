@@ -3,6 +3,7 @@ package cn.litchi.rpc;
 
 import cn.litchi.model.model.DBLzMonitorRegulationGroup;
 import cn.litchi.model.model.DBLzMonitorRegulationItem;
+import cn.litchi.model.request.MonitorItemReq;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -51,4 +52,8 @@ public interface MonitorServiceRpc {
 
     @DeleteMapping("item")
     Boolean deleteMonitorItem(@RequestParam("itemId") Long id);
+
+    @PostMapping("/item/query")
+    List<DBLzMonitorRegulationItem> queryItem(@RequestBody MonitorItemReq req);
+
 }

@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static cn.litchi.model.utils.CollectionsUtilsExtend.checkListNotNull;
@@ -51,5 +53,14 @@ public class NodeDataService implements NodeDataServiceRpc {
                 .eq(DBLzNodeData.NODE_ID_FIELD, nodeId);
         List<DBLzNodeData> datas = nodeDataDao.selectList(queryWrapper);
         return checkListNotNull(datas);
+    }
+
+    @Override
+    public List<DBLzNodeData> selectIntervalDatasByDate(Instant beginDate, Instant endDate) {
+        QueryWrapper<DBLzNodeData> queryWrapper = new QueryWrapper<>();
+        queryWrapper.lambda().ge(DBLzNodeData::getTime, beginDate)
+                .le(DBLzNodeData::getTime, endDate);
+        List<DBLzNodeData> list = nodeDataDao.selectList(queryWrapper);
+        return checkListNotNull(list);
     }
 }

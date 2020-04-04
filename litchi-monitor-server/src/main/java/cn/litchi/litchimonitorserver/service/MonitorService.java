@@ -4,6 +4,7 @@ import cn.litchi.model.mapper.LzMonitorRegulationGroupDao;
 import cn.litchi.model.mapper.LzMonitorRegulationItemDao;
 import cn.litchi.model.model.DBLzMonitorRegulationGroup;
 import cn.litchi.model.model.DBLzMonitorRegulationItem;
+import cn.litchi.model.request.MonitorItemReq;
 import cn.litchi.rpc.MonitorServiceRpc;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -118,5 +119,24 @@ public class MonitorService implements MonitorServiceRpc {
     public Boolean deleteMonitorItem(@RequestParam("itemId") Long id) {
         System.out.println("id" + id);
         return itemDao.deleteById(id) == 1;
+    }
+
+    @Override
+    public List<DBLzMonitorRegulationItem> queryItem(@RequestBody MonitorItemReq req) {
+        QueryWrapper<DBLzMonitorRegulationItem> queryWrapper = new QueryWrapper<>();
+        if (req.getGroupId() != null) {
+            queryWrapper.lambda().eq(DBLzMonitorRegulationItem::getGroupId, req.getGroupId());
+        }
+        int type = req.getQueryType().intValue();
+        String queryKey = req.getQueryKey();
+        if (type == MonitorItemReq.DATE_TYPE) {
+            queryWrapper.lambda().eq(DBLzMonitorRegulationItem::getDataType, queryKey);
+        } else if (type == MonitorItemReq.ROLE_NAME) {
+            queryWrapper.lambda().like(DBLzMonitorRegulationItem::getName, queryKey);
+        } else if (type == MonitorItemReq.THRESHOLD_TYPE) {
+            int thresholdType = DBLzMonitorRegulationItem.getThresholdTypeByName(queryKey);
+            queryWrapper.lambda().eq(DBLzMonitorRegulationItem::getThresholdType, thresholdType);
+        }
+        return itemDao.selectList(queryWrapper);
     }
 }

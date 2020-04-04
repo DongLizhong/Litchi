@@ -11,11 +11,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -45,10 +48,18 @@ public class NodeDataController extends BaseController {
         return dateList;
     }
 
+
+    @GetMapping(value = "interval")
+    public MallResult getIntervalNodeData(@RequestParam("beginDate") Instant beginDate,
+                                          @RequestParam("endDate") Instant endDate) {
+        List<DBLzNodeData> data = nodeDataService.selectIntervalDatasByDate(beginDate, endDate);
+        return MallResult.ok(data);
+    }
+
+
     /*
      * 温度
      */
-
     @PostMapping(value = "/temp/interval")
     public MallResult getIntervalNodeDateTempByNodeIdtest(@RequestBody NodeIdAndDateList nodeIdAndDateList) {
         List<LzNodeData> dataList = new ArrayList<LzNodeData>();

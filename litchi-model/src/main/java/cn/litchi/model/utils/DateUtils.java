@@ -20,11 +20,11 @@ public class DateUtils {
     }
 
     public static long getEpochMilliAtStartofDay(LocalDate localDate) {
-        return localDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli();
+        return localDate.atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli();
     }
 
     public static long getEpochMilliAtEndofDay(LocalDate localDate) {
-        return localDate.now()
+        return localDate
                 .plusDays(1)
                 .atStartOfDay(ZoneId.systemDefault())
                 .minusSeconds(1)

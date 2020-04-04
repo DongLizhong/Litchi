@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @FeignClient(value = "litchi-data-server")
@@ -25,4 +27,7 @@ public interface NodeDataServiceRpc {
 	List<DBLzNodeData> selectIntervalDatasByDateAndNodeId(@RequestParam("beginDate") LocalDate beginDate,
                                                           @RequestParam("endDate") LocalDate endDate,
                                                           @RequestParam("nodeId") Long nodeId);
+	@GetMapping("/interval/all")
+	List<DBLzNodeData> selectIntervalDatasByDate(@RequestParam("beginDate") Instant beginDate,
+														  @RequestParam("endDate") Instant endDate);
 }

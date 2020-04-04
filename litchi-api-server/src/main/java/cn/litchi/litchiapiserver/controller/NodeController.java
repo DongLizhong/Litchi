@@ -2,6 +2,7 @@ package cn.litchi.litchiapiserver.controller;
 
 import cn.litchi.model.model.DBLzNode;
 import cn.litchi.model.model.DBSysUser;
+import cn.litchi.model.request.NodeQueryReq;
 import cn.litchi.model.utils.MallResult;
 import cn.litchi.rpc.NodeServiceRpc;
 import cn.litchi.rpc.UserServiceRpc;
@@ -46,6 +47,11 @@ public class NodeController extends BaseController {
         node.setOrchardId(user.getOrchardId());
         nodeService.addNode(node);
         return MallResult.ok(node);
+    }
+
+    @PostMapping("/query")
+    public MallResult queryNode(@RequestBody NodeQueryReq req) {
+        return MallResult.ok(nodeService.queryNode(req));
     }
 
 }

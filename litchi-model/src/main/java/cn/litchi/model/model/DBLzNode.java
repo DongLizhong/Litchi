@@ -22,8 +22,8 @@ import java.time.Instant;
 /**
  * 节点
  */
-public class DBLzNode implements Serializable{
-    @TableId(value = "id",type = IdType.AUTO)
+public class DBLzNode implements Serializable {
+    @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
     private String name;
@@ -36,9 +36,19 @@ public class DBLzNode implements Serializable{
 
     private Boolean enable;
 
-//    @JSONField(format="yyyy-MM-dd HH:mm:ss")
+    //    @JSONField(format="yyyy-MM-dd HH:mm:ss")
     private Instant createTime;
 
-//    @JSONField(format="yyyy-MM-dd HH:mm:ss")
+    //    @JSONField(format="yyyy-MM-dd HH:mm:ss")
     private Instant updateTime;
+
+    public static int getNodeTypeIdByName(String name) {
+        if ("数据型".equals(name)) {
+            return 1;
+        } else if ("图片型".equals(name)) {
+            return 2;
+        } else {
+            return -1;
+        }
+    }
 }

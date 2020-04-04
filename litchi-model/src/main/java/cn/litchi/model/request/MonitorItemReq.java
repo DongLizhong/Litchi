@@ -15,10 +15,11 @@ public class MonitorItemReq {
     public static final int DATE_TYPE = 1;
     public static final int ROLE_NAME = 2;
     public static final int THRESHOLD_TYPE = 3;
+    public static final int ITEM_ID = 4;
 
-    private Long groupId;
-    private Integer queryType;
+    private Long groupId = -1L;
+    private Integer queryType = -1;
     private String queryKey;
-    private Instant beginDate;
-    private Instant endDate;
+    private Instant beginDate = null;
+    private Instant endDate = null;
 }

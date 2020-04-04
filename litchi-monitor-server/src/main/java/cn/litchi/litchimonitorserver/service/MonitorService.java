@@ -4,7 +4,9 @@ import cn.litchi.model.mapper.LzMonitorRegulationGroupDao;
 import cn.litchi.model.mapper.LzMonitorRegulationItemDao;
 import cn.litchi.model.model.DBLzMonitorRegulationGroup;
 import cn.litchi.model.model.DBLzMonitorRegulationItem;
+import cn.litchi.model.request.MonitorGroupQueryReq;
 import cn.litchi.model.request.MonitorItemReq;
+import cn.litchi.model.utils.StringUtils;
 import cn.litchi.rpc.MonitorServiceRpc;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.time.Instant;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static cn.litchi.model.utils.DateUtils.dayOfYear;
 
@@ -123,12 +126,12 @@ public class MonitorService implements MonitorServiceRpc {
 
     @Override
     public List<DBLzMonitorRegulationItem> queryItem(@RequestBody MonitorItemReq req) {
+        int type = req.getQueryType().intValue();
+        String queryKey = req.getQueryKey();
         QueryWrapper<DBLzMonitorRegulationItem> queryWrapper = new QueryWrapper<>();
         if (req.getGroupId() != null) {
             queryWrapper.lambda().eq(DBLzMonitorRegulationItem::getGroupId, req.getGroupId());
         }
-        int type = req.getQueryType().intValue();
-        String queryKey = req.getQueryKey();
         if (type == MonitorItemReq.DATE_TYPE) {
             queryWrapper.lambda().eq(DBLzMonitorRegulationItem::getDataType, queryKey);
         } else if (type == MonitorItemReq.ROLE_NAME) {
@@ -136,7 +139,35 @@ public class MonitorService implements MonitorServiceRpc {
         } else if (type == MonitorItemReq.THRESHOLD_TYPE) {
             int thresholdType = DBLzMonitorRegulationItem.getThresholdTypeByName(queryKey);
             queryWrapper.lambda().eq(DBLzMonitorRegulationItem::getThresholdType, thresholdType);
+        } else if (type == MonitorItemReq.ITEM_ID) {
+            queryWrapper.lambda().eq(DBLzMonitorRegulationItem::getId, Long.valueOf(queryKey));
+        }
+        if (req.getBeginDate() != null) {
+            System.out.println(req.getBeginDate());
+            queryWrapper.lambda().ge(DBLzMonitorRegulationItem::getCreateTime, req.getBeginDate());
+        }
+        if (req.getEndDate() != null) {
+            System.out.println(req.getEndDate());
+            queryWrapper.lambda().le(DBLzMonitorRegulationItem::getCreateTime, req.getEndDate());
         }
         return itemDao.selectList(queryWrapper);
+    }
+
+    @Override
+    public List<DBLzMonitorRegulationGroup> queryGroup(@RequestBody MonitorGroupQueryReq req) {
+        int type = req.getQueryType().intValue();
+        String queryKey = req.getQueryKey();
+        QueryWrapper<DBLzMonitorRegulationGroup> queryWrapper = new QueryWrapper<>();
+        if (type == MonitorGroupQueryReq.GROUP_ID) {
+            queryWrapper.lambda().eq(DBLzMonitorRegulationGroup::getId, Long.valueOf(queryKey));
+        } else if (type == MonitorGroupQueryReq.GROUP_NAME) {
+            queryWrapper.lambda().like(DBLzMonitorRegulationGroup::getName, queryKey);
+        }
+        List<DBLzMonitorRegulationGroup> groups = groupDao.selectList(queryWrapper);
+        if (type == MonitorGroupQueryReq.NODE_IDS) {
+            List<Long> ids = StringUtils.splitGetLongIds(queryKey);
+            groups = groups.stream().filter(it -> it.getNodeList().containsAll(ids)).collect(Collectors.toList());
+        }
+        return groups;
     }
 }

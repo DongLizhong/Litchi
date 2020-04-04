@@ -2,6 +2,7 @@ package cn.litchi.litchidataserver.service;
 
 import cn.litchi.model.mapper.LzNodeDao;
 import cn.litchi.model.model.DBLzNode;
+import cn.litchi.model.request.NodeQueryReq;
 import cn.litchi.rpc.NodeServiceRpc;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,5 +42,23 @@ public class NodeService implements NodeServiceRpc {
     @Override
     public Boolean deleteNode(@RequestParam("nodeId") Long nodeId) {
         return lzNodeDao.deleteById(nodeId) == 1;
+    }
+
+    @Override
+    public List<DBLzNode> queryNode(@RequestBody NodeQueryReq req) {
+        int type = req.getQueryType().intValue();
+        String queryKey = req.getQueryKey();
+        QueryWrapper<DBLzNode> queryWrapper = new QueryWrapper<>();
+        if (type == NodeQueryReq.NODE_ID) {
+            queryWrapper.lambda().eq(DBLzNode::getId, Long.valueOf(queryKey));
+        } else if (type == NodeQueryReq.NODE_NAME) {
+            queryWrapper.lambda().like(DBLzNode::getName, queryKey);
+        } else if (type == NodeQueryReq.NODE_TYPE) {
+            int typeId = DBLzNode.getNodeTypeIdByName(queryKey);
+            queryWrapper.lambda().eq(DBLzNode::getNodeTypeId, typeId);
+        } else if (type == NodeQueryReq.NODE_TOKEN) {
+            queryWrapper.lambda().eq(DBLzNode::getToken, queryKey);
+        }
+        return lzNodeDao.selectList(queryWrapper);
     }
 }

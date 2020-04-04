@@ -45,7 +45,8 @@ public class JSONConfiguration {
                 } else if (type.equals(LocalDate.class)) {
                     return (T) LocalDate.parse(value, dateTimeFormatter);
                 } else {
-                    return (T) LocalDateTime.parse(value, dateTimeFormatter).toInstant(ZoneOffset.of("+8"));
+                    // 不知道为什么，前端传正确东八区的时间过来，如果还使用 ZoneOffset.of("+8") 时间会提前8小时
+                    return (T) LocalDateTime.parse(value, dateTimeFormatter).toInstant(ZoneOffset.of("+0"));
                 }
             } else if (value.contains("-") && value.contains("T")) {
                 if (type.equals(LocalDateTime.class)) {

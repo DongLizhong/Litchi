@@ -4,13 +4,13 @@ import cn.litchi.model.mapper.LzMonitorRegulationGroupDao;
 import cn.litchi.model.mapper.LzMonitorRegulationItemDao;
 import cn.litchi.model.model.DBLzMonitorRegulationGroup;
 import cn.litchi.model.model.DBLzMonitorRegulationItem;
-import cn.litchi.model.utils.DateUtils;
 import cn.litchi.rpc.MonitorServiceRpc;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.Instant;
@@ -27,10 +27,12 @@ public class MonitorService implements MonitorServiceRpc {
     private LzMonitorRegulationItemDao itemDao;
 
     @Override
-
-    public List<DBLzMonitorRegulationGroup> getMonitorGroupList(int offset, int limit) {
+    public List<DBLzMonitorRegulationGroup> getMonitorGroupList(@RequestParam("offset") int offset,
+                                                                @RequestParam("limit") int limit) {
+        QueryWrapper<DBLzMonitorRegulationGroup> queryWrapper = new QueryWrapper<>();
+        queryWrapper.lambda().orderByDesc(DBLzMonitorRegulationGroup::getUpdateTime);
         List<DBLzMonitorRegulationGroup> groups
-                = groupDao.selectPage(new Page<>(offset, limit), null).getRecords();
+                = groupDao.selectPage(new Page<>(offset, limit), queryWrapper).getRecords();
         if (CollectionUtils.isEmpty(groups)) {
             return Collections.emptyList();
         } else {
@@ -60,32 +62,61 @@ public class MonitorService implements MonitorServiceRpc {
     }
 
     @Override
-    public Boolean deleteMonitorGroup(Long id) {
-        QueryWrapper<DBLzMonitorRegulationItem> queryWrapper
-                = new QueryWrapper();
-        queryWrapper.eq(DBLzMonitorRegulationItem.GROUP_ID_FIELD, id);
-        groupDao.deleteById(id);
-        itemDao.delete(queryWrapper);
-        return true;
+    public List<DBLzMonitorRegulationItem> getMonitorItemList(@RequestParam("offset") int offset,
+                                                              @RequestParam("limit") int limit) {
+        QueryWrapper<DBLzMonitorRegulationItem> queryWrapper = new QueryWrapper<>();
+        queryWrapper.lambda().orderByDesc(DBLzMonitorRegulationItem::getUpdateTime);
+        List<DBLzMonitorRegulationItem> items
+                = itemDao.selectPage(new Page<>(offset, limit), queryWrapper).getRecords();
+        if (CollectionUtils.isEmpty(items)) {
+            return Collections.emptyList();
+        } else {
+            return items;
+        }
     }
 
     @Override
-    public Boolean enableMonitorGroup(Long id) {
+    public DBLzMonitorRegulationItem addMonitorItem(@RequestBody DBLzMonitorRegulationItem item) {
+        item.setCreateTime(Instant.now());
+        item.setUpdateTime(Instant.now());
+        itemDao.insert(item);
+        return item;
+
+    }
+
+    @Override
+    public Boolean deleteMonitorGroup(@RequestParam("groupId") Long id) {
+        QueryWrapper<DBLzMonitorRegulationItem> queryWrapper
+                = new QueryWrapper();
+        queryWrapper.eq(DBLzMonitorRegulationItem.GROUP_ID_FIELD, id);
+        int i = groupDao.deleteById(id);
+        itemDao.delete(queryWrapper);
+        return i == 1;
+    }
+
+    @Override
+    public Boolean enableMonitorGroup(@RequestParam("groupId") Long id) {
         return groupDao.updateById(DBLzMonitorRegulationGroup.builder().enable(true).build()) == 1;
     }
 
     @Override
-    public Boolean disableMonitorGroup(Long id) {
+    public Boolean disableMonitorGroup(@RequestParam("groupId") Long id) {
         return groupDao.updateById(DBLzMonitorRegulationGroup.builder().enable(false).build()) == 1;
     }
 
     @Override
-    public Boolean enableMonitorItem(Long id) {
+    public Boolean enableMonitorItem(@RequestParam("itemId") Long id) {
         return itemDao.updateById(DBLzMonitorRegulationItem.builder().enable(true).build()) == 1;
     }
 
     @Override
-    public Boolean disableMonitorItem(Long id) {
+    public Boolean disableMonitorItem(@RequestParam("itemId") Long id) {
         return itemDao.updateById(DBLzMonitorRegulationItem.builder().enable(false).build()) == 1;
+    }
+
+    @Override
+    public Boolean deleteMonitorItem(@RequestParam("itemId") Long id) {
+        System.out.println("id" + id);
+        return itemDao.deleteById(id) == 1;
     }
 }

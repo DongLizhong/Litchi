@@ -6,6 +6,8 @@ import cn.litchi.rpc.HarmServiceRpc;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.Instant;
@@ -21,7 +23,7 @@ public class HarmService implements HarmServiceRpc {
     private LzHarmDao harmDao;
 
     @Override
-    public List<DBLzHarm> getHarmList(String type) {
+    public List<DBLzHarm> getHarmList(@RequestParam("type") String type) {
         if (StringUtils.isBlank(type)) return Collections.emptyList();
         QueryWrapper<DBLzHarm> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq(DBLzHarm.TYPE_FIELD, type);
@@ -30,12 +32,12 @@ public class HarmService implements HarmServiceRpc {
     }
 
     @Override
-    public DBLzHarm getHarmById(Long id) {
+    public DBLzHarm getHarmById(@RequestParam("id") Long id) {
         return harmDao.selectById(id);
     }
 
     @Override
-    public Boolean addHarm(DBLzHarm harm) {
+    public Boolean addHarm(@RequestBody DBLzHarm harm) {
         harm.setCreateTime(Instant.now());
         harm.setUpdateTime(Instant.now());
         return harmDao.insert(harm) == 1;

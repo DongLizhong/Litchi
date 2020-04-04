@@ -3,9 +3,10 @@
 <mapper namespace="cn.litchi.model.mapper.LzMonitorRegulationItemDao">
     <resultMap id="resultMap" type="cn.litchi.model.model.DBLzMonitorRegulationItem">
         <id column="id" property="id"/>
+        <result column="name" property="name"/>
         <result column="group_id" property="groupId"/>
         <result column="enable" property="enable"/>
-        <result column="index" property="index"/>
+        <result column="indexNum" property="indexNum"/>
         <result column="data_type" property="dataType"/>
         <result column="threshold" property="threshold"/>
         <result column="keepMinutes" property="keepMinutes"/>

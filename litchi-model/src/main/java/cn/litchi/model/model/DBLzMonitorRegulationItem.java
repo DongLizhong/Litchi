@@ -4,8 +4,10 @@ package cn.litchi.model.model;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.time.Instant;
@@ -15,6 +17,8 @@ import java.util.stream.Collectors;
 
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @TableName(value = "lz_monitor_regulation_item")
 public class DBLzMonitorRegulationItem implements Serializable, Comparable<DBLzMonitorRegulationItem> {
     public static final String GROUP_ID_FIELD = "group_id";
@@ -40,7 +44,8 @@ public class DBLzMonitorRegulationItem implements Serializable, Comparable<DBLzM
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
     private Long groupId;
-    private Integer index;
+    private String name;
+    private Integer indexNum;
     private String dataType;
     private Integer thresholdType;
     private Double threshold;

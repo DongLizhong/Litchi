@@ -30,6 +30,7 @@ public class DBLzMonitorRegulationGroup implements Serializable, Comparable<DBLz
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
     private Long orchardId;
+    private String name;
     private Boolean enable;
     private String message;
     private Integer beginDay;

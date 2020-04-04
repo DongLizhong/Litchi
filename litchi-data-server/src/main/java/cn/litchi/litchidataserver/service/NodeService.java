@@ -6,6 +6,7 @@ import cn.litchi.rpc.NodeServiceRpc;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.Instant;
@@ -38,7 +39,7 @@ public class NodeService implements NodeServiceRpc {
     }
 
     @Override
-    public Boolean deleteNode(Long nodeId) {
+    public Boolean deleteNode(@RequestParam("nodeId") Long nodeId) {
         return lzNodeDao.deleteById(nodeId) == 1;
     }
 }

@@ -2,8 +2,10 @@ package cn.litchi.rpc;
 
 
 import cn.litchi.model.model.DBLzMonitorRegulationGroup;
+import cn.litchi.model.model.DBLzMonitorRegulationItem;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,19 +21,26 @@ public interface MonitorServiceRpc {
     List<DBLzMonitorRegulationGroup> getMonitorGroupList(@RequestParam("offset") int offset,
                                                          @RequestParam("limit") int limit);
 
-    @PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/group/add", consumes = MediaType.APPLICATION_JSON_VALUE)
     DBLzMonitorRegulationGroup addMonitorGroup(@RequestBody DBLzMonitorRegulationGroup group);
 
-    @PostMapping(value = "update", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/group/update", consumes = MediaType.APPLICATION_JSON_VALUE)
     Boolean updateMonitorGroup(@RequestBody DBLzMonitorRegulationGroup group);
 
-    @GetMapping(value = "/delete")
+    @GetMapping("/item/list")
+    List<DBLzMonitorRegulationItem> getMonitorItemList(@RequestParam("offset") int offset,
+                                                       @RequestParam("limit") int limit);
+
+    @PostMapping(value = "/item/add", consumes = MediaType.APPLICATION_JSON_VALUE)
+    DBLzMonitorRegulationItem addMonitorItem(@RequestBody DBLzMonitorRegulationItem item);
+
+    @GetMapping(value = "/group/delete")
     Boolean deleteMonitorGroup(@RequestParam("groupId") Long id);
 
-    @GetMapping("/enable")
+    @GetMapping("/group/enable")
     Boolean enableMonitorGroup(@RequestParam("groupId") Long id);
 
-    @GetMapping("/disable")
+    @GetMapping("/group/disable")
     Boolean disableMonitorGroup(@RequestParam("groupId") Long id);
 
     @GetMapping("/item/enable")
@@ -39,4 +48,7 @@ public interface MonitorServiceRpc {
 
     @GetMapping("/item/disable")
     Boolean disableMonitorItem(@RequestParam("itemId") Long id);
+
+    @DeleteMapping("item")
+    Boolean deleteMonitorItem(@RequestParam("itemId") Long id);
 }

@@ -6,6 +6,7 @@ import cn.litchi.model.utils.DateUtils;
 import cn.litchi.rpc.NodeDataServiceRpc;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
@@ -21,7 +22,7 @@ public class NodeDataService implements NodeDataServiceRpc {
     private LzNodeDataDao nodeDataDao;
 
     @Override
-    public List<DBLzNodeData> selectDatasByNodeId(Long nodeId) {
+    public List<DBLzNodeData> selectDatasByNodeId(@RequestParam("nodeId") Long nodeId) {
         QueryWrapper<DBLzNodeData> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq(DBLzNodeData.NODE_ID_FIELD, nodeId);
         List<DBLzNodeData> datas = nodeDataDao.selectList(queryWrapper);
@@ -29,7 +30,8 @@ public class NodeDataService implements NodeDataServiceRpc {
     }
 
     @Override
-    public List<DBLzNodeData> selectLastestNDayDatasByNodeId(Long nodeId, int nday) {
+    public List<DBLzNodeData> selectLastestNDayDatasByNodeId(@RequestParam("nodeId") Long nodeId,
+                                                             @RequestParam("nday") int nday) {
         long queryTime = DateUtils.getEpochMilliAtStartofDayByMinusDays(checkNodeDataParamDay(nday));
         QueryWrapper<DBLzNodeData> queryWrapper = new QueryWrapper<>();
         queryWrapper.ge(DBLzNodeData.TIME_FIELD, queryTime).eq(DBLzNodeData.NODE_ID_FIELD, nodeId);
@@ -38,7 +40,9 @@ public class NodeDataService implements NodeDataServiceRpc {
     }
 
     @Override
-    public List<DBLzNodeData> selectIntervalDatasByDateAndNodeId(LocalDate beginDate, LocalDate endDate, Long nodeId) {
+    public List<DBLzNodeData> selectIntervalDatasByDateAndNodeId(@RequestParam("beginDate") LocalDate beginDate,
+                                                                 @RequestParam("endDate") LocalDate endDate,
+                                                                 @RequestParam("nodeId") Long nodeId) {
         long startOfDay = DateUtils.getEpochMilliAtStartofDay(beginDate);
         long endOfDay = DateUtils.getEpochMilliAtEndofDay(endDate);
         QueryWrapper<DBLzNodeData> queryWrapper = new QueryWrapper<>();

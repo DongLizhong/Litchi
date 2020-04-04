@@ -4,6 +4,7 @@
     <resultMap id="groupResultMap" type="cn.litchi.model.model.DBLzMonitorRegulationGroup">
         <id column="id" property="id"/>
         <result column="orchard_id" property="orchardId"/>
+        <result column="name" property="name"/>
         <result column="enable" property="enable"/>
         <result column="message" property="message"/>
         <result column="begin_day" property="beginDay"/>

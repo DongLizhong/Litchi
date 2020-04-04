@@ -10,6 +10,8 @@ import cn.litchi.rpc.UserServiceRpc;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -26,12 +28,12 @@ public class CustomerService implements UserServiceRpc {
 //    @Cacheable(value = "litchi:data:user-get-user-by-name",
 //            key = "':' + #name",
 //            unless = "#result==null")
-    public DBSysUser getUserByName(String name) {
+    public DBSysUser getUserByName(@RequestParam("name") String name) {
         return userDao.findByUserName(name);
     }
 
     @Override
-    public DBSysUser addUser(DBSysUser user, String role) {
+    public DBSysUser addUser(@RequestBody DBSysUser user, @RequestParam("role") String role) {
         userDao.insert(user);
         QueryWrapper<DBSysRole> queryWrapper = new QueryWrapper<>();
         queryWrapper.lambda().eq(DBSysRole::getName, role);

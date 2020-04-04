@@ -35,8 +35,7 @@ public class NodeController extends BaseController {
     }
 
     @DeleteMapping("")
-    public MallResult deleteNode(Long nodeId) {
-        System.out.println("nodeId = " + nodeId);
+    public MallResult deleteNode(@RequestParam("id") Long nodeId) {
         return nodeService.deleteNode(nodeId) ? MallResult.ok() : MallResult.build(401, "删除失败");
     }
 

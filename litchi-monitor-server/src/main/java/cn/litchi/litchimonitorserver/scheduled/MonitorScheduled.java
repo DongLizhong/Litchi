@@ -117,7 +117,7 @@ public class MonitorScheduled {
         double alarmValue = ALARM_THRESHOLD * item.getThreshold();
         List<Double> monitorData = item.matchMonitorData(data);
         double value = monitorData.stream().mapToDouble(it -> it).average().getAsDouble();
-        log.put(String.valueOf(item.getIndex()), value);
+        log.put(String.valueOf(item.getIndexNum()), value);
         return item.shouldAlarm(alarmValue, value);
     }
 
@@ -125,7 +125,7 @@ public class MonitorScheduled {
         double alarmValue = ALARM_THRESHOLD * item.getThreshold();
         List<Double> monitorData = item.matchMonitorData(data);
         double value = monitorData.stream().mapToDouble(it -> it).min().getAsDouble();
-        log.put(String.valueOf(item.getIndex()), value);
+        log.put(String.valueOf(item.getIndexNum()), value);
         return item.shouldAlarm(alarmValue, value);
     }
 
@@ -133,7 +133,7 @@ public class MonitorScheduled {
         double alarmValue = ALARM_THRESHOLD * item.getThreshold();
         List<Double> monitorData = item.matchMonitorData(data);
         double value = monitorData.stream().mapToDouble(it -> it).max().getAsDouble();
-        log.put(String.valueOf(item.getIndex()), value);
+        log.put(String.valueOf(item.getIndexNum()), value);
         return item.shouldAlarm(alarmValue, value);
     }
 

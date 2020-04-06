@@ -8,10 +8,11 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@SpringBootApplication
+@SpringBootApplication(exclude = {
+        org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration.class
+})
 @EnableDiscoveryClient
 @RestController
-@EnableScheduling
 @MapperScan("cn.litchi.model.mapper")
 public class LitchiUploadServerApplication {
 

@@ -1,164 +1,203 @@
-2020-04-02 16:31:52.451  INFO 22500 --- [main] c.l.u.LitchiUploadServerApplication      : The following profiles are active: prod
-2020-04-02 16:31:52.659  INFO 22500 --- [main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@34158c08: startup date [Thu Apr 02 16:31:52 CST 2020]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@145f66e3
-2020-04-02 16:31:55.393  INFO 22500 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
-2020-04-02 16:31:56.349  INFO 22500 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=9d5f36da-6cd4-3e80-85ab-d4eb22d0b3a0
-2020-04-02 16:31:56.366  INFO 22500 --- [main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-2020-04-02 16:31:56.614  INFO 22500 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$50048208] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-04-02 16:31:56.739  INFO 22500 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$6c1e8505] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-04-02 16:31:57.606  INFO 22500 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8084 (http)
-2020-04-02 16:31:57.661  INFO 22500 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-04-02 16:31:57.662  INFO 22500 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.31
-2020-04-02 16:31:57.676  INFO 22500 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [D:\Java\jdk1.8\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\NetSarang\Xshell 6\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;D:\Git\cmd;D:\cmder;D:\apache-maven-3.5.0;D:\Lottery_Spider\;C:\Users\cjliang\AppData\Local\Programs\Python\Python38\;C:\Users\cjliang\AppData\Local\Programs\Python\Python38\Scripts\;D:\Esports_Spider\;;C:\Program Files\nodejs\;C:\Program Files\nodejs\;D:\Maven\apache-maven-3.6.3\bin;C:\Users\cjliang\AppData\Local\Microsoft\WindowsApps;C:\Users\cjliang\AppData\Local\Programs\Python\Python38\;C:\Users\cjliang\AppData\Local\Programs\Python\Python38\Scripts\;D:\Lottery_Spider\;D:\Esports_Spider\;;C:\Users\cjliang\AppData\Roaming\npm;C:\Users\cjliang\AppData\Local\Programs\Fiddler;.]
-2020-04-02 16:31:57.862  INFO 22500 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2020-04-02 16:31:57.863  INFO 22500 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 5204 ms
-2020-04-02 16:31:58.327  WARN 22500 --- [localhost-startStop-1] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
-2020-04-02 16:31:58.327  INFO 22500 --- [localhost-startStop-1] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
-2020-04-02 16:31:58.345  INFO 22500 --- [localhost-startStop-1] c.netflix.config.DynamicPropertyFactory  : DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@301561ec
-2020-04-02 16:31:58.648  INFO 22500 --- [localhost-startStop-1] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
-2020-04-02 16:31:59.875  INFO 22500 --- [localhost-startStop-1] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
-2020-04-02 16:32:04.267  INFO 22500 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
-2020-04-02 16:32:04.267  INFO 22500 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
-2020-04-02 16:32:04.267  INFO 22500 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
-2020-04-02 16:32:04.268  INFO 22500 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
-2020-04-02 16:32:04.269  INFO 22500 --- [localhost-startStop-1] .s.DelegatingFilterProxyRegistrationBean : Mapping filter: 'springSecurityFilterChain' to: [/*]
-2020-04-02 16:32:04.269  INFO 22500 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpTraceFilter' to: [/*]
-2020-04-02 16:32:04.269  INFO 22500 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'webStatFilter' to urls: [/*]
-2020-04-02 16:32:04.269  INFO 22500 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'webMvcMetricsFilter' to: [/*]
-2020-04-02 16:32:04.270  INFO 22500 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
-2020-04-02 16:32:04.271  INFO 22500 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet statViewServlet mapped to [/druid/*]
-2020-04-02 16:32:09.416  WARN 22500 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
-2020-04-02 16:32:09.416  INFO 22500 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
-2020-04-02 16:32:10.289  INFO 22500 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
-2020-04-02 16:32:12.547  INFO 22500 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@34158c08: startup date [Thu Apr 02 16:31:52 CST 2020]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@145f66e3
-2020-04-02 16:32:12.801  INFO 22500 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/health]}" onto public java.lang.String cn.litchi.upload.LitchiUploadServerApplication.health()
-2020-04-02 16:32:12.818  INFO 22500 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/upload/data/picture],methods=[POST]}" onto public cn.litchi.model.utils.MallResult cn.litchi.upload.controller.UploadController.uploadNodePicture(cn.litchi.model.model.DBLzNodeDataPicture)
-2020-04-02 16:32:12.822  INFO 22500 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/upload/data],methods=[POST]}" onto public cn.litchi.model.utils.MallResult cn.litchi.upload.controller.UploadController.uploadNodeData(cn.litchi.model.model.DBLzNodeData)
-2020-04-02 16:32:12.829  INFO 22500 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
-2020-04-02 16:32:12.837  INFO 22500 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
-2020-04-02 16:32:13.158  INFO 22500 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
-2020-04-02 16:32:13.158  INFO 22500 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
-2020-04-02 16:32:18.488  INFO 22500 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+2020-04-06 16:03:26.324  INFO 3388 --- [main] c.l.u.LitchiUploadServerApplication      : The following profiles are active: prod
+2020-04-06 16:03:26.414  INFO 3388 --- [main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@27eedb64: startup date [Mon Apr 06 16:03:26 CST 2020]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@67c27493
+2020-04-06 16:03:27.523  INFO 3388 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-04-06 16:03:28.063  INFO 3388 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=9d5f36da-6cd4-3e80-85ab-d4eb22d0b3a0
+2020-04-06 16:03:28.087  INFO 3388 --- [main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2020-04-06 16:03:28.257  INFO 3388 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$cd4e566] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-06 16:03:28.312  INFO 3388 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$28eee863] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-06 16:03:28.740  INFO 3388 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8084 (http)
+2020-04-06 16:03:28.765  INFO 3388 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-04-06 16:03:28.765  INFO 3388 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.31
+2020-04-06 16:03:28.771  INFO 3388 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [D:\Java\jdk1.8\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\NetSarang\Xshell 6\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;D:\Git\cmd;D:\cmder;D:\apache-maven-3.5.0;D:\Lottery_Spider\;C:\Users\cjliang\AppData\Local\Programs\Python\Python38\;C:\Users\cjliang\AppData\Local\Programs\Python\Python38\Scripts\;D:\Esports_Spider\;;C:\Program Files\nodejs\;C:\Program Files\nodejs\;D:\Maven\apache-maven-3.6.3\bin;C:\Users\cjliang\AppData\Local\Microsoft\WindowsApps;C:\Users\cjliang\AppData\Local\Programs\Python\Python38\;C:\Users\cjliang\AppData\Local\Programs\Python\Python38\Scripts\;D:\Lottery_Spider\;D:\Esports_Spider\;;C:\Users\cjliang\AppData\Roaming\npm;C:\Users\cjliang\AppData\Local\Programs\Fiddler;.]
+2020-04-06 16:03:28.910  INFO 3388 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-04-06 16:03:28.911  INFO 3388 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2497 ms
+2020-04-06 16:03:29.315  WARN 3388 --- [localhost-startStop-1] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2020-04-06 16:03:29.316  INFO 3388 --- [localhost-startStop-1] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-04-06 16:03:29.328  INFO 3388 --- [localhost-startStop-1] c.netflix.config.DynamicPropertyFactory  : DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@44070e55
+2020-04-06 16:03:29.818  INFO 3388 --- [localhost-startStop-1] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2020-04-06 16:03:32.415  INFO 3388 --- [localhost-startStop-1] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2020-04-06 16:03:37.849  INFO 3388 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2020-04-06 16:03:37.850  INFO 3388 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2020-04-06 16:03:37.850  INFO 3388 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2020-04-06 16:03:37.851  INFO 3388 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2020-04-06 16:03:37.852  INFO 3388 --- [localhost-startStop-1] .s.DelegatingFilterProxyRegistrationBean : Mapping filter: 'springSecurityFilterChain' to: [/*]
+2020-04-06 16:03:37.852  INFO 3388 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpTraceFilter' to: [/*]
+2020-04-06 16:03:37.852  INFO 3388 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'webStatFilter' to urls: [/*]
+2020-04-06 16:03:37.853  INFO 3388 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'webMvcMetricsFilter' to: [/*]
+2020-04-06 16:03:37.853  INFO 3388 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2020-04-06 16:03:37.855  INFO 3388 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet statViewServlet mapped to [/druid/*]
+2020-04-06 16:03:40.039  WARN 3388 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2020-04-06 16:03:40.040  INFO 3388 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-04-06 16:03:40.118  INFO 3388 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-04-06 16:03:40.423  INFO 3388 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@27eedb64: startup date [Mon Apr 06 16:03:26 CST 2020]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@67c27493
+2020-04-06 16:03:40.482  INFO 3388 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/health]}" onto public java.lang.String cn.litchi.upload.LitchiUploadServerApplication.health()
+2020-04-06 16:03:40.487  INFO 3388 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/upload/data],methods=[POST]}" onto public cn.litchi.model.utils.MallResult cn.litchi.upload.controller.UploadController.uploadNodeData(cn.litchi.model.model.DBLzNodeData)
+2020-04-06 16:03:40.487  INFO 3388 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/upload/data/picture],methods=[POST]}" onto public cn.litchi.model.utils.MallResult cn.litchi.upload.controller.UploadController.uploadNodePicture(cn.litchi.model.model.DBLzNodeDataPicture)
+2020-04-06 16:03:40.489  INFO 3388 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2020-04-06 16:03:40.490  INFO 3388 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2020-04-06 16:03:40.531  INFO 3388 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-04-06 16:03:40.531  INFO 3388 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-04-06 16:03:41.315  INFO 3388 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
 
-Using generated security password: ffe555c3-8630-4b51-a8ed-0d46bb2cf9eb
+Using generated security password: 543fb65f-04f6-4c08-86bd-b0a0eb7bac42
 
-2020-04-02 16:32:19.057  INFO 22500 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: org.springframework.security.web.util.matcher.AnyRequestMatcher@1, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@377949f1, org.springframework.security.web.context.SecurityContextPersistenceFilter@7aaad0, org.springframework.security.web.header.HeaderWriterFilter@28e8888d, org.springframework.security.web.csrf.CsrfFilter@1df5c7e3, org.springframework.security.web.authentication.logout.LogoutFilter@57e5396b, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@1961d75a, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@668cc9a2, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@5f08fe00, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@10f477e2, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@553d2579, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@9df564f, org.springframework.security.web.session.SessionManagementFilter@794eeaf8, org.springframework.security.web.access.ExceptionTranslationFilter@3ca14cf4, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@510689af]
-2020-04-02 16:32:19.250  INFO 22500 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService  'catalogWatchTaskScheduler'
-2020-04-02 16:32:19.659  INFO 22500 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
-2020-04-02 16:32:19.690  INFO 22500 --- [main] s.b.a.e.w.s.WebMvcEndpointHandlerMapping : Mapped "{[/actuator/health],methods=[GET],produces=[application/vnd.spring-boot.actuator.v2+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.web.servlet.AbstractWebMvcEndpointHandlerMapping$OperationHandler.handle(javax.servlet.http.HttpServletRequest,java.util.Map<java.lang.String, java.lang.String>)
-2020-04-02 16:32:19.693  INFO 22500 --- [main] s.b.a.e.w.s.WebMvcEndpointHandlerMapping : Mapped "{[/actuator/info],methods=[GET],produces=[application/vnd.spring-boot.actuator.v2+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.web.servlet.AbstractWebMvcEndpointHandlerMapping$OperationHandler.handle(javax.servlet.http.HttpServletRequest,java.util.Map<java.lang.String, java.lang.String>)
-2020-04-02 16:32:19.696  INFO 22500 --- [main] s.b.a.e.w.s.WebMvcEndpointHandlerMapping : Mapped "{[/actuator],methods=[GET],produces=[application/vnd.spring-boot.actuator.v2+json || application/json]}" onto protected java.util.Map<java.lang.String, java.util.Map<java.lang.String, org.springframework.boot.actuate.endpoint.web.Link>> org.springframework.boot.actuate.endpoint.web.servlet.WebMvcEndpointHandlerMapping.links(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
-2020-04-02 16:32:23.230  INFO 22500 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
-2020-04-02 16:32:23.234  INFO 22500 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'statFilter' has been autodetected for JMX exposure
-2020-04-02 16:32:23.234  INFO 22500 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
-2020-04-02 16:32:23.334  INFO 22500 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'environmentManager' has been autodetected for JMX exposure
-2020-04-02 16:32:23.441  INFO 22500 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'refreshScope' has been autodetected for JMX exposure
-2020-04-02 16:32:23.476  INFO 22500 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'configurationPropertiesRebinder' has been autodetected for JMX exposure
-2020-04-02 16:32:23.606  INFO 22500 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'environmentManager': registering with JMX server as MBean [org.springframework.cloud.context.environment:name=environmentManager,type=EnvironmentManager]
-2020-04-02 16:32:23.836  INFO 22500 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'refreshScope': registering with JMX server as MBean [org.springframework.cloud.context.scope.refresh:name=refreshScope,type=RefreshScope]
-2020-04-02 16:32:23.881  INFO 22500 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'configurationPropertiesRebinder': registering with JMX server as MBean [org.springframework.cloud.context.properties:name=configurationPropertiesRebinder,context=34158c08,type=ConfigurationPropertiesRebinder]
-2020-04-02 16:32:23.908  INFO 22500 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.alibaba.druid.spring.boot.autoconfigure:name=dataSource,type=DruidDataSourceWrapper]
-2020-04-02 16:32:23.911  INFO 22500 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'statFilter': registering with JMX server as MBean [com.alibaba.druid.filter.stat:name=statFilter,type=StatFilter]
-2020-04-02 16:32:23.929  INFO 22500 --- [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 0
-2020-04-02 16:32:24.137  INFO 22500 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8084 (http) with context path ''
-2020-04-02 16:32:24.148  INFO 22500 --- [main] c.l.u.LitchiUploadServerApplication      : Started LitchiUploadServerApplication in 35.618 seconds (JVM running for 39.461)
-2020-04-02 16:32:24.284 ERROR 22500 --- [catalogWatchTaskScheduler-1] o.s.s.s.TaskUtils$LoggingErrorHandler    : Unexpected error occurred in scheduled task.
+2020-04-06 16:03:41.492  INFO 3388 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: org.springframework.security.web.util.matcher.AnyRequestMatcher@1, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3e26482, org.springframework.security.web.context.SecurityContextPersistenceFilter@30bbcf91, org.springframework.security.web.header.HeaderWriterFilter@2bb62414, org.springframework.security.web.csrf.CsrfFilter@44592c39, org.springframework.security.web.authentication.logout.LogoutFilter@38588dea, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@72ce812e, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@3b7c58e7, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@7302ff13, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1f4f0fcc, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@35eee641, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7cfb0c4c, org.springframework.security.web.session.SessionManagementFilter@644d1b61, org.springframework.security.web.access.ExceptionTranslationFilter@7243145f, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7197b07f]
+2020-04-06 16:03:41.642  INFO 3388 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService  'catalogWatchTaskScheduler'
+2020-04-06 16:03:41.895  INFO 3388 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2020-04-06 16:03:41.926  INFO 3388 --- [main] s.b.a.e.w.s.WebMvcEndpointHandlerMapping : Mapped "{[/actuator/health],methods=[GET],produces=[application/vnd.spring-boot.actuator.v2+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.web.servlet.AbstractWebMvcEndpointHandlerMapping$OperationHandler.handle(javax.servlet.http.HttpServletRequest,java.util.Map<java.lang.String, java.lang.String>)
+2020-04-06 16:03:41.928  INFO 3388 --- [main] s.b.a.e.w.s.WebMvcEndpointHandlerMapping : Mapped "{[/actuator/info],methods=[GET],produces=[application/vnd.spring-boot.actuator.v2+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.web.servlet.AbstractWebMvcEndpointHandlerMapping$OperationHandler.handle(javax.servlet.http.HttpServletRequest,java.util.Map<java.lang.String, java.lang.String>)
+2020-04-06 16:03:41.929  INFO 3388 --- [main] s.b.a.e.w.s.WebMvcEndpointHandlerMapping : Mapped "{[/actuator],methods=[GET],produces=[application/vnd.spring-boot.actuator.v2+json || application/json]}" onto protected java.util.Map<java.lang.String, java.util.Map<java.lang.String, org.springframework.boot.actuate.endpoint.web.Link>> org.springframework.boot.actuate.endpoint.web.servlet.WebMvcEndpointHandlerMapping.links(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2020-04-06 16:03:42.896  INFO 3388 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2020-04-06 16:03:42.898  INFO 3388 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'statFilter' has been autodetected for JMX exposure
+2020-04-06 16:03:42.898  INFO 3388 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2020-04-06 16:03:42.908  INFO 3388 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'environmentManager' has been autodetected for JMX exposure
+2020-04-06 16:03:42.910  INFO 3388 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'refreshScope' has been autodetected for JMX exposure
+2020-04-06 16:03:42.911  INFO 3388 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'configurationPropertiesRebinder' has been autodetected for JMX exposure
+2020-04-06 16:03:42.915  INFO 3388 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'environmentManager': registering with JMX server as MBean [org.springframework.cloud.context.environment:name=environmentManager,type=EnvironmentManager]
+2020-04-06 16:03:42.925  INFO 3388 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'refreshScope': registering with JMX server as MBean [org.springframework.cloud.context.scope.refresh:name=refreshScope,type=RefreshScope]
+2020-04-06 16:03:42.936  INFO 3388 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'configurationPropertiesRebinder': registering with JMX server as MBean [org.springframework.cloud.context.properties:name=configurationPropertiesRebinder,context=27eedb64,type=ConfigurationPropertiesRebinder]
+2020-04-06 16:03:42.942  INFO 3388 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.alibaba.druid.spring.boot.autoconfigure:name=dataSource,type=DruidDataSourceWrapper]
+2020-04-06 16:03:42.944  INFO 3388 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'statFilter': registering with JMX server as MBean [com.alibaba.druid.filter.stat:name=statFilter,type=StatFilter]
+2020-04-06 16:03:42.952  INFO 3388 --- [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 0
+2020-04-06 16:03:43.003  INFO 3388 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8084 (http) with context path ''
+2020-04-06 16:03:43.010  INFO 3388 --- [main] c.l.u.LitchiUploadServerApplication      : Started LitchiUploadServerApplication in 21.145 seconds (JVM running for 23.579)
+2020-04-06 16:03:43.571  INFO 3388 --- [catalogWatchTaskScheduler-1] c.l.upload.scheduled.FakeDataScheduled   : [insert fake nodeData] :DBLzNodeData(id=274, limitId=1, nodeId=1, time=2020-04-06T08:03:43.086Z, temp=0.2611706680969128, humi=1.6481566186685903, lx=7.575325692542274, tlx=1.5332247866029025, water=5.881299434416546, co2=2.26192125344817, windDirection=2, windStrength=3.6911821984314495, rainfall=6.230812020188969, volt=4.207126469300877)
+2020-04-06 16:03:44.146  INFO 3388 --- [RMI TCP Connection(4)-192.168.0.107] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2020-04-06 16:03:44.146  INFO 3388 --- [RMI TCP Connection(4)-192.168.0.107] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2020-04-06 16:03:44.180  INFO 3388 --- [RMI TCP Connection(4)-192.168.0.107] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 34 ms
+2020-04-06 16:03:44.519  INFO 3388 --- [RMI TCP Connection(3)-192.168.0.107] io.lettuce.core.EpollProvider            : Starting without optional epoll library
+2020-04-06 16:03:44.527  INFO 3388 --- [RMI TCP Connection(3)-192.168.0.107] io.lettuce.core.KqueueProvider           : Starting without optional kqueue library
+2020-04-06 16:04:39.223  INFO 17128 --- [main] c.l.u.LitchiUploadServerApplication      : The following profiles are active: prod
+2020-04-06 16:04:39.245  INFO 17128 --- [main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@50d13246: startup date [Mon Apr 06 16:04:39 CST 2020]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@c8c12ac
+2020-04-06 16:04:40.152  INFO 17128 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-04-06 16:04:40.669  INFO 17128 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=9d5f36da-6cd4-3e80-85ab-d4eb22d0b3a0
+2020-04-06 16:04:40.686  INFO 17128 --- [main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2020-04-06 16:04:40.825  INFO 17128 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$f4dea82f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-06 16:04:40.875  INFO 17128 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$10f8ab2c] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-06 16:04:41.274  INFO 17128 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8084 (http)
+2020-04-06 16:04:41.299  INFO 17128 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-04-06 16:04:41.300  INFO 17128 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.31
+2020-04-06 16:04:41.304  INFO 17128 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [D:\Java\jdk1.8\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\NetSarang\Xshell 6\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;D:\Git\cmd;D:\cmder;D:\apache-maven-3.5.0;D:\Lottery_Spider\;C:\Users\cjliang\AppData\Local\Programs\Python\Python38\;C:\Users\cjliang\AppData\Local\Programs\Python\Python38\Scripts\;D:\Esports_Spider\;;C:\Program Files\nodejs\;C:\Program Files\nodejs\;D:\Maven\apache-maven-3.6.3\bin;C:\Users\cjliang\AppData\Local\Microsoft\WindowsApps;C:\Users\cjliang\AppData\Local\Programs\Python\Python38\;C:\Users\cjliang\AppData\Local\Programs\Python\Python38\Scripts\;D:\Lottery_Spider\;D:\Esports_Spider\;;C:\Users\cjliang\AppData\Roaming\npm;C:\Users\cjliang\AppData\Local\Programs\Fiddler;.]
+2020-04-06 16:04:41.443  INFO 17128 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-04-06 16:04:41.443  INFO 17128 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2198 ms
+2020-04-06 16:04:41.765  WARN 17128 --- [localhost-startStop-1] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2020-04-06 16:04:41.765  INFO 17128 --- [localhost-startStop-1] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-04-06 16:04:41.775  INFO 17128 --- [localhost-startStop-1] c.netflix.config.DynamicPropertyFactory  : DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@6577a07
+2020-04-06 16:04:41.987  INFO 17128 --- [localhost-startStop-1] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2020-04-06 16:04:42.844  INFO 17128 --- [localhost-startStop-1] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2020-04-06 16:04:46.020  INFO 17128 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2020-04-06 16:04:46.021  INFO 17128 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2020-04-06 16:04:46.021  INFO 17128 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2020-04-06 16:04:46.021  INFO 17128 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2020-04-06 16:04:46.022  INFO 17128 --- [localhost-startStop-1] .s.DelegatingFilterProxyRegistrationBean : Mapping filter: 'springSecurityFilterChain' to: [/*]
+2020-04-06 16:04:46.022  INFO 17128 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpTraceFilter' to: [/*]
+2020-04-06 16:04:46.022  INFO 17128 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'webStatFilter' to urls: [/*]
+2020-04-06 16:04:46.022  INFO 17128 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'webMvcMetricsFilter' to: [/*]
+2020-04-06 16:04:46.023  INFO 17128 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2020-04-06 16:04:46.024  INFO 17128 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet statViewServlet mapped to [/druid/*]
+2020-04-06 16:04:47.492  WARN 17128 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2020-04-06 16:04:47.492  INFO 17128 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-04-06 16:04:47.567  INFO 17128 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-04-06 16:04:47.852  INFO 17128 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@50d13246: startup date [Mon Apr 06 16:04:39 CST 2020]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@c8c12ac
+2020-04-06 16:04:47.913  INFO 17128 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/health]}" onto public java.lang.String cn.litchi.upload.LitchiUploadServerApplication.health()
+2020-04-06 16:04:47.918  INFO 17128 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/upload/data/picture],methods=[POST]}" onto public cn.litchi.model.utils.MallResult cn.litchi.upload.controller.UploadController.uploadNodePicture(cn.litchi.model.model.DBLzNodeDataPicture)
+2020-04-06 16:04:47.918  INFO 17128 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/upload/data],methods=[POST]}" onto public cn.litchi.model.utils.MallResult cn.litchi.upload.controller.UploadController.uploadNodeData(cn.litchi.model.model.DBLzNodeData)
+2020-04-06 16:04:47.922  INFO 17128 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2020-04-06 16:04:47.922  INFO 17128 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2020-04-06 16:04:47.964  INFO 17128 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-04-06 16:04:47.964  INFO 17128 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-04-06 16:04:48.791  INFO 17128 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
 
-java.lang.IllegalArgumentException: java.lang.ArithmeticException: long overflow
-	at java.util.Date.from(Date.java:1359) ~[na:1.8.0_231]
-	at cn.litchi.upload.scheduled.FakeDataScheduled.testTasks(FakeDataScheduled.java:42) ~[classes/:na]
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_231]
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_231]
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_231]
-	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_231]
-	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:65) ~[spring-context-5.0.7.RELEASE.jar:5.0.7.RELEASE]
-	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54) ~[spring-context-5.0.7.RELEASE.jar:5.0.7.RELEASE]
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [na:1.8.0_231]
-	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:308) [na:1.8.0_231]
-	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:180) [na:1.8.0_231]
-	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:294) [na:1.8.0_231]
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [na:1.8.0_231]
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [na:1.8.0_231]
-	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_231]
-Caused by: java.lang.ArithmeticException: long overflow
-	at java.lang.Math.multiplyExact(Math.java:892) ~[na:1.8.0_231]
-	at java.time.Instant.toEpochMilli(Instant.java:1237) ~[na:1.8.0_231]
-	at java.util.Date.from(Date.java:1357) ~[na:1.8.0_231]
-	... 14 common frames omitted
+Using generated security password: 13d17e71-9f3b-448c-b05a-f5e3f59c373f
 
-2020-04-02 16:32:24.762  INFO 22500 --- [RMI TCP Connection(3)-192.168.0.107] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
-2020-04-02 16:32:24.762  INFO 22500 --- [RMI TCP Connection(3)-192.168.0.107] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
-2020-04-02 16:32:24.795  INFO 22500 --- [RMI TCP Connection(3)-192.168.0.107] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 32 ms
-2020-04-02 16:32:27.532 ERROR 22500 --- [catalogWatchTaskScheduler-1] o.s.s.s.TaskUtils$LoggingErrorHandler    : Unexpected error occurred in scheduled task.
-
-java.lang.IllegalArgumentException: java.lang.ArithmeticException: long overflow
-	at java.util.Date.from(Date.java:1359) ~[na:1.8.0_231]
-	at cn.litchi.upload.scheduled.FakeDataScheduled.testTasks(FakeDataScheduled.java:42) ~[classes/:na]
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_231]
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_231]
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_231]
-	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_231]
-	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:65) ~[spring-context-5.0.7.RELEASE.jar:5.0.7.RELEASE]
-	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54) ~[spring-context-5.0.7.RELEASE.jar:5.0.7.RELEASE]
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [na:1.8.0_231]
-	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:308) [na:1.8.0_231]
-	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:180) [na:1.8.0_231]
-	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:294) [na:1.8.0_231]
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [na:1.8.0_231]
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [na:1.8.0_231]
-	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_231]
-Caused by: java.lang.ArithmeticException: long overflow
-	at java.lang.Math.multiplyExact(Math.java:892) ~[na:1.8.0_231]
-	at java.time.Instant.toEpochMilli(Instant.java:1237) ~[na:1.8.0_231]
-	at java.util.Date.from(Date.java:1357) ~[na:1.8.0_231]
-	... 14 common frames omitted
-
-2020-04-02 16:32:28.036 ERROR 22500 --- [catalogWatchTaskScheduler-1] o.s.s.s.TaskUtils$LoggingErrorHandler    : Unexpected error occurred in scheduled task.
-
-java.lang.IllegalArgumentException: java.lang.ArithmeticException: long overflow
-	at java.util.Date.from(Date.java:1359) ~[na:1.8.0_231]
-	at cn.litchi.upload.scheduled.FakeDataScheduled.testTasks(FakeDataScheduled.java:42) ~[classes/:na]
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_231]
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_231]
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_231]
-	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_231]
-	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:65) ~[spring-context-5.0.7.RELEASE.jar:5.0.7.RELEASE]
-	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54) ~[spring-context-5.0.7.RELEASE.jar:5.0.7.RELEASE]
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [na:1.8.0_231]
-	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:308) [na:1.8.0_231]
-	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:180) [na:1.8.0_231]
-	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:294) [na:1.8.0_231]
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [na:1.8.0_231]
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [na:1.8.0_231]
-	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_231]
-Caused by: java.lang.ArithmeticException: long overflow
-	at java.lang.Math.multiplyExact(Math.java:892) ~[na:1.8.0_231]
-	at java.time.Instant.toEpochMilli(Instant.java:1237) ~[na:1.8.0_231]
-	at java.util.Date.from(Date.java:1357) ~[na:1.8.0_231]
-	... 14 common frames omitted
-
-2020-04-02 16:32:30.676 ERROR 22500 --- [catalogWatchTaskScheduler-1] o.s.s.s.TaskUtils$LoggingErrorHandler    : Unexpected error occurred in scheduled task.
-
-java.lang.IllegalArgumentException: java.lang.ArithmeticException: long overflow
-	at java.util.Date.from(Date.java:1359) ~[na:1.8.0_231]
-	at cn.litchi.upload.scheduled.FakeDataScheduled.testTasks(FakeDataScheduled.java:42) ~[classes/:na]
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_231]
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_231]
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_231]
-	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_231]
-	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:65) ~[spring-context-5.0.7.RELEASE.jar:5.0.7.RELEASE]
-	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54) ~[spring-context-5.0.7.RELEASE.jar:5.0.7.RELEASE]
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [na:1.8.0_231]
-	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:308) [na:1.8.0_231]
-	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:180) [na:1.8.0_231]
-	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:294) [na:1.8.0_231]
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [na:1.8.0_231]
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [na:1.8.0_231]
-	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_231]
-Caused by: java.lang.ArithmeticException: long overflow
-	at java.lang.Math.multiplyExact(Math.java:892) ~[na:1.8.0_231]
-	at java.time.Instant.toEpochMilli(Instant.java:1237) ~[na:1.8.0_231]
-	at java.util.Date.from(Date.java:1357) ~[na:1.8.0_231]
-	... 14 common frames omitted
-
-2020-04-02 16:32:33.109  INFO 22500 --- [RMI TCP Connection(5)-192.168.0.107] io.lettuce.core.EpollProvider            : Starting without optional epoll library
-2020-04-02 16:32:33.131  INFO 22500 --- [RMI TCP Connection(5)-192.168.0.107] io.lettuce.core.KqueueProvider           : Starting without optional kqueue library
+2020-04-06 16:04:48.957  INFO 17128 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: org.springframework.security.web.util.matcher.AnyRequestMatcher@1, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@30a7653e, org.springframework.security.web.context.SecurityContextPersistenceFilter@2e590b, org.springframework.security.web.header.HeaderWriterFilter@34d480b9, org.springframework.security.web.csrf.CsrfFilter@498c535d, org.springframework.security.web.authentication.logout.LogoutFilter@1f4f0fcc, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@16b3c905, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@644d1b61, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@7c46c9c3, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1df5c7e3, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5927f904, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7cff3f1d, org.springframework.security.web.session.SessionManagementFilter@66749eea, org.springframework.security.web.access.ExceptionTranslationFilter@7015ebef, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@63f40ca0]
+2020-04-06 16:04:49.048  INFO 17128 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService  'catalogWatchTaskScheduler'
+2020-04-06 16:04:49.230  INFO 17128 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2020-04-06 16:04:49.245  INFO 17128 --- [main] s.b.a.e.w.s.WebMvcEndpointHandlerMapping : Mapped "{[/actuator/health],methods=[GET],produces=[application/vnd.spring-boot.actuator.v2+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.web.servlet.AbstractWebMvcEndpointHandlerMapping$OperationHandler.handle(javax.servlet.http.HttpServletRequest,java.util.Map<java.lang.String, java.lang.String>)
+2020-04-06 16:04:49.247  INFO 17128 --- [main] s.b.a.e.w.s.WebMvcEndpointHandlerMapping : Mapped "{[/actuator/info],methods=[GET],produces=[application/vnd.spring-boot.actuator.v2+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.web.servlet.AbstractWebMvcEndpointHandlerMapping$OperationHandler.handle(javax.servlet.http.HttpServletRequest,java.util.Map<java.lang.String, java.lang.String>)
+2020-04-06 16:04:49.248  INFO 17128 --- [main] s.b.a.e.w.s.WebMvcEndpointHandlerMapping : Mapped "{[/actuator],methods=[GET],produces=[application/vnd.spring-boot.actuator.v2+json || application/json]}" onto protected java.util.Map<java.lang.String, java.util.Map<java.lang.String, org.springframework.boot.actuate.endpoint.web.Link>> org.springframework.boot.actuate.endpoint.web.servlet.WebMvcEndpointHandlerMapping.links(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2020-04-06 16:04:49.973  INFO 17128 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2020-04-06 16:04:49.974  INFO 17128 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'statFilter' has been autodetected for JMX exposure
+2020-04-06 16:04:49.974  INFO 17128 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2020-04-06 16:04:49.983  INFO 17128 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'environmentManager' has been autodetected for JMX exposure
+2020-04-06 16:04:49.985  INFO 17128 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'refreshScope' has been autodetected for JMX exposure
+2020-04-06 16:04:49.987  INFO 17128 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'configurationPropertiesRebinder' has been autodetected for JMX exposure
+2020-04-06 16:04:49.991  INFO 17128 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'environmentManager': registering with JMX server as MBean [org.springframework.cloud.context.environment:name=environmentManager,type=EnvironmentManager]
+2020-04-06 16:04:50.002  INFO 17128 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'refreshScope': registering with JMX server as MBean [org.springframework.cloud.context.scope.refresh:name=refreshScope,type=RefreshScope]
+2020-04-06 16:04:50.013  INFO 17128 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'configurationPropertiesRebinder': registering with JMX server as MBean [org.springframework.cloud.context.properties:name=configurationPropertiesRebinder,context=50d13246,type=ConfigurationPropertiesRebinder]
+2020-04-06 16:04:50.020  INFO 17128 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.alibaba.druid.spring.boot.autoconfigure:name=dataSource,type=DruidDataSourceWrapper]
+2020-04-06 16:04:50.021  INFO 17128 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'statFilter': registering with JMX server as MBean [com.alibaba.druid.filter.stat:name=statFilter,type=StatFilter]
+2020-04-06 16:04:50.028  INFO 17128 --- [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 0
+2020-04-06 16:04:50.083  INFO 17128 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8084 (http) with context path ''
+2020-04-06 16:04:50.090  INFO 17128 --- [main] c.l.u.LitchiUploadServerApplication      : Started LitchiUploadServerApplication in 14.438 seconds (JVM running for 16.179)
+2020-04-06 16:04:50.540  INFO 17128 --- [catalogWatchTaskScheduler-1] c.l.upload.scheduled.FakeDataScheduled   : [insert fake nodeData] :DBLzNodeData(id=275, limitId=1, nodeId=2, time=2020-04-06T08:04:50.119Z, temp=6.050759438334943, humi=8.84879831952874, lx=0.3622796214726509, tlx=3.270530580569532, water=3.2887040428319403, co2=6.5596025785925836, windDirection=2, windStrength=9.367171092082295, rainfall=1.0209683617167042, volt=5.7653496004108415)
+2020-04-06 16:04:50.887  INFO 17128 --- [RMI TCP Connection(1)-192.168.0.107] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2020-04-06 16:04:50.887  INFO 17128 --- [RMI TCP Connection(1)-192.168.0.107] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2020-04-06 16:04:50.909  INFO 17128 --- [RMI TCP Connection(1)-192.168.0.107] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 22 ms
+2020-04-06 16:04:51.053  INFO 17128 --- [RMI TCP Connection(2)-192.168.0.107] io.lettuce.core.EpollProvider            : Starting without optional epoll library
+2020-04-06 16:04:51.055  INFO 17128 --- [RMI TCP Connection(2)-192.168.0.107] io.lettuce.core.KqueueProvider           : Starting without optional kqueue library
+2020-04-06 16:05:51.328  INFO 17128 --- [catalogWatchTaskScheduler-1] c.l.upload.scheduled.FakeDataScheduled   : [insert fake nodeData] :DBLzNodeData(id=276, limitId=1, nodeId=0, time=2020-04-06T08:05:51.188Z, temp=3.3189798338868637, humi=1.12135850629845, lx=8.487685299990895, tlx=3.391855263831005, water=2.9677884839364843, co2=8.067129964159701, windDirection=3, windStrength=6.794793304913046, rainfall=8.909352916711178, volt=6.239296008518687)
+2020-04-06 16:06:50.144  INFO 17128 --- [catalogWatchTaskScheduler-1] c.l.upload.scheduled.FakeDataScheduled   : [insert fake nodeData] :DBLzNodeData(id=277, limitId=1, nodeId=0, time=2020-04-06T08:06:50.054Z, temp=1.505350130418761, humi=8.052227879466876, lx=7.941133479928912, tlx=2.259073126600477, water=1.5280190308434438, co2=6.958754153068601, windDirection=1, windStrength=1.5755082409049037, rainfall=0.8205125152598269, volt=9.496696431561361)
+2020-04-06 16:07:25.569  INFO 16664 --- [main] c.l.u.LitchiUploadServerApplication      : The following profiles are active: prod
+2020-04-06 16:07:25.593  INFO 16664 --- [main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@1608bcbd: startup date [Mon Apr 06 16:07:25 CST 2020]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@1283bb96
+2020-04-06 16:07:26.699  INFO 16664 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-04-06 16:07:27.415  INFO 16664 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=6f693338-354b-3ec0-813d-d8d0f1915468
+2020-04-06 16:07:27.443  INFO 16664 --- [main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2020-04-06 16:07:27.608  INFO 16664 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$1e771b7b] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-06 16:07:27.660  INFO 16664 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$3a911e78] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-06 16:07:28.253  INFO 16664 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8084 (http)
+2020-04-06 16:07:28.438  INFO 16664 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-04-06 16:07:28.439  INFO 16664 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.31
+2020-04-06 16:07:28.446  INFO 16664 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [D:\Java\jdk1.8\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\NetSarang\Xshell 6\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;D:\Git\cmd;D:\cmder;D:\apache-maven-3.5.0;D:\Lottery_Spider\;C:\Users\cjliang\AppData\Local\Programs\Python\Python38\;C:\Users\cjliang\AppData\Local\Programs\Python\Python38\Scripts\;D:\Esports_Spider\;;C:\Program Files\nodejs\;C:\Program Files\nodejs\;D:\Maven\apache-maven-3.6.3\bin;C:\Users\cjliang\AppData\Local\Microsoft\WindowsApps;C:\Users\cjliang\AppData\Local\Programs\Python\Python38\;C:\Users\cjliang\AppData\Local\Programs\Python\Python38\Scripts\;D:\Lottery_Spider\;D:\Esports_Spider\;;C:\Users\cjliang\AppData\Roaming\npm;C:\Users\cjliang\AppData\Local\Programs\Fiddler;.]
+2020-04-06 16:07:28.674  INFO 16664 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-04-06 16:07:28.675  INFO 16664 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 3081 ms
+2020-04-06 16:07:29.150  WARN 16664 --- [localhost-startStop-1] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2020-04-06 16:07:29.151  INFO 16664 --- [localhost-startStop-1] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-04-06 16:07:29.174  INFO 16664 --- [localhost-startStop-1] c.netflix.config.DynamicPropertyFactory  : DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@cd5ddf4
+2020-04-06 16:07:29.462  INFO 16664 --- [localhost-startStop-1] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2020-04-06 16:07:30.437  INFO 16664 --- [localhost-startStop-1] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2020-04-06 16:07:33.983  INFO 16664 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2020-04-06 16:07:33.984  INFO 16664 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet statViewServlet mapped to [/druid/*]
+2020-04-06 16:07:33.990  INFO 16664 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2020-04-06 16:07:33.990  INFO 16664 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2020-04-06 16:07:33.990  INFO 16664 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2020-04-06 16:07:33.990  INFO 16664 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2020-04-06 16:07:33.991  INFO 16664 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpTraceFilter' to: [/*]
+2020-04-06 16:07:33.991  INFO 16664 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'webStatFilter' to urls: [/*]
+2020-04-06 16:07:33.991  INFO 16664 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'webMvcMetricsFilter' to: [/*]
+2020-04-06 16:07:35.464  WARN 16664 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2020-04-06 16:07:35.464  INFO 16664 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-04-06 16:07:35.538  INFO 16664 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-04-06 16:07:35.838  INFO 16664 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@1608bcbd: startup date [Mon Apr 06 16:07:25 CST 2020]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@1283bb96
+2020-04-06 16:07:35.898  INFO 16664 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/health]}" onto public java.lang.String cn.litchi.upload.LitchiUploadServerApplication.health()
+2020-04-06 16:07:35.903  INFO 16664 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/upload/data],methods=[POST]}" onto public cn.litchi.model.utils.MallResult cn.litchi.upload.controller.UploadController.uploadNodeData(cn.litchi.model.model.DBLzNodeData)
+2020-04-06 16:07:35.904  INFO 16664 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/upload/data/picture],methods=[POST]}" onto public cn.litchi.model.utils.MallResult cn.litchi.upload.controller.UploadController.uploadNodePicture(cn.litchi.model.model.DBLzNodeDataPicture)
+2020-04-06 16:07:35.907  INFO 16664 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2020-04-06 16:07:35.907  INFO 16664 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2020-04-06 16:07:35.945  INFO 16664 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-04-06 16:07:35.946  INFO 16664 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-04-06 16:07:36.665  INFO 16664 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService  'catalogWatchTaskScheduler'
+2020-04-06 16:07:36.851  INFO 16664 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2020-04-06 16:07:36.865  INFO 16664 --- [main] s.b.a.e.w.s.WebMvcEndpointHandlerMapping : Mapped "{[/actuator/health],methods=[GET],produces=[application/vnd.spring-boot.actuator.v2+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.web.servlet.AbstractWebMvcEndpointHandlerMapping$OperationHandler.handle(javax.servlet.http.HttpServletRequest,java.util.Map<java.lang.String, java.lang.String>)
+2020-04-06 16:07:36.867  INFO 16664 --- [main] s.b.a.e.w.s.WebMvcEndpointHandlerMapping : Mapped "{[/actuator/info],methods=[GET],produces=[application/vnd.spring-boot.actuator.v2+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.web.servlet.AbstractWebMvcEndpointHandlerMapping$OperationHandler.handle(javax.servlet.http.HttpServletRequest,java.util.Map<java.lang.String, java.lang.String>)
+2020-04-06 16:07:36.868  INFO 16664 --- [main] s.b.a.e.w.s.WebMvcEndpointHandlerMapping : Mapped "{[/actuator],methods=[GET],produces=[application/vnd.spring-boot.actuator.v2+json || application/json]}" onto protected java.util.Map<java.lang.String, java.util.Map<java.lang.String, org.springframework.boot.actuate.endpoint.web.Link>> org.springframework.boot.actuate.endpoint.web.servlet.WebMvcEndpointHandlerMapping.links(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2020-04-06 16:07:37.621  INFO 16664 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2020-04-06 16:07:37.623  INFO 16664 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'statFilter' has been autodetected for JMX exposure
+2020-04-06 16:07:37.623  INFO 16664 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2020-04-06 16:07:37.632  INFO 16664 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'environmentManager' has been autodetected for JMX exposure
+2020-04-06 16:07:37.634  INFO 16664 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'refreshScope' has been autodetected for JMX exposure
+2020-04-06 16:07:37.635  INFO 16664 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'configurationPropertiesRebinder' has been autodetected for JMX exposure
+2020-04-06 16:07:37.639  INFO 16664 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'environmentManager': registering with JMX server as MBean [org.springframework.cloud.context.environment:name=environmentManager,type=EnvironmentManager]
+2020-04-06 16:07:37.651  INFO 16664 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'refreshScope': registering with JMX server as MBean [org.springframework.cloud.context.scope.refresh:name=refreshScope,type=RefreshScope]
+2020-04-06 16:07:37.662  INFO 16664 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'configurationPropertiesRebinder': registering with JMX server as MBean [org.springframework.cloud.context.properties:name=configurationPropertiesRebinder,context=1608bcbd,type=ConfigurationPropertiesRebinder]
+2020-04-06 16:07:37.669  INFO 16664 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.alibaba.druid.spring.boot.autoconfigure:name=dataSource,type=DruidDataSourceWrapper]
+2020-04-06 16:07:37.671  INFO 16664 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'statFilter': registering with JMX server as MBean [com.alibaba.druid.filter.stat:name=statFilter,type=StatFilter]
+2020-04-06 16:07:37.678  INFO 16664 --- [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 0
+2020-04-06 16:07:37.729  INFO 16664 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8084 (http) with context path ''
+2020-04-06 16:07:37.742  INFO 16664 --- [main] o.s.c.c.s.ConsulServiceRegistry          : Registering service with consul: NewService{id='litchi-upload-server-8084', name='litchi-upload-server', tags=[secure=false], address='192.168.0.107', port=8084, enableTagOverride=null, check=Check{script='null', interval='15s', ttl='null', http='http://192.168.0.107:8084/health', tcp='null', timeout='null', deregisterCriticalServiceAfter='null', tlsSkipVerify=null, status='null'}, checks=null}
+2020-04-06 16:07:37.778  INFO 16664 --- [main] c.l.u.LitchiUploadServerApplication      : Started LitchiUploadServerApplication in 16.116 seconds (JVM running for 17.802)
+2020-04-06 16:07:37.867  INFO 16664 --- [RMI TCP Connection(1)-192.168.0.107] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2020-04-06 16:07:37.867  INFO 16664 --- [RMI TCP Connection(1)-192.168.0.107] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2020-04-06 16:07:37.920  INFO 16664 --- [RMI TCP Connection(1)-192.168.0.107] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 53 ms
+2020-04-06 16:07:39.329  INFO 16664 --- [RMI TCP Connection(3)-192.168.0.107] io.lettuce.core.EpollProvider            : Starting without optional epoll library
+2020-04-06 16:07:39.331  INFO 16664 --- [RMI TCP Connection(3)-192.168.0.107] io.lettuce.core.KqueueProvider           : Starting without optional kqueue library

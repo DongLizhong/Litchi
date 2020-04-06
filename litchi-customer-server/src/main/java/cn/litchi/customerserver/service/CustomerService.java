@@ -34,10 +34,15 @@ public class CustomerService implements UserServiceRpc {
 
     @Override
     public DBSysUser addUser(@RequestBody DBSysUser user, @RequestParam("role") String role) {
+        DBSysUser exitUser = userDao.findByUserName(user.getUsername());
+        if (exitUser != null) {
+            return null;
+        }
         userDao.insert(user);
         QueryWrapper<DBSysRole> queryWrapper = new QueryWrapper<>();
         queryWrapper.lambda().eq(DBSysRole::getName, role);
         DBSysRole sysRole = roleDao.selectOne(queryWrapper);
+        // 设置新用户对应的角色
         DBSysUserRole userRole = DBSysUserRole.builder()
                 .sysRoleId(sysRole.getId())
                 .sysUserId(user.getId())

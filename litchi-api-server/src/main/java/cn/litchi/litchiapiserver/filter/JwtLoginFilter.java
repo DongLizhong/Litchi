@@ -43,7 +43,6 @@ public class JwtLoginFilter extends AbstractAuthenticationProcessingFilter {
         for (GrantedAuthority authority : authorities) {
             as.append(authority.getAuthority())
                     .append(",");
-            System.out.println(authority.getAuthority());
         }
         String jwt = Jwts.builder()
                 .claim("authorities", as)//配置用户角色

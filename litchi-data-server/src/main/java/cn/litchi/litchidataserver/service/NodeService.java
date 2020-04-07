@@ -1,6 +1,8 @@
 package cn.litchi.litchidataserver.service;
 
+import cn.litchi.model.mapper.LzMonitorRegulationGroupDao;
 import cn.litchi.model.mapper.LzNodeDao;
+import cn.litchi.model.model.DBLzMonitorRegulationGroup;
 import cn.litchi.model.model.DBLzNode;
 import cn.litchi.model.request.NodeQueryReq;
 import cn.litchi.rpc.NodeServiceRpc;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import static cn.litchi.model.utils.CollectionsUtilsExtend.checkListNotNull;
 
@@ -21,6 +24,8 @@ public class NodeService implements NodeServiceRpc {
 
     @Autowired
     private LzNodeDao lzNodeDao;
+    @Autowired
+    private LzMonitorRegulationGroupDao groupDao;
 
     @Override
     public List<DBLzNode> getNodeList() {
@@ -41,6 +46,19 @@ public class NodeService implements NodeServiceRpc {
 
     @Override
     public Boolean deleteNode(@RequestParam("nodeId") Long nodeId) {
+        // 取待删除节点的创建时间
+        Instant nodeCreateTime = lzNodeDao.selectById(nodeId).getCreateTime();
+        // 查询出创建时间小于 nodeCreateTime 的规则组
+        QueryWrapper<DBLzMonitorRegulationGroup> query = new QueryWrapper<>();
+        query.lambda().ge(DBLzMonitorRegulationGroup::getCreateTime, nodeCreateTime);
+        List<DBLzMonitorRegulationGroup> groups = groupDao.selectList(query);
+        // 遍历规则组，更新nodeList，去除被删除节点，最后更新修改过的规则组。
+        groups.stream().filter(it -> it.getNodeList().contains(nodeId))
+                .map(it -> {
+                    it.getNodeList().remove(nodeId);
+                    return it;
+                }).forEach(groupDao::updateById);
+        // 删除节点
         return lzNodeDao.deleteById(nodeId) == 1;
     }
 
@@ -60,5 +78,15 @@ public class NodeService implements NodeServiceRpc {
             queryWrapper.lambda().eq(DBLzNode::getToken, queryKey);
         }
         return lzNodeDao.selectList(queryWrapper);
+    }
+
+    @Override
+    public Boolean updateNode(@RequestBody DBLzNode node) {
+        // 构造一个只更新 name 字段的模型
+        DBLzNode lzNode = DBLzNode.builder()
+                .id(node.getId())
+                .name(node.getName())
+                .build();
+        return lzNodeDao.updateById(lzNode) == 1;
     }
 }

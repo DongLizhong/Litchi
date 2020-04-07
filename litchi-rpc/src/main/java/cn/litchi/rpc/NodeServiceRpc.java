@@ -27,4 +27,7 @@ public interface NodeServiceRpc {
 
     @PostMapping(value = "/query")
     List<DBLzNode> queryNode(@RequestBody NodeQueryReq req);
+
+    @PostMapping(value = "/update", consumes = MediaType.APPLICATION_JSON_VALUE)
+    Boolean updateNode(@RequestBody DBLzNode node);
 }

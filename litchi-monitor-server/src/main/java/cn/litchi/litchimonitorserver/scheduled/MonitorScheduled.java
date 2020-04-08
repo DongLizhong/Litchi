@@ -49,22 +49,25 @@ public class MonitorScheduled {
         List<DBLzMonitorRegulationGroup> groups = groupDao.selectList(wrapper);
 
         // 找出规则组中要求监控的最长时间，用于按时间获取 nodeData
-        Set<Long> nodeSet = new HashSet<>();
-        groups.forEach(it -> nodeSet.addAll(it.getNodeList()));
+//        Set<Long> nodeSet = new HashSet<>();
+//        groups.forEach(it -> nodeSet.addAll(it.getNodeList()));
+        // 计算出最长的keep_minutes
         Long keepMinutes = Collections.max(Collections.max(groups).getItems()).getKeepMinutes();
         QueryWrapper<DBLzNodeData> dataQueryWrapper = new QueryWrapper<>();
         dataQueryWrapper.lambda()
-                .ge(DBLzNodeData::getTime, Instant.now().minusSeconds(keepMinutes))
-                .in(DBLzNodeData::getNodeId, nodeSet);
+                .ge(DBLzNodeData::getTime, Instant.now().minusSeconds(keepMinutes));
         List<DBLzNodeData> data = dataDao.selectList(dataQueryWrapper);
+        // 将监控数据按节点维度划分
         Map<Long, List<DBLzNodeData>> dataMap = data.stream()
                 .collect(Collectors.groupingBy(DBLzNodeData::getNodeId));
-
+        // 遍历dataMap的节点
         dataMap.forEach((nodeId, datas) -> {
                     List<DBLzMonitorRegulationGroup> currentGroups
                             = groups.stream()
+                            // 过滤出作用于该节点的监控规则组
                             .filter(group -> group.getNodeList().contains(nodeId) || group.getNodeList().isEmpty())
                             .collect(Collectors.toList());
+                    // 监控工厂派发监控控制器任务
                     handlerFactory(nodeId, datas, currentGroups);
                 }
         );
@@ -99,6 +102,7 @@ public class MonitorScheduled {
         AtomicBoolean alarm = new AtomicBoolean(true);
         group.getItems().forEach(it -> {
             Integer thresholdType = it.getThresholdType();
+            // 按阈值类型进行不同的处理
             if (thresholdType == DBLzMonitorRegulationItem.THRESHOLD_TYPE_AVERAGE_VALUE) {
                 // 全部规则均触发的话，最后该方法返回 true。产生告警。
                 alarm.set(averageValueHandler(it, data, log) && alarm.get());

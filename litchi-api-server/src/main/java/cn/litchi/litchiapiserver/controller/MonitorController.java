@@ -86,4 +86,16 @@ public class MonitorController {
         List<DBLzMonitorRegulationGroup> groups = monitorRpc.queryGroup(req);
         return MallResult.ok(groups);
     }
+
+    @PostMapping("/item/update")
+    public MallResult updateMonitorItem(@RequestBody DBLzMonitorRegulationItem item) {
+         monitorRpc.updateMonitorItem(item);
+         return MallResult.ok();
+    }
+
+    @PostMapping("/group/update")
+    public MallResult updateMonitorGroup(@RequestBody DBLzMonitorRegulationGroup group) {
+        monitorRpc.updateMonitorGroup(group);
+        return MallResult.ok();
+    }
 }

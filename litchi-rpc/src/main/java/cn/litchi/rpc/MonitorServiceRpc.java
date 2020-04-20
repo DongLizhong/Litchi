@@ -49,6 +49,9 @@ public interface MonitorServiceRpc {
     @GetMapping("/item/enable")
     Boolean enableMonitorItem(@RequestParam("itemId") Long id);
 
+    @PostMapping("/item/update")
+    Boolean updateMonitorItem(@RequestBody DBLzMonitorRegulationItem item);
+
     @GetMapping("/item/disable")
     Boolean disableMonitorItem(@RequestParam("itemId") Long id);
 

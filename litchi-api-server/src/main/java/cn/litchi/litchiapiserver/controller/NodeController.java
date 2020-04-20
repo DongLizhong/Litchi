@@ -6,6 +6,7 @@ import cn.litchi.model.request.NodeQueryReq;
 import cn.litchi.model.utils.MallResult;
 import cn.litchi.rpc.NodeServiceRpc;
 import cn.litchi.rpc.UserServiceRpc;
+import org.hibernate.validator.constraints.ParameterScriptAssert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +59,12 @@ public class NodeController extends BaseController {
     public MallResult queryNode(@RequestBody NodeQueryReq req) {
         logger.info(req.toString());
         return MallResult.ok(nodeService.queryNode(req));
+    }
+
+    @PostMapping("/update")
+    public MallResult updateNode(@RequestBody DBLzNode node) {
+        nodeService.updateNode(node);
+        return MallResult.ok();
     }
 
 }

@@ -51,18 +51,20 @@ public class MonitorService implements MonitorServiceRpc {
         group.setUpdateTime(Instant.now());
         group.setBeginDay(dayOfYear(group.getBeginDate()));
         group.setEndDay(dayOfYear(group.getEndDate()));
+        System.out.println(group);
         groupDao.insert(group);
 //        group.getItems().forEach(it -> itemDao.insert(it));
         return group;
     }
 
     @Override
-    public Boolean updateMonitorGroup(DBLzMonitorRegulationGroup group) {
+    public Boolean updateMonitorGroup(@RequestBody DBLzMonitorRegulationGroup group) {
+        group.setNodeList(null);
         groupDao.updateById(group);
-        QueryWrapper<DBLzMonitorRegulationItem> wrapper
-                = new QueryWrapper<DBLzMonitorRegulationItem>().eq(DBLzMonitorRegulationItem.GROUP_ID_FIELD, group.getId());
-        group.getItems().forEach(it ->
-                itemDao.update(it, wrapper));
+//        QueryWrapper<DBLzMonitorRegulationItem> wrapper
+//                = new QueryWrapper<DBLzMonitorRegulationItem>().eq(DBLzMonitorRegulationItem.GROUP_ID_FIELD, group.getId());
+//        group.getItems().forEach(it ->
+//                itemDao.update(it, wrapper));
         return true;
     }
 
@@ -112,6 +114,12 @@ public class MonitorService implements MonitorServiceRpc {
     @Override
     public Boolean enableMonitorItem(@RequestParam("itemId") Long id) {
         return itemDao.updateById(DBLzMonitorRegulationItem.builder().enable(true).build()) == 1;
+    }
+
+    @Override
+    public Boolean updateMonitorItem(@RequestBody DBLzMonitorRegulationItem item) {
+        item.setUpdateTime(Instant.now());
+        return itemDao.updateById(item) == 1;
     }
 
     @Override

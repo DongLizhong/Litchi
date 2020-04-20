@@ -49,7 +49,7 @@ public class NodeDataController extends BaseController {
     }
 
 
-    @GetMapping(value = "interval")
+    @GetMapping(value = "/interval")
     public MallResult getIntervalNodeData(@RequestParam("beginDate") Instant beginDate,
                                           @RequestParam("endDate") Instant endDate) {
         List<DBLzNodeData> data = nodeDataService.selectIntervalDatasByDate(beginDate, endDate);

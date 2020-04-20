@@ -87,11 +87,7 @@ public class NodeService implements NodeServiceRpc {
 
     @Override
     public Boolean updateNode(@RequestBody DBLzNode node) {
-        // 构造一个只更新 name 字段的模型
-        DBLzNode lzNode = DBLzNode.builder()
-                .id(node.getId())
-                .name(node.getName())
-                .build();
-        return lzNodeDao.updateById(lzNode) == 1;
+        node.setUpdateTime(Instant.now());
+        return lzNodeDao.updateById(node) == 1;
     }
 }

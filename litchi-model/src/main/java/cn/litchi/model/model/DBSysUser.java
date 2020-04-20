@@ -50,7 +50,7 @@ public class DBSysUser implements UserDetails, Serializable {
     private Instant updateTime;
 
     @TableField(exist = false)
-    private List<DBSysRole> roles = Collections.emptyList();
+    private List<DBSysRole> roles;
 
     @TableField(exist = false)
     private Integer type;

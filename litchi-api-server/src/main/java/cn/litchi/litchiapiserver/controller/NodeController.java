@@ -6,20 +6,25 @@ import cn.litchi.model.request.NodeQueryReq;
 import cn.litchi.model.utils.MallResult;
 import cn.litchi.rpc.NodeServiceRpc;
 import cn.litchi.rpc.UserServiceRpc;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.time.Instant;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/node")
 public class NodeController extends BaseController {
+
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     private NodeServiceRpc nodeService;
@@ -51,6 +56,7 @@ public class NodeController extends BaseController {
 
     @PostMapping("/query")
     public MallResult queryNode(@RequestBody NodeQueryReq req) {
+        logger.info(req.toString());
         return MallResult.ok(nodeService.queryNode(req));
     }
 

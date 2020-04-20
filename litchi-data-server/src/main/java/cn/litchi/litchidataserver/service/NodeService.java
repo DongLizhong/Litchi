@@ -7,6 +7,7 @@ import cn.litchi.model.model.DBLzNode;
 import cn.litchi.model.request.NodeQueryReq;
 import cn.litchi.rpc.NodeServiceRpc;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,12 +16,15 @@ import org.springframework.web.bind.annotation.RestController;
 import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
+
+import org.slf4j.Logger;
 
 import static cn.litchi.model.utils.CollectionsUtilsExtend.checkListNotNull;
 
 @RestController
 public class NodeService implements NodeServiceRpc {
+
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     private LzNodeDao lzNodeDao;
@@ -64,6 +68,7 @@ public class NodeService implements NodeServiceRpc {
 
     @Override
     public List<DBLzNode> queryNode(@RequestBody NodeQueryReq req) {
+        logger.info(req.toString());
         int type = req.getQueryType().intValue();
         String queryKey = req.getQueryKey();
         QueryWrapper<DBLzNode> queryWrapper = new QueryWrapper<>();

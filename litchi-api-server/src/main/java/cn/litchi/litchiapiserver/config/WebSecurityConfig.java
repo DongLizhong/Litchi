@@ -42,7 +42,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/harm/admin").hasRole("admin")
                 .antMatchers("/api/node/.*").hasRole("admin")
                 .antMatchers("/api/monitor/.*").hasRole("admin")
-                .antMatchers(HttpMethod.POST, "/api/user/user/register").permitAll()
+                .antMatchers("/api/user/register").hasRole("admin")
                 .antMatchers(HttpMethod.POST, "/api/user/login").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/user/logout").permitAll()
                 .anyRequest().authenticated()

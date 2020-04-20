@@ -6,6 +6,7 @@ import cn.litchi.model.model.DBLzMonitorRegulationGroup;
 import cn.litchi.model.model.DBLzMonitorRegulationItem;
 import cn.litchi.model.request.MonitorGroupQueryReq;
 import cn.litchi.model.request.MonitorItemReq;
+import cn.litchi.model.utils.DateUtils;
 import cn.litchi.model.utils.StringUtils;
 import cn.litchi.rpc.MonitorServiceRpc;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -162,6 +163,14 @@ public class MonitorService implements MonitorServiceRpc {
             queryWrapper.lambda().eq(DBLzMonitorRegulationGroup::getId, Long.valueOf(queryKey));
         } else if (type == MonitorGroupQueryReq.GROUP_NAME) {
             queryWrapper.lambda().like(DBLzMonitorRegulationGroup::getName, queryKey);
+        }
+        if (req.getBeginDate() != null) {
+            int day = dayOfYear(req.getBeginDate());
+            queryWrapper.lambda().ge(DBLzMonitorRegulationGroup::getBeginDay, day);
+        }
+        if (req.getEndDate() != null) {
+            int day = dayOfYear(req.getEndDate());
+            queryWrapper.lambda().le(DBLzMonitorRegulationGroup::getEndDay, day);
         }
         List<DBLzMonitorRegulationGroup> groups = groupDao.selectList(queryWrapper);
         if (type == MonitorGroupQueryReq.NODE_IDS) {

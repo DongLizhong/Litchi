@@ -12,10 +12,12 @@ import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.util.CollectionUtils;
 
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -48,10 +50,17 @@ public class DBSysUser implements UserDetails, Serializable {
     private Instant updateTime;
 
     @TableField(exist = false)
-    private List<DBSysRole> roles;
+    private List<DBSysRole> roles = Collections.emptyList();
+
+    @TableField(exist = false)
+    private Integer type;
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+        if (CollectionUtils.isEmpty(this.getRoles())) {
+            return Collections.EMPTY_LIST;
+        }
         return this.getRoles().stream()
                 .map(it -> new SimpleGrantedAuthority(it.getName()))
                 .collect(Collectors.toList());

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.Instant;
 import java.util.List;
 
 @RestController
@@ -78,7 +79,16 @@ public class CustomerService implements UserServiceRpc {
         } else if (type == UserQueryReq.USER_PHONE) {
             queryWrapper.lambda().eq(DBSysUser::getPhone, queryKey);
         }
-        return userDao.selectList(queryWrapper);
+        List<DBSysUser> users = userDao.selectList(queryWrapper);
+        users.stream().forEach(it -> it.setPassword(null));
+        return users;
+    }
+
+    @Override
+    public DBSysUser updateUser(@RequestBody DBSysUser user) {
+        user.setUpdateTime(Instant.now());
+        userDao.updateById(user);
+        return user;
     }
 
 

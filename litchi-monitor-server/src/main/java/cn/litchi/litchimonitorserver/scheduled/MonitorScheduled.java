@@ -1,8 +1,10 @@
 package cn.litchi.litchimonitorserver.scheduled;
 
+import cn.litchi.model.mapper.LzAlarmLogDao;
 import cn.litchi.model.mapper.LzMonitorRegulationGroupDao;
 import cn.litchi.model.mapper.LzNodeDataDao;
 import cn.litchi.model.mapper.LzSystemConfigDao;
+import cn.litchi.model.model.DBLzAlarmLog;
 import cn.litchi.model.model.DBLzMonitorRegulationGroup;
 import cn.litchi.model.model.DBLzMonitorRegulationItem;
 import cn.litchi.model.model.DBLzNodeData;
@@ -15,11 +17,10 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
 @Component
@@ -31,6 +32,8 @@ public class MonitorScheduled {
     private LzNodeDataDao dataDao;
     @Autowired
     private LzSystemConfigDao sysDao;
+    @Autowired
+    private LzAlarmLogDao alarmLogDao;
 
     // 系统报警调节参数，当监控情况到达用户设置参数的 ALARM_THRESHOLD 倍数时，则会告警。
     // TODO 配置于数据库，需要考虑不同监控情况的处理。原本是设计成 == 1.0 时，与用户设置规则一直， > 1.0 时更加严格，提前预警。
@@ -86,7 +89,18 @@ public class MonitorScheduled {
             Map<String, Double> log = new HashMap();
             boolean alarm = handler(it, data, log);
             if (alarm) {
-                // TODO 添加记录,发布消息
+                AtomicReference<String> message = new AtomicReference<>("");
+                log.forEach((k, v) -> message.set(message + "规则Id:" + k + " 监控值:" + v + "\n"));
+                message.set(message + it.getMessage());
+                DBLzAlarmLog alarmLog = DBLzAlarmLog.builder()
+                        .groupId(it.getId())
+                        .nodeId(nodeId)
+                        .message(message.get())
+                        .createTime(Instant.now())
+                        .updateTime(Instant.now())
+                        .build();
+                alarmLogDao.insert(alarmLog);
+
             }
         });
     }
@@ -121,7 +135,7 @@ public class MonitorScheduled {
         double alarmValue = ALARM_THRESHOLD * item.getThreshold();
         List<Double> monitorData = item.matchMonitorData(data);
         double value = monitorData.stream().mapToDouble(it -> it).average().getAsDouble();
-        log.put(String.valueOf(item.getIndexNum()), value);
+        log.put(String.valueOf(item.getId()), value);
         return item.shouldAlarm(alarmValue, value);
     }
 
@@ -129,7 +143,7 @@ public class MonitorScheduled {
         double alarmValue = ALARM_THRESHOLD * item.getThreshold();
         List<Double> monitorData = item.matchMonitorData(data);
         double value = monitorData.stream().mapToDouble(it -> it).min().getAsDouble();
-        log.put(String.valueOf(item.getIndexNum()), value);
+        log.put(String.valueOf(item.getId()), value);
         return item.shouldAlarm(alarmValue, value);
     }
 
@@ -137,7 +151,7 @@ public class MonitorScheduled {
         double alarmValue = ALARM_THRESHOLD * item.getThreshold();
         List<Double> monitorData = item.matchMonitorData(data);
         double value = monitorData.stream().mapToDouble(it -> it).max().getAsDouble();
-        log.put(String.valueOf(item.getIndexNum()), value);
+        log.put(String.valueOf(item.getId()), value);
         return item.shouldAlarm(alarmValue, value);
     }
 

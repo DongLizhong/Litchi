@@ -20,8 +20,6 @@ public class DBLzAlarmLog {
     private Long id;
     private Long nodeId;
     private Long groupId;
-    private String threshold;
-    private String monitorData;
     private String message;
     private Instant createTime;
     private Instant updateTime;

@@ -61,7 +61,7 @@ public class UserController {
     }
 
     @PostMapping("/query")
-    public MallResult queryNode(@RequestBody UserQueryReq req) {
+    public MallResult queryUser(@RequestBody UserQueryReq req) {
         return MallResult.ok(userRpc.queryUser(req));
     }
 
@@ -81,5 +81,10 @@ public class UserController {
     @PostMapping("logout")
     public MallResult userLogout(Authentication authResult) {
         return MallResult.ok();
+    }
+
+    @PostMapping("/update")
+    public MallResult updateUser(@RequestBody DBSysUser user) {
+        return MallResult.ok(userRpc.updateUser(user));
     }
 }

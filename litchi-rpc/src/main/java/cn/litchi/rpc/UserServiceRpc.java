@@ -30,4 +30,7 @@ public interface UserServiceRpc {
     @PostMapping(value = "/query")
     List<DBSysUser> queryUser(@RequestBody UserQueryReq req);
 
+    @PostMapping("/update")
+    DBSysUser updateUser(@RequestBody DBSysUser user);
+
 }

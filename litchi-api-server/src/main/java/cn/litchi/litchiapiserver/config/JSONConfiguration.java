@@ -64,13 +64,17 @@ public class JSONConfiguration {
                 }
             }
 
-            long longValue = Long.parseLong(value) / 1000;
-            if (type.equals(LocalDateTime.class)) {
-                return (T) LocalDateTime.ofEpochSecond(longValue, 0, ZoneOffset.ofHours(8));
-            } else if (type.equals(LocalDate.class)) {
-                return (T) LocalDateTime.ofEpochSecond(longValue, 0, ZoneOffset.ofHours(8)).toLocalDate();
-            } else if (type.equals(Instant.class)) {
-                return (T) Instant.ofEpochSecond(longValue);
+            try {
+                long longValue = Long.parseLong(value) / 1000;
+                if (type.equals(LocalDateTime.class)) {
+                    return (T) LocalDateTime.ofEpochSecond(longValue, 0, ZoneOffset.ofHours(8));
+                } else if (type.equals(LocalDate.class)) {
+                    return (T) LocalDateTime.ofEpochSecond(longValue, 0, ZoneOffset.ofHours(8)).toLocalDate();
+                } else if (type.equals(Instant.class)) {
+                    return (T) Instant.ofEpochSecond(longValue);
+                }
+            } catch (Exception e) {
+                return null;
             }
 
             return null;

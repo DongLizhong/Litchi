@@ -94,7 +94,7 @@ public class NodeDataService implements NodeDataServiceRpc {
             queryWrapper.lambda().ge(DBLzAlarmLog::getCreateTime, req.getBeginDate());
         }
         if (req.getEndDate() != null) {
-            queryWrapper.lambda().le(DBLzAlarmLog::getCreateTime, req.getBeginDate());
+            queryWrapper.lambda().le(DBLzAlarmLog::getCreateTime, req.getEndDate());
         }
         List<DBLzAlarmLog> logs = lzAlarmLogDao.selectList(queryWrapper);
         return logs;

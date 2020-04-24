@@ -2,6 +2,8 @@ package cn.litchi.litchiapiserver.controller;
 
 import cn.litchi.litchiapiserver.entity.NodeIdAndDateList;
 import cn.litchi.model.model.DBLzNodeData;
+import cn.litchi.model.request.AlarmQueryReq;
+import cn.litchi.model.request.NodeQueryReq;
 import cn.litchi.model.respone.model.LzNodeData;
 import cn.litchi.model.utils.MallResult;
 import cn.litchi.rpc.NodeDataServiceRpc;
@@ -48,12 +50,21 @@ public class NodeDataController extends BaseController {
         return dateList;
     }
 
+    @GetMapping(value = "/alarm")
+    public MallResult getAlarmList() {
+        return MallResult.ok(nodeDataService.getAlarmLog());
+    }
 
     @GetMapping(value = "/interval")
     public MallResult getIntervalNodeData(@RequestParam("beginDate") Instant beginDate,
                                           @RequestParam("endDate") Instant endDate) {
         List<DBLzNodeData> data = nodeDataService.selectIntervalDatasByDate(beginDate, endDate);
         return MallResult.ok(data);
+    }
+
+    @PostMapping("/alarm/query")
+    public MallResult queryAlarm(@RequestBody AlarmQueryReq req) {
+        return MallResult.ok(nodeDataService.queryAlarmLog(req));
     }
 
 

@@ -17,8 +17,10 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
@@ -51,26 +53,29 @@ public class MonitorScheduled {
                 .eq(DBLzMonitorRegulationGroup::getEnable, true);
         List<DBLzMonitorRegulationGroup> groups = groupDao.selectList(wrapper);
 
-        // 找出规则组中要求监控的最长时间，用于按时间获取 nodeData
-//        Set<Long> nodeSet = new HashSet<>();
-//        groups.forEach(it -> nodeSet.addAll(it.getNodeList()));
+        // 找出规则组中要求监控的最长时间与节点id，用于获取 nodeData
         // 计算出最长的keep_minutes
         Long keepMinutes = Collections.max(Collections.max(groups).getItems()).getKeepMinutes();
+        // 所有的节点id
+        Set<Long> nodeSet = new HashSet<>();
+        groups.forEach(it -> nodeSet.addAll(it.getNodeList()));
+        //获取监控数据
         QueryWrapper<DBLzNodeData> dataQueryWrapper = new QueryWrapper<>();
         dataQueryWrapper.lambda()
-                .ge(DBLzNodeData::getTime, Instant.now().minusSeconds(keepMinutes));
+                .ge(DBLzNodeData::getTime, Instant.now().minusSeconds(keepMinutes))
+                .in(DBLzNodeData::getNodeId, nodeSet);
         List<DBLzNodeData> data = dataDao.selectList(dataQueryWrapper);
-        // 将监控数据按节点维度划分
+        // 将监控数据按节点id划分
         Map<Long, List<DBLzNodeData>> dataMap = data.stream()
                 .collect(Collectors.groupingBy(DBLzNodeData::getNodeId));
-        // 遍历dataMap的节点
+        // 遍历dataMap的匹配规则组
         dataMap.forEach((nodeId, datas) -> {
                     List<DBLzMonitorRegulationGroup> currentGroups
                             = groups.stream()
                             // 过滤出作用于该节点的监控规则组
                             .filter(group -> group.getNodeList().contains(nodeId) || group.getNodeList().isEmpty())
                             .collect(Collectors.toList());
-                    // 监控工厂派发监控控制器任务
+                    // 分析工厂派发分析控制器任务
                     handlerFactory(nodeId, datas, currentGroups);
                 }
         );
@@ -100,7 +105,6 @@ public class MonitorScheduled {
                         .updateTime(Instant.now())
                         .build();
                 alarmLogDao.insert(alarmLog);
-
             }
         });
     }
@@ -117,8 +121,8 @@ public class MonitorScheduled {
         group.getItems().forEach(it -> {
             Integer thresholdType = it.getThresholdType();
             // 按阈值类型进行不同的处理
+            // 全部规则均触发的话，最后该方法返回 true。产生告警。
             if (thresholdType == DBLzMonitorRegulationItem.THRESHOLD_TYPE_AVERAGE_VALUE) {
-                // 全部规则均触发的话，最后该方法返回 true。产生告警。
                 alarm.set(averageValueHandler(it, data, log) && alarm.get());
             } else if (thresholdType == DBLzMonitorRegulationItem.THRESHOLD_TYPE_MIN_VALUE) {
                 alarm.set(minValueHandler(it, data, log) && alarm.get());

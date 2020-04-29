@@ -29,6 +29,10 @@ public class RedisUtils {
         return redisTemplate.opsForValue().get(key);
     }
 
+    public boolean isExit(String key) {
+        return redisTemplate.opsForValue().get(key) != null;
+    }
+
     /**
      * 删除缓存
      */

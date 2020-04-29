@@ -49,9 +49,7 @@ public class UploadController {
             String idStr = String.valueOf(node.getId());
             if (redisUtils.isExit(idStr)) {
                 nodeData.setNodeId(node.getId());
-                if (nodeData.getTime() == null) {
-                    nodeData.setTime(Instant.now());
-                }
+                nodeData.setTime(Instant.now());
                 nodeDataDao.insert(nodeData);
                 redisUtils.saveData(idStr,idStr,liveTime,TimeUnit.SECONDS);
             }

@@ -90,3 +90,7 @@ Litchi
    litchi-data-server,litchi-customer-server,litchi-monitor-server，litchi-upload-server是否注册服务成功
 
  - 系统初始账号 root 初始密码 123
+ 
+ ### **邮箱**
+ jieliangcao@qq.com
+ 项目又不理解的地方可以邮件问我

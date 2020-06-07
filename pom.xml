@@ -12,7 +12,6 @@
         <module>litchi-api-server</module>
         <module>litchi-customer-server</module>
         <module>litchi-upload-server</module>
-        <module>litchi-admin-server</module>
         <module>litchi-product-server</module>
         <module>litchi-order-server</module>
         <module>litchi-monitor-server</module>

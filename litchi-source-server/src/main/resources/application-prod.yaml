@@ -23,7 +23,7 @@ spring:
     druid:
       filter: stat
       driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://39.96.10.247:3306/litchi?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useTimezone=true&serverTimezone=GMT
+      url: jdbc:mysql://127.0.0.1:3306/litchi?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useTimezone=true&serverTimezone=GMT
       username: root
       password: cjladmin
       initial-size: 1

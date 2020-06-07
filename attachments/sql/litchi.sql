@@ -4,7 +4,7 @@
  Source Server         : 荔枝园
  Source Server Type    : MySQL
  Source Server Version : 50637
- Source Host           : 39.96.10.247:3306
+ Source Host           : 127.0.0.1:3306
  Source Schema         : litchi
 
  Target Server Type    : MySQL
